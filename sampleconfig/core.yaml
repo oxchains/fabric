@@ -401,10 +401,12 @@ ledger:
   blockchain:
 
   state:
-    # stateDatabase - options are "goleveldb", "CouchDB"
+    # stateDatabase - options are "goleveldb", "CouchDB" and "MongoDB"
     # goleveldb - default state database stored in goleveldb.
     # CouchDB - store state database in CouchDB
-    stateDatabase: goleveldb
+    # MongoDB - store state databse in MongoDB
+
+    stateDatabase: MongoDB
     couchDBConfig:
        # It is recommended to run CouchDB on the same server as the peer, and
        # not map the CouchDB container port to a server port in docker-compose.
@@ -426,6 +428,15 @@ ledger:
        requestTimeout: 35s
        # Limit on the number of records to return per query
        queryLimit: 10000
+    mongoDBConfig:
+       url:
+       username:
+       password:
+       collection_name: test_base
+       database_name: stateMongo_test
+       querylimit: 10000
+
+
 
 
   history:

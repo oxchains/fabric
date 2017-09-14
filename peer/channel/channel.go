@@ -39,6 +39,7 @@ const (
 )
 
 var logger = flogging.MustGetLogger("channelCmd")
+var testLogger = flogging.MustGetLogger("fabric/peer/channel")
 
 type OrdererRequirement bool
 type EndorserRequirement bool

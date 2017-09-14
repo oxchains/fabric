@@ -76,6 +76,7 @@ func main() {
 		server := NewServer(manager, signer)
 		ab.RegisterAtomicBroadcastServer(grpcServer.Server(), server)
 		logger.Info("Beginning to serve requests")
+		logger.Info("test")
 		grpcServer.Start()
 	// "version" command
 	case version.FullCommand():

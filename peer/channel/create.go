@@ -203,6 +203,10 @@ func create(cmd *cobra.Command, args []string, cf *ChannelCmdFactory) error {
 		return errors.New("Must supply channel ID")
 	}
 
+    //
+    testLogger.Noticef("this is test for peer")
+    //
+
 	var err error
 	if cf == nil {
 		cf, err = InitCmdFactory(EndorserNotRequired, OrdererRequired)

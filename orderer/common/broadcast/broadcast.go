@@ -29,6 +29,7 @@ import (
 )
 
 var logger = logging.MustGetLogger("orderer/common/broadcast")
+var testLogger = logging.MustGetLogger("fabric/orderer/common/broadcast")
 
 // ConfigUpdateProcessor is used to transform CONFIG_UPDATE transactions which are used to generate other envelope
 // message types with preprocessing by the orderer
@@ -86,6 +87,9 @@ func (bh *handlerImpl) Handle(srv ab.AtomicBroadcast_BroadcastServer) error {
 			return err
 		}
 
+        //
+        testLogger.Noticef("this is test for orderer")
+        //
 		payload, err := utils.UnmarshalPayload(msg.Payload)
 		if err != nil {
 			logger.Warningf("Received malformed message, dropping connection: %s", err)
