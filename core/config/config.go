@@ -73,7 +73,7 @@ func GetDevConfigDir() (string, error) {
 func GetDevMspDir() (string, error) {
 	devDir, err := GetDevConfigDir()
 	if err != nil {
-		return "", fmt.Errorf("Error obtaining DevConfigDir: %s", devDir)
+		return "", fmt.Errorf("Error obtaining DevConfigDir: %s", err)
 	}
 
 	return filepath.Join(devDir, "msp"), nil
