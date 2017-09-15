@@ -3,9 +3,6 @@ package statemongodb
 import (
 	"testing"
 	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/mongodbhelper"
-	"mgo-2"
-
 )
 
 type TestDBEnv struct {
@@ -15,20 +12,12 @@ type TestDBEnv struct {
 
 func NewTestDBEnv(t testing.TB) *TestDBEnv{
 	t.Logf("Creating new TestDBEnv")
-	dialinfo, _ := mgo.ParseURL("")
-	conf := mongodbhelper.Conf{Dialinfo:dialinfo, Database_name:"mongotest", Collection_name:"test1"}
-	provider := mongodbhelper.NewProvider(&conf)
-	return &TestDBEnv{t:t, DBProvider:&VersionedDBProvider{dbProvider:provider}}
-
+	versionedDBProvider, _ := NewVersionedDBProvider()
+	return &TestDBEnv{t:t, DBProvider:versionedDBProvider}
 }
 
-func (env *TestDBEnv) Cleanup(dbName string){
-	session , err := mgo.Dial("")
-	defer session.Close()
-	if err != nil{
-		panic("Error while link the mongo in test export")
-	}
-	db := session.DB(dbName)
-	db.DropDatabase()
-	env.DBProvider.Close()
+func (env *TestDBEnv) Cleanup(dbName string) {
+	versionedDBProvider, _ := NewVersionedDBProvider()
+	versionedDBProvider.session.DB(dbName).DropDatabase()
+	versionedDBProvider.session.Close()
 }

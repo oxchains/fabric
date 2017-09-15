@@ -94,7 +94,11 @@ func NewProvider() (ledger.PeerLedgerProvider, error) {
 	} else if ledgerconfig.IsMongoDBEnaled() {
 	    logger.Debugf("constructing mongodb versionedDBProvider")
 	    //TODO 待修改
-	    vdbProvider = statemongodb.NewVersionedDBProvider()
+	    var err error
+		vdbProvider, err = statemongodb.NewVersionedDBProvider()
+	    if err != nil {
+	    	return nil, err
+	    }
 	} else {
 		logger.Debug("Constructing leveldb VersionedDBProvider")
 		vdbProvider = stateleveldb.NewVersionedDBProvider()

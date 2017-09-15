@@ -31,6 +31,7 @@ func GetQueryBson(namespace, query string) (interface{}, error) {
     if err != nil {
         return "", err
     }
+    
     processAndWrapQuery(jsonQueryMap)
     jsonQueryMap[NS] = namespace
     return jsonQueryMap, nil

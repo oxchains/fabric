@@ -6,41 +6,31 @@ import (
 	"github.com/hyperledger/fabric/common/ledger/testutil"
 	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
 	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-
-	//"fmt"
 )
 
 func TestBasicRW(t *testing.T) {
 	env := NewTestDBEnv(t)
-	defer env.Cleanup("mongotest")
 	defer env.Cleanup("testbasicrw")
 	commontests.TestBasicRW(t, env.DBProvider)
 }
 
+func TestGetStateMultipleKeys(t *testing.T) {
+	env := NewTestDBEnv(t)
+	defer env.Cleanup("testgetmultiplekeys")
+	commontests.TestGetStateMultipleKeys(t, env.DBProvider)
+}
+
 func TestMultiDBBasicRW(t *testing.T) {
 	env := NewTestDBEnv(t)
-	defer env.Cleanup("mongotest")
+	defer env.Cleanup("testmultidbbasicrw")
+	defer env.Cleanup("testmultidbbasicrw2")
 	commontests.TestMultiDBBasicRW(t, env.DBProvider)
 }
 
 func TestDeletes(t *testing.T) {
 	env := NewTestDBEnv(t)
-	defer env.Cleanup("mongotest")
 	defer env.Cleanup("testdeletes")
 	commontests.TestDeletes(t, env.DBProvider)
-}
-
-func TestCompositeKey(t *testing.T) {
-	testCompositeKey(t, "ledger1", "ns", "key")
-	testCompositeKey(t, "ledger2", "ns", "")
-}
-
-func testCompositeKey(t *testing.T, dbName string, ns string, key string) {
-	compositeKey := constructCompositeKey(ns, key)
-	t.Logf("compositeKey=%#v", compositeKey)
-	ns1, key1 := splitCompositeKey(compositeKey)
-	testutil.AssertEquals(t, ns1, ns)
-	testutil.AssertEquals(t, key1, key)
 }
 
 func TestEncodeDecodeValueAndVersion(t *testing.T) {
@@ -57,7 +47,6 @@ func testValueAndVersionEncodeing(t *testing.T, value []byte, version *version.H
 
 func TestIterator(t *testing.T) {
 	env := NewTestDBEnv(t)
-	defer env.Cleanup("mongotest")
 	defer env.Cleanup("testiterator")
 	commontests.TestIterator(t, env.DBProvider)
 	
@@ -65,7 +54,6 @@ func TestIterator(t *testing.T) {
 
 func TestJsonQuery(t *testing.T) {
 	env := NewTestDBEnv(t)
-	defer env.Cleanup("mongotest")
 	defer env.Cleanup("testquery")
 	commontests.TestMongoQuery(t, env.DBProvider)
 }
