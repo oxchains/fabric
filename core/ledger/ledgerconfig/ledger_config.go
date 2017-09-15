@@ -32,6 +32,14 @@ func IsCouchDBEnabled() bool {
 	return false
 }
 
+func IsMongoDBEnaled() bool {
+	stateDatabase := viper.GetString("ledger.state.stateDatabase")
+	if stateDatabase == "MongoDB" {
+		return true
+	}
+	return false
+}
+
 // GetRootPath returns the filesystem path.
 // All ledger related contents are expected to be stored under this path
 func GetRootPath() string {
