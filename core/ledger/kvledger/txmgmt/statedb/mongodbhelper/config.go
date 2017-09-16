@@ -33,6 +33,10 @@ func GetMongoDBConf() *MongoDBConf {
 	if queryLimit <= 0 {
 		queryLimit = 1000
 	}
+	//timeout=0 代码一直等待服务器响应
+	if timeout <= 0 {
+		timeout, _ = time.ParseDuration("35s")
+	}
 	
 	return &MongoDBConf{
 		Url: url,
