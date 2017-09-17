@@ -69,8 +69,8 @@ You should also clone the following repositories
     * `hyperledger-fabric`_
     * `hyperledger-fabric-ca`_
 
-.. _hyperledger-fabric: https://github.com/hyperledger/fabric
-.. _hyperledger-fabric-ca: https://github.com/hyperledger/fabric-ca
+.. _hyperledger-fabric: https://github.com/oxchains/fabric
+.. _hyperledger-fabric-ca: https://github.com/oxchains/fabric-ca
 
 ================
 Using VirtualEnv

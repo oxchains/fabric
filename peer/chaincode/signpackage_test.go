@@ -24,8 +24,8 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"github.com/hyperledger/fabric/peer/common"
-	pcommon "github.com/hyperledger/fabric/protos/common"
+	"github.com/oxchains/fabric/peer/common"
+	pcommon "github.com/oxchains/fabric/protos/common"
 )
 
 //helper to sign an existing package

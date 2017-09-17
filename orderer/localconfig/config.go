@@ -20,18 +20,18 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/viperutil"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/viperutil"
 
 	"github.com/Shopify/sarama"
 	"github.com/op/go-logging"
 	"github.com/spf13/viper"
 
-	cf "github.com/hyperledger/fabric/core/config"
+	cf "github.com/oxchains/fabric/core/config"
 
 	"path/filepath"
 
-	bccsp "github.com/hyperledger/fabric/bccsp/factory"
+	bccsp "github.com/oxchains/fabric/bccsp/factory"
 )
 
 const (

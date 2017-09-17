@@ -24,8 +24,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/common"
+	"github.com/oxchains/fabric/gossip/api"
+	"github.com/oxchains/fabric/gossip/common"
 )
 
 var (

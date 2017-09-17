@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strings"
 
-	cb "github.com/hyperledger/fabric/protos/common"
+	cb "github.com/oxchains/fabric/protos/common"
 
 	"github.com/golang/protobuf/proto"
 )

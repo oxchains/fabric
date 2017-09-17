@@ -23,19 +23,19 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/common/sysccprovider"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	"github.com/hyperledger/fabric/core/scc/lscc"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
-	"github.com/hyperledger/fabric/protos/msp"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/cauthdsl"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	"github.com/oxchains/fabric/core/common/ccprovider"
+	"github.com/oxchains/fabric/core/common/sysccprovider"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/oxchains/fabric/core/scc/lscc"
+	mspmgmt "github.com/oxchains/fabric/msp/mgmt"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/ledger/rwset/kvrwset"
+	"github.com/oxchains/fabric/protos/msp"
+	pb "github.com/oxchains/fabric/protos/peer"
+	"github.com/oxchains/fabric/protos/utils"
 )
 
 var logger = flogging.MustGetLogger("vscc")

@@ -17,9 +17,9 @@ limitations under the License.
 package scc
 
 import (
-	lm "github.com/hyperledger/fabric/common/mocks/ledger"
-	"github.com/hyperledger/fabric/core/common/sysccprovider"
-	"github.com/hyperledger/fabric/core/ledger"
+	lm "github.com/oxchains/fabric/common/mocks/ledger"
+	"github.com/oxchains/fabric/core/common/sysccprovider"
+	"github.com/oxchains/fabric/core/ledger"
 )
 
 type MocksccProviderFactory struct {

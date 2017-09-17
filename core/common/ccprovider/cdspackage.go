@@ -25,9 +25,9 @@ import (
 
 	"bytes"
 
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/bccsp"
+	"github.com/oxchains/fabric/bccsp/factory"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 //----- CDSData ------

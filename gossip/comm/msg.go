@@ -19,7 +19,7 @@ package comm
 import (
 	"sync"
 
-	proto "github.com/hyperledger/fabric/protos/gossip"
+	proto "github.com/oxchains/fabric/protos/gossip"
 )
 
 // ReceivedMessageImpl is an implementation of ReceivedMessage

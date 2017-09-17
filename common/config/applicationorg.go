@@ -17,8 +17,8 @@ limitations under the License.
 package config
 
 import (
-	mspconfig "github.com/hyperledger/fabric/common/config/msp"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	mspconfig "github.com/oxchains/fabric/common/config/msp"
+	pb "github.com/oxchains/fabric/protos/peer"
 
 	logging "github.com/op/go-logging"
 )

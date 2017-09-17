@@ -21,9 +21,9 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/ptypes/empty"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/testutil"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/testutil"
+	pb "github.com/oxchains/fabric/protos/peer"
 	"github.com/stretchr/testify/assert"
 )
 

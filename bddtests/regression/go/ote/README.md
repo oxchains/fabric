@@ -50,14 +50,14 @@ Check your Docker and Docker-Compose versions with the following commands:
 
 - Alternative 1: Prepare all binaries and images using a script
 ```bash
-      cd $GOPATH/src/github.com/hyperledger/fabric/bddtests/regression/ote
+      cd $GOPATH/src/github.com/oxchains/fabric/bddtests/regression/ote
       ./docker_images.sh
 ```
 
 - Alternative 2: Prepare binaries and images manually
 - - Clone the fabric repository, build the binaries and images
 ```bash
-        cd $GOPATH/src/github.com/hyperledger/fabric
+        cd $GOPATH/src/github.com/oxchains/fabric
         make native docker
 ```
 - - Clone the fabric-ca repository, build the images
@@ -65,11 +65,11 @@ Check your Docker and Docker-Compose versions with the following commands:
         cd $GOPATH/src/github.com/hyperledger/
 
         # Use ONE of these methods to clone the repository:
-            go get github.com/hyperledger/fabric-ca
-            git clone https://github.com/hyperledger/fabric-ca.git
+            go get github.com/oxchains/fabric-ca
+            git clone https://github.com/oxchains/fabric-ca.git
             git clone ssh://YOUR-ID@gerrit.hyperledger.org:29418/fabric-ca
 
-        cd $GOPATH/src/github.com/hyperledger/fabric-ca
+        cd $GOPATH/src/github.com/oxchains/fabric-ca
         make docker
 ```
 
@@ -103,7 +103,7 @@ There are several environment variables to control the test parameters,
 such as number of transactions, number of orderers, ordererType, and more.
 To see an example test using default settings, simply execute the following.
 ```bash
-  cd $GOPATH/src/github.com/hyperledger/fabric/bddtests/regression/ote
+  cd $GOPATH/src/github.com/oxchains/fabric/bddtests/regression/ote
   go build
   ./ote
   CONFIGTX_ORDERER_BATCHSIZE_MAXMESSAGECOUNT=20 ./ote
@@ -136,7 +136,7 @@ to execute either one test, or all go tests, or
 a subset of existing functional go tests using a regular expression
 to choose tests in local test files.
 ```bash
-  cd $GOPATH/src/github.com/hyperledger/fabric/bddtests/regression/ote
+  cd $GOPATH/src/github.com/oxchains/fabric/bddtests/regression/ote
   go test -run ORD77
   go test -run ORD7[79]
   go test -run batchSz -timeout 20m
@@ -154,12 +154,12 @@ executed from Jenkins by Continuous Improvement processes.
 
 #### Pre-requisite to convert "go test" output to xml
 ```bash
-  cd $GOPATH/src/github.com/hyperledger/fabric/bddtests/regression/ote
+  cd $GOPATH/src/github.com/oxchains/fabric/bddtests/regression/ote
   go get github.com/jstemmer/go-junit-report
 ```
 #### Example command to execute all "go tests" and convert to xml:
 ```
-  cd $GOPATH/src/github.com/hyperledger/fabric/bddtests/regression/ote
+  cd $GOPATH/src/github.com/oxchains/fabric/bddtests/regression/ote
   go test -v -timeout 120m | go-junit-report > ote_report.xml
 ```
 

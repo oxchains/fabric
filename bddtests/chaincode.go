@@ -20,10 +20,10 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	putils "github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/protos/common"
+	pb "github.com/oxchains/fabric/protos/peer"
+	putils "github.com/oxchains/fabric/protos/utils"
 )
 
 func createChaincodeSpec(ccType string, path string, args [][]byte) *pb.ChaincodeSpec {

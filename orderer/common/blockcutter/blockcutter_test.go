@@ -20,10 +20,10 @@ import (
 	"bytes"
 	"testing"
 
-	mockconfig "github.com/hyperledger/fabric/common/mocks/config"
-	"github.com/hyperledger/fabric/orderer/common/filter"
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	mockconfig "github.com/oxchains/fabric/common/mocks/config"
+	"github.com/oxchains/fabric/orderer/common/filter"
+	cb "github.com/oxchains/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/orderer"
 	logging "github.com/op/go-logging"
 	"github.com/stretchr/testify/assert"
 )

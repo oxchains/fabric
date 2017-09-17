@@ -19,8 +19,8 @@ package configtx
 import (
 	"testing"
 
-	configtxapi "github.com/hyperledger/fabric/common/configtx/api"
-	"github.com/hyperledger/fabric/common/policies"
+	configtxapi "github.com/oxchains/fabric/common/configtx/api"
+	"github.com/oxchains/fabric/common/policies"
 )
 
 func TestConfigtxTransactionalInterface(t *testing.T) {

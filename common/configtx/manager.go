@@ -20,10 +20,10 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/hyperledger/fabric/common/configtx/api"
-	"github.com/hyperledger/fabric/common/flogging"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/configtx/api"
+	"github.com/oxchains/fabric/common/flogging"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 
 	"github.com/golang/protobuf/proto"
 )

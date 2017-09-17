@@ -19,7 +19,7 @@ package bddtests
 import (
 	"fmt"
 
-	pb "github.com/hyperledger/fabric/protos/peer"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 // UserRegistration represents a user in the peer network

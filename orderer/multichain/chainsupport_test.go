@@ -20,13 +20,13 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	mockconfigtx "github.com/hyperledger/fabric/common/mocks/configtx"
-	"github.com/hyperledger/fabric/common/mocks/crypto"
-	"github.com/hyperledger/fabric/orderer/common/filter"
-	"github.com/hyperledger/fabric/orderer/ledger"
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
-	"github.com/hyperledger/fabric/protos/utils"
+	mockconfigtx "github.com/oxchains/fabric/common/mocks/configtx"
+	"github.com/oxchains/fabric/common/mocks/crypto"
+	"github.com/oxchains/fabric/orderer/common/filter"
+	"github.com/oxchains/fabric/orderer/ledger"
+	cb "github.com/oxchains/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/orderer"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/stretchr/testify/assert"
 )
 

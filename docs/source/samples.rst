@@ -25,7 +25,7 @@ execute the following commands:
 
 .. code:: bash
 
-  git clone https://github.com/hyperledger/fabric-samples.git
+  git clone https://github.com/oxchains/fabric-samples.git
   cd fabric-samples
 
 .. _binaries:

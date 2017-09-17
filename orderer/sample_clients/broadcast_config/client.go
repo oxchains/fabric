@@ -23,12 +23,12 @@ import (
 
 	"google.golang.org/grpc"
 
-	genesisconfig "github.com/hyperledger/fabric/common/configtx/tool/localconfig"
-	"github.com/hyperledger/fabric/msp"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/orderer/localconfig"
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	genesisconfig "github.com/oxchains/fabric/common/configtx/tool/localconfig"
+	"github.com/oxchains/fabric/msp"
+	mspmgmt "github.com/oxchains/fabric/msp/mgmt"
+	"github.com/oxchains/fabric/orderer/localconfig"
+	cb "github.com/oxchains/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/orderer"
 )
 
 var conf *config.TopLevel

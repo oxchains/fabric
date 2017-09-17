@@ -27,14 +27,14 @@ import (
 
 	"io/ioutil"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/metadata"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/car"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/golang"
-	"github.com/hyperledger/fabric/core/chaincode/platforms/java"
-	"github.com/hyperledger/fabric/core/config"
-	cutil "github.com/hyperledger/fabric/core/container/util"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/metadata"
+	"github.com/oxchains/fabric/core/chaincode/platforms/car"
+	"github.com/oxchains/fabric/core/chaincode/platforms/golang"
+	"github.com/oxchains/fabric/core/chaincode/platforms/java"
+	"github.com/oxchains/fabric/core/config"
+	cutil "github.com/oxchains/fabric/core/container/util"
+	pb "github.com/oxchains/fabric/protos/peer"
 	"github.com/spf13/viper"
 )
 

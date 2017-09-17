@@ -3,7 +3,7 @@ import (
 //	"fmt"
 	"testing"
       //  "labix.org/v2/mgo/bson"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
+	"github.com/oxchains/fabric/common/ledger/testutil"
 )
 
 func TestDBBasicWriteAndReads(t *testing.T){

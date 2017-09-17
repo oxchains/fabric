@@ -22,9 +22,9 @@ import (
 	"strconv"
 	"strings"
 
-	ledger "github.com/hyperledger/fabric/core/ledger"
+	ledger "github.com/oxchains/fabric/core/ledger"
 
-	"github.com/hyperledger/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/common"
 	logging "github.com/op/go-logging"
 )
 

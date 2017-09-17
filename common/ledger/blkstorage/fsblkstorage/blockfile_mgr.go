@@ -23,13 +23,13 @@ import (
 	"sync/atomic"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/ledger/blkstorage"
-	"github.com/hyperledger/fabric/common/ledger/util"
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/peer"
-	putil "github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/ledger/blkstorage"
+	"github.com/oxchains/fabric/common/ledger/util"
+	"github.com/oxchains/fabric/common/ledger/util/leveldbhelper"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/peer"
+	putil "github.com/oxchains/fabric/protos/utils"
 )
 
 var logger = flogging.MustGetLogger("fsblkstorage")

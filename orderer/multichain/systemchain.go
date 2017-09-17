@@ -19,12 +19,12 @@ package multichain
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/config"
-	"github.com/hyperledger/fabric/common/configtx"
-	configtxapi "github.com/hyperledger/fabric/common/configtx/api"
-	"github.com/hyperledger/fabric/orderer/common/filter"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/config"
+	"github.com/oxchains/fabric/common/configtx"
+	configtxapi "github.com/oxchains/fabric/common/configtx/api"
+	"github.com/oxchains/fabric/orderer/common/filter"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 
 	"github.com/golang/protobuf/proto"
 )

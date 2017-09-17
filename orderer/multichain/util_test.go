@@ -19,12 +19,12 @@ package multichain
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/config"
-	"github.com/hyperledger/fabric/common/configtx"
-	"github.com/hyperledger/fabric/common/configtx/tool/provisional"
-	"github.com/hyperledger/fabric/orderer/common/blockcutter"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/config"
+	"github.com/oxchains/fabric/common/configtx"
+	"github.com/oxchains/fabric/common/configtx/tool/provisional"
+	"github.com/oxchains/fabric/orderer/common/blockcutter"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 )
 
 type mockConsenter struct {

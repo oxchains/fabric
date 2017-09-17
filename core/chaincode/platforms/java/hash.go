@@ -26,10 +26,10 @@ import (
 	"errors"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/util"
-	ccutil "github.com/hyperledger/fabric/core/chaincode/platforms/util"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/util"
+	ccutil "github.com/oxchains/fabric/core/chaincode/platforms/util"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 var logger = flogging.MustGetLogger("java/hash")

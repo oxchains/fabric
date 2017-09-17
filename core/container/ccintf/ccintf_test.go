@@ -20,8 +20,8 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/util"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/util"
+	pb "github.com/oxchains/fabric/protos/peer"
 	"github.com/stretchr/testify/assert"
 )
 

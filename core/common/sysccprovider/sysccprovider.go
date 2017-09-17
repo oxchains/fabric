@@ -17,7 +17,7 @@ limitations under the License.
 package sysccprovider
 
 import (
-	"github.com/hyperledger/fabric/core/ledger"
+	"github.com/oxchains/fabric/core/ledger"
 )
 
 // SystemChaincodeProvider provides an abstraction layer that is

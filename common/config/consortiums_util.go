@@ -17,8 +17,8 @@ limitations under the License.
 package config
 
 import (
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 )
 
 const (

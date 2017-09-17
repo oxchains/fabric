@@ -22,8 +22,8 @@ import (
 	"strconv"
 
 	"github.com/golang/protobuf/proto"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/spf13/cobra"
 )
 

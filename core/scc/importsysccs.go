@@ -18,11 +18,11 @@ package scc
 
 import (
 	//import system chain codes here
-	"github.com/hyperledger/fabric/core/scc/cscc"
-	"github.com/hyperledger/fabric/core/scc/escc"
-	"github.com/hyperledger/fabric/core/scc/lscc"
-	"github.com/hyperledger/fabric/core/scc/qscc"
-	"github.com/hyperledger/fabric/core/scc/vscc"
+	"github.com/oxchains/fabric/core/scc/cscc"
+	"github.com/oxchains/fabric/core/scc/escc"
+	"github.com/oxchains/fabric/core/scc/lscc"
+	"github.com/oxchains/fabric/core/scc/qscc"
+	"github.com/oxchains/fabric/core/scc/vscc"
 )
 
 //see systemchaincode_test.go for an example using "sample_syscc"
@@ -30,7 +30,7 @@ var systemChaincodes = []*SystemChaincode{
 	{
 		Enabled:           true,
 		Name:              "cscc",
-		Path:              "github.com/hyperledger/fabric/core/scc/cscc",
+		Path:              "github.com/oxchains/fabric/core/scc/cscc",
 		InitArgs:          [][]byte{[]byte("")},
 		Chaincode:         &cscc.PeerConfiger{},
 		InvokableExternal: true, // cscc is invoked to join a channel
@@ -38,7 +38,7 @@ var systemChaincodes = []*SystemChaincode{
 	{
 		Enabled:           true,
 		Name:              "lscc",
-		Path:              "github.com/hyperledger/fabric/core/scc/lscc",
+		Path:              "github.com/oxchains/fabric/core/scc/lscc",
 		InitArgs:          [][]byte{[]byte("")},
 		Chaincode:         &lscc.LifeCycleSysCC{},
 		InvokableExternal: true, // lscc is invoked to deploy new chaincodes
@@ -47,21 +47,21 @@ var systemChaincodes = []*SystemChaincode{
 	{
 		Enabled:   true,
 		Name:      "escc",
-		Path:      "github.com/hyperledger/fabric/core/scc/escc",
+		Path:      "github.com/oxchains/fabric/core/scc/escc",
 		InitArgs:  [][]byte{[]byte("")},
 		Chaincode: &escc.EndorserOneValidSignature{},
 	},
 	{
 		Enabled:   true,
 		Name:      "vscc",
-		Path:      "github.com/hyperledger/fabric/core/scc/vscc",
+		Path:      "github.com/oxchains/fabric/core/scc/vscc",
 		InitArgs:  [][]byte{[]byte("")},
 		Chaincode: &vscc.ValidatorOneValidSignature{},
 	},
 	{
 		Enabled:           true,
 		Name:              "qscc",
-		Path:              "github.com/hyperledger/fabric/core/chaincode/qscc",
+		Path:              "github.com/oxchains/fabric/core/chaincode/qscc",
 		InitArgs:          [][]byte{[]byte("")},
 		Chaincode:         &qscc.LedgerQuerier{},
 		InvokableExternal: true, // qscc can be invoked to retrieve blocks

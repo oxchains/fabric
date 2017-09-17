@@ -17,7 +17,7 @@ limitations under the License.
 package api
 
 import (
-	"github.com/hyperledger/fabric/gossip/common"
+	"github.com/oxchains/fabric/gossip/common"
 )
 
 func init() {

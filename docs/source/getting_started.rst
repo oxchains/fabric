@@ -27,7 +27,7 @@ API Documentation
 ^^^^^^^^^^^^^^^^^
 
 The API documentation for Hyperledger Fabric's Golang APIs can be found on
-the godoc site for `Fabric <http://godoc.org/github.com/hyperledger/fabric>`_.
+the godoc site for `Fabric <http://godoc.org/github.com/oxchains/fabric>`_.
 If you plan on doing any development using these APIs, you may want to
 bookmark those links now.
 
@@ -39,7 +39,7 @@ programming languages. The first two delivered SDKs are the Node.js and Java
 SDKs. We hope to provide Python and Go SDKs soon after the 1.0.0 release.
 
   * `Hyperledger Fabric Node SDK documentation <https://fabric-sdk-node.github.io/>`__.
-  * `Hyperledger Fabric Java SDK documentation <https://github.com/hyperledger/fabric-sdk-java>`__.
+  * `Hyperledger Fabric Java SDK documentation <https://github.com/oxchains/fabric-sdk-java>`__.
 
 Hyperledger Fabric CA
 ^^^^^^^^^^^^^^^^^^^^^
@@ -57,7 +57,7 @@ We offer four initial tutorials to get you started with Hyperledger Fabric.
 The first is oriented to the Hyperledger Fabric **application developer**,
 :doc:`write_first_app`. It takes you through the process of writing your first
 blockchain application for Hyperledger Fabric using the Hyperledger Fabric
-`Node SDK <https://github.com/hyperledger/fabric-sdk-node>`__.
+`Node SDK <https://github.com/oxchains/fabric-sdk-node>`__.
 
 The second tutorial is oriented towards the Hyperledger Fabric network
 operators, :doc:`build_network`. This one walks you through the process of

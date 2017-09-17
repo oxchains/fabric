@@ -20,12 +20,12 @@ import (
 	"sync/atomic"
 
 	"github.com/golang/protobuf/proto"
-	gossip_common "github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/discovery"
-	"github.com/hyperledger/fabric/protos/common"
-	gossip_proto "github.com/hyperledger/fabric/protos/gossip"
-	"github.com/hyperledger/fabric/protos/orderer"
-	"github.com/hyperledger/fabric/protos/utils"
+	gossip_common "github.com/oxchains/fabric/gossip/common"
+	"github.com/oxchains/fabric/gossip/discovery"
+	"github.com/oxchains/fabric/protos/common"
+	gossip_proto "github.com/oxchains/fabric/protos/gossip"
+	"github.com/oxchains/fabric/protos/orderer"
+	"github.com/oxchains/fabric/protos/utils"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

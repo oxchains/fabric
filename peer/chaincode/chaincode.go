@@ -19,9 +19,9 @@ package chaincode
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/peer/common"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/peer/common"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

@@ -19,8 +19,8 @@ package genesis
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/configtx"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/configtx"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/stretchr/testify/assert"
 )
 

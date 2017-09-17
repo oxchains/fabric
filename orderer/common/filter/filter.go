@@ -19,7 +19,7 @@ package filter
 import (
 	"fmt"
 
-	ab "github.com/hyperledger/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/common"
 )
 
 // Action is used to express the output of a rule

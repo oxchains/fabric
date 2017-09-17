@@ -30,7 +30,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
+	"github.com/oxchains/fabric/core/chaincode/shim"
 )
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

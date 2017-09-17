@@ -743,5 +743,5 @@
 			"revision": ""
 		}
 	],
-	"rootPath": "github.com/hyperledger/fabric"
+	"rootPath": "github.com/oxchains/fabric"
 }

@@ -2,9 +2,9 @@ package commontests
 
 import (
     "testing"
-    "github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-    "github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-    "github.com/hyperledger/fabric/common/ledger/testutil"
+    "github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
+    "github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
+    "github.com/oxchains/fabric/common/ledger/testutil"
     "strings"
 )
 

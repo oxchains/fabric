@@ -3,10 +3,10 @@ package statemongodb
 import (
 	"testing"
 	//"time"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger/util/couchdb"
+	"github.com/oxchains/fabric/common/ledger/testutil"
+	"github.com/oxchains/fabric/core/ledger/util/couchdb"
 	"fmt"
-	ledgertestutil "github.com/hyperledger/fabric/core/ledger/testutil"
+	ledgertestutil "github.com/oxchains/fabric/core/ledger/testutil"
 )
 
 

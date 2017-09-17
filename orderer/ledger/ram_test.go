@@ -17,9 +17,9 @@ limitations under the License.
 package ledger_test
 
 import (
-	"github.com/hyperledger/fabric/common/configtx/tool/provisional"
-	. "github.com/hyperledger/fabric/orderer/ledger"
-	ramledger "github.com/hyperledger/fabric/orderer/ledger/ram"
+	"github.com/oxchains/fabric/common/configtx/tool/provisional"
+	. "github.com/oxchains/fabric/orderer/ledger"
+	ramledger "github.com/oxchains/fabric/orderer/ledger/ram"
 )
 
 func init() {

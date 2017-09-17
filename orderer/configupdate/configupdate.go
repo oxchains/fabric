@@ -23,10 +23,10 @@ package configupdate
 import (
 	"fmt"
 
-	configtxapi "github.com/hyperledger/fabric/common/configtx/api"
-	"github.com/hyperledger/fabric/common/crypto"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	configtxapi "github.com/oxchains/fabric/common/configtx/api"
+	"github.com/oxchains/fabric/common/crypto"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 
 	"github.com/op/go-logging"
 )

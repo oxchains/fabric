@@ -6,9 +6,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #     
 
-rm -rf $GOPATH/src/github.com/hyperledger/fabric-sdk-node
+rm -rf $GOPATH/src/github.com/oxchains/fabric-sdk-node
 
-WD="$GOPATH/src/github.com/hyperledger/fabric-sdk-node"
+WD="$GOPATH/src/github.com/oxchains/fabric-sdk-node"
 SDK_REPO_NAME=fabric-sdk-node
 git clone https://github.com/hyperledger/$SDK_REPO_NAME $WD
 cd $WD

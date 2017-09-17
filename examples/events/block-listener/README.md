@@ -18,7 +18,7 @@ has been disabled by setting CORE_PEER_TLS_ENABLED=***false*** in
 ``docker-compose-cli.yaml``, ``base/docker-compose-base.yaml`` and
 ``base/peer-base.yaml``.
 
-Next, run the [e2e_cli example](https://github.com/hyperledger/fabric/tree/master/examples/e2e_cli).
+Next, run the [e2e_cli example](https://github.com/oxchains/fabric/tree/master/examples/e2e_cli).
 
 Once the "All in one" command:
 ```sh
@@ -27,7 +27,7 @@ Once the "All in one" command:
 has completed, attach the event client to peer peer0.org1.example.com by doing
 the following (assuming you are running block-listener in the host environment):
 ```sh
-./block-listener -events-address=127.0.0.1:7053 -events-mspdir=$GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp -events-mspid=Org1MSP
+./block-listener -events-address=127.0.0.1:7053 -events-mspdir=$GOPATH/src/github.com/oxchains/fabric/examples/e2e_cli/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp -events-mspid=Org1MSP
 ```
 
 The event client should output "Event Address: 127.0.0.1:7053" and wait for
@@ -40,7 +40,7 @@ docker exec -it cli bash
 ```
 Setup the environment variables for peer0.org1.example.com
 ```sh
-CORE_PEER_MSPCONFIGPATH=$GOPATH/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+CORE_PEER_MSPCONFIGPATH=$GOPATH/src/github.com/oxchains/fabric/peer/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
 CORE_PEER_ADDRESS=peer0.org1.example.com:7051
 CORE_PEER_LOCALMSPID="Org1MSP"
 ```

@@ -17,15 +17,15 @@ limitations under the License.
 package statebasedval
 
 import (
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-	"github.com/hyperledger/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
-	"github.com/hyperledger/fabric/protos/peer"
-	putils "github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
+	"github.com/oxchains/fabric/core/ledger/util"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/ledger/rwset/kvrwset"
+	"github.com/oxchains/fabric/protos/peer"
+	putils "github.com/oxchains/fabric/protos/utils"
 )
 
 var logger = flogging.MustGetLogger("statevalidator")

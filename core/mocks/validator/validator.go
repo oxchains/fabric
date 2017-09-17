@@ -17,8 +17,8 @@ limitations under the License.
 package validator
 
 import (
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/peer"
 )
 
 // MockValidator implements a mock validation useful for testing

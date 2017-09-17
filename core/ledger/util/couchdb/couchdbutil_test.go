@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
+	"github.com/oxchains/fabric/common/ledger/testutil"
+	"github.com/oxchains/fabric/core/ledger/ledgerconfig"
 )
 
 //Unit test of couch db util functionality

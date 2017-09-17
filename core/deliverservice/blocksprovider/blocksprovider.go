@@ -23,14 +23,14 @@ import (
 	"sync/atomic"
 
 	"github.com/golang/protobuf/proto"
-	gossipcommon "github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/discovery"
+	gossipcommon "github.com/oxchains/fabric/gossip/common"
+	"github.com/oxchains/fabric/gossip/discovery"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/protos/common"
-	gossip_proto "github.com/hyperledger/fabric/protos/gossip"
-	"github.com/hyperledger/fabric/protos/orderer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/gossip/api"
+	"github.com/oxchains/fabric/protos/common"
+	gossip_proto "github.com/oxchains/fabric/protos/gossip"
+	"github.com/oxchains/fabric/protos/orderer"
 	"github.com/op/go-logging"
 )
 

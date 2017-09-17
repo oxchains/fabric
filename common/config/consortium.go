@@ -19,8 +19,8 @@ package config
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/config/msp"
-	cb "github.com/hyperledger/fabric/protos/common"
+	"github.com/oxchains/fabric/common/config/msp"
+	cb "github.com/oxchains/fabric/protos/common"
 )
 
 // ConsortiumProtos holds the config protos for the consortium config

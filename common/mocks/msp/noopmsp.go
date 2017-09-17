@@ -17,8 +17,8 @@ limitations under the License.
 package msp
 
 import (
-	m "github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/protos/msp"
+	m "github.com/oxchains/fabric/msp"
+	"github.com/oxchains/fabric/protos/msp"
 )
 
 type noopmsp struct {

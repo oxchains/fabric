@@ -26,7 +26,7 @@ doc.
   <br/>Do not put the .rst suffix at the end of the filepath.
 * For non RST files, such as text files, MD or YAML files, link to the
   file on github, like this one for instance:
-  https://github.com/hyperledger/fabric/blob/master/docs/README.md
+  https://github.com/oxchains/fabric/blob/master/docs/README.md
 
 Notes: The above means we have a dependency on the github mirror
 repository. Relative links are unfortunately not working on github
@@ -44,7 +44,7 @@ the docs on your machine. The following sections cover both options:
 
 You can easily build your own staging repo following these steps:
 
-1. Fork [fabric on github](https://github.com/hyperledger/fabric)
+1. Fork [fabric on github](https://github.com/oxchains/fabric)
 1. From your fork, go to `settings` in the upper right portion of the screen,
 1. click `Integration & services`,
 1. click `Add service` dropdown,

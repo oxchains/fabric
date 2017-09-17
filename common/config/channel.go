@@ -20,10 +20,10 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/common/config/msp"
-	"github.com/hyperledger/fabric/common/util"
-	cb "github.com/hyperledger/fabric/protos/common"
+	"github.com/oxchains/fabric/bccsp"
+	"github.com/oxchains/fabric/common/config/msp"
+	"github.com/oxchains/fabric/common/util"
+	cb "github.com/oxchains/fabric/protos/common"
 )
 
 // Channel config keys

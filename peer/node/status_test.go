@@ -19,11 +19,11 @@ package node
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/core"
-	"github.com/hyperledger/fabric/core/comm"
-	testpb "github.com/hyperledger/fabric/core/comm/testdata/grpc"
-	"github.com/hyperledger/fabric/core/peer"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/core"
+	"github.com/oxchains/fabric/core/comm"
+	testpb "github.com/oxchains/fabric/core/comm/testdata/grpc"
+	"github.com/oxchains/fabric/core/peer"
+	pb "github.com/oxchains/fabric/protos/peer"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/net/context"

@@ -16,9 +16,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/test/chaincodes/AutoVendor/directdep"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	pb "github.com/oxchains/fabric/protos/peer"
+	"github.com/oxchains/fabric/test/chaincodes/AutoVendor/directdep"
 )
 
 // SimpleChaincode example simple Chaincode implementation

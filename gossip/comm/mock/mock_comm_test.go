@@ -19,9 +19,9 @@ package mock
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/gossip/comm"
-	"github.com/hyperledger/fabric/gossip/common"
-	proto "github.com/hyperledger/fabric/protos/gossip"
+	"github.com/oxchains/fabric/gossip/comm"
+	"github.com/oxchains/fabric/gossip/common"
+	proto "github.com/oxchains/fabric/protos/gossip"
 	"github.com/stretchr/testify/assert"
 )
 

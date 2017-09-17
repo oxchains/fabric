@@ -25,11 +25,11 @@ import (
 
 	"bytes"
 
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	"github.com/hyperledger/fabric/core/common/ccpackage"
-	"github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/bccsp"
+	"github.com/oxchains/fabric/bccsp/factory"
+	"github.com/oxchains/fabric/core/common/ccpackage"
+	"github.com/oxchains/fabric/protos/common"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 //----- SignedCDSData ------

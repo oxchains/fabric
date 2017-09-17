@@ -24,10 +24,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/discovery"
-	"github.com/hyperledger/fabric/gossip/util"
-	proto "github.com/hyperledger/fabric/protos/gossip"
+	"github.com/oxchains/fabric/gossip/common"
+	"github.com/oxchains/fabric/gossip/discovery"
+	"github.com/oxchains/fabric/gossip/util"
+	proto "github.com/oxchains/fabric/protos/gossip"
 )
 
 func init() {

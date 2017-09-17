@@ -19,12 +19,12 @@ package msp
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/msp"
-	cb "github.com/hyperledger/fabric/protos/common"
-	mspprotos "github.com/hyperledger/fabric/protos/msp"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/cauthdsl"
+	"github.com/oxchains/fabric/core/config"
+	"github.com/oxchains/fabric/msp"
+	cb "github.com/oxchains/fabric/protos/common"
+	mspprotos "github.com/oxchains/fabric/protos/msp"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -8,7 +8,7 @@
 # Clone fabric git repository
 #############################
 echo "Fabric Images"
-cd $GOPATH/src/github.com/hyperledger/fabric
+cd $GOPATH/src/github.com/oxchains/fabric
 #FABRIC_COMMIT=$(git log -1 --pretty=format:"%h")
 make docker && make native
 

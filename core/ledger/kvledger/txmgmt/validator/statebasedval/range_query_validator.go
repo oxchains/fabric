@@ -19,10 +19,10 @@ package statebasedval
 import (
 	"bytes"
 
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
+	"github.com/oxchains/fabric/protos/ledger/rwset/kvrwset"
 )
 
 type rangeQueryValidator interface {

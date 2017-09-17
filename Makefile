@@ -35,7 +35,7 @@
 #   - dist-clean - clean release packages for all target platforms
 #   - unit-test-clean - cleans unit test state (particularly from docker)
 
-PROJECT_NAME   = hyperledger/fabric
+PROJECT_NAME   = oxchains/fabric
 BASE_VERSION = 1.0.2
 PREV_VERSION = 1.0.1
 IS_RELEASE = true

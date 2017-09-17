@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	genesisconfig "github.com/hyperledger/fabric/common/configtx/tool/localconfig"
-	cb "github.com/hyperledger/fabric/protos/common"
+	genesisconfig "github.com/oxchains/fabric/common/configtx/tool/localconfig"
+	cb "github.com/oxchains/fabric/protos/common"
 	"github.com/stretchr/testify/assert"
 )
 

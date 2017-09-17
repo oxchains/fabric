@@ -22,15 +22,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/viperutil"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/viperutil"
 	logging "github.com/op/go-logging"
 
 	"github.com/spf13/viper"
 
 	"path/filepath"
 
-	cf "github.com/hyperledger/fabric/core/config"
+	cf "github.com/oxchains/fabric/core/config"
 )
 
 const (

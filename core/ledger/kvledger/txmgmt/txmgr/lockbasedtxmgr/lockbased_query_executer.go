@@ -17,8 +17,8 @@ limitations under the License.
 package lockbasedtxmgr
 
 import (
-	"github.com/hyperledger/fabric/common/ledger"
-	"github.com/hyperledger/fabric/common/util"
+	"github.com/oxchains/fabric/common/ledger"
+	"github.com/oxchains/fabric/common/util"
 )
 
 // LockBasedQueryExecutor is a query executor used in `LockBasedTxMgr`

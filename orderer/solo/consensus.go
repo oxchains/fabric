@@ -19,8 +19,8 @@ package solo
 import (
 	"time"
 
-	"github.com/hyperledger/fabric/orderer/multichain"
-	cb "github.com/hyperledger/fabric/protos/common"
+	"github.com/oxchains/fabric/orderer/multichain"
+	cb "github.com/oxchains/fabric/protos/common"
 	"github.com/op/go-logging"
 )
 

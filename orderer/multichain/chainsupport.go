@@ -17,19 +17,19 @@ limitations under the License.
 package multichain
 
 import (
-	"github.com/hyperledger/fabric/common/config"
-	"github.com/hyperledger/fabric/common/crypto"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/orderer/common/blockcutter"
-	"github.com/hyperledger/fabric/orderer/common/broadcast"
-	"github.com/hyperledger/fabric/orderer/common/configtxfilter"
-	"github.com/hyperledger/fabric/orderer/common/filter"
-	"github.com/hyperledger/fabric/orderer/common/sigfilter"
-	"github.com/hyperledger/fabric/orderer/common/sizefilter"
-	"github.com/hyperledger/fabric/orderer/ledger"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/config"
+	"github.com/oxchains/fabric/common/crypto"
+	"github.com/oxchains/fabric/common/policies"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/orderer/common/blockcutter"
+	"github.com/oxchains/fabric/orderer/common/broadcast"
+	"github.com/oxchains/fabric/orderer/common/configtxfilter"
+	"github.com/oxchains/fabric/orderer/common/filter"
+	"github.com/oxchains/fabric/orderer/common/sigfilter"
+	"github.com/oxchains/fabric/orderer/common/sizefilter"
+	"github.com/oxchains/fabric/orderer/ledger"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 )
 
 // Consenter defines the backing ordering mechanism

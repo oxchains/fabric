@@ -19,12 +19,12 @@ package committer
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/committer/txvalidator"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/events/producer"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/committer/txvalidator"
+	"github.com/oxchains/fabric/core/ledger"
+	"github.com/oxchains/fabric/events/producer"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/op/go-logging"
 )
 

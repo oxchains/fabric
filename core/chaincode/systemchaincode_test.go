@@ -22,12 +22,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/peer"
-	"github.com/hyperledger/fabric/core/scc"
-	"github.com/hyperledger/fabric/core/scc/samplesyscc"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/core/common/ccprovider"
+	"github.com/oxchains/fabric/core/peer"
+	"github.com/oxchains/fabric/core/scc"
+	"github.com/oxchains/fabric/core/scc/samplesyscc"
+	pb "github.com/oxchains/fabric/protos/peer"
 	"github.com/spf13/viper"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -80,7 +80,7 @@ func initSysCCTests() (*oldSysCCInfo, net.Listener, error) {
 		{
 			Enabled:   true,
 			Name:      "sample_syscc",
-			Path:      "github.com/hyperledger/fabric/core/scc/samplesyscc",
+			Path:      "github.com/oxchains/fabric/core/scc/samplesyscc",
 			InitArgs:  [][]byte{},
 			Chaincode: &samplesyscc.SampleSysCC{},
 		},
@@ -102,7 +102,7 @@ func deploySampleSysCC(t *testing.T, ctxt context.Context, chainID string) error
 
 	defer scc.DeDeploySysCCs(chainID)
 
-	url := "github.com/hyperledger/fabric/core/scc/sample_syscc"
+	url := "github.com/oxchains/fabric/core/scc/sample_syscc"
 
 	sysCCVers := util.GetSysCCVersion()
 

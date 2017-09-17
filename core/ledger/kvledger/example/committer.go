@@ -17,9 +17,9 @@ limitations under the License.
 package example
 
 import (
-	"github.com/hyperledger/fabric/core/ledger"
+	"github.com/oxchains/fabric/core/ledger"
 
-	"github.com/hyperledger/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/common"
 )
 
 // Committer a toy committer

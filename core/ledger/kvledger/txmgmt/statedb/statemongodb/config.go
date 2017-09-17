@@ -3,7 +3,7 @@ package statemongodb
 import (
 	"github.com/spf13/viper"
 	"fmt"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/mongodbhelper"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb/mongodbhelper"
 	"mgo-2"
 )
 

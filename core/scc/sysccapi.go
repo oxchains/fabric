@@ -21,16 +21,16 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/container/inproccontroller"
-	"github.com/hyperledger/fabric/core/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	"github.com/oxchains/fabric/core/common/ccprovider"
+	"github.com/oxchains/fabric/core/container/inproccontroller"
+	"github.com/oxchains/fabric/core/peer"
 
 	"github.com/spf13/viper"
 
-	pb "github.com/hyperledger/fabric/protos/peer"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 var sysccLogger = flogging.MustGetLogger("sccapi")

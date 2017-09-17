@@ -3,7 +3,7 @@ package mongodbhelper
 import (
 	"testing"
 	"os"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
+	"github.com/oxchains/fabric/common/ledger/testutil"
 	"mgo-2"
 )
 

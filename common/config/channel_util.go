@@ -19,9 +19,9 @@ package config
 import (
 	"math"
 
-	"github.com/hyperledger/fabric/bccsp"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/bccsp"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 )
 
 const defaultHashingAlgorithm = bccsp.SHA256

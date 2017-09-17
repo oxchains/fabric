@@ -17,7 +17,7 @@ limitations under the License.
 package util
 
 import (
-	"github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/protos/peer"
 )
 
 // TxValidationFlags is array of transaction validation codes. It is used when commiter validates block.

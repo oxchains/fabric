@@ -21,7 +21,7 @@ import (
 
 	"fmt"
 
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
+	"github.com/oxchains/fabric/core/ledger/ledgerconfig"
 )
 
 // InitializeTestEnv initializes ledgermgmt for tests

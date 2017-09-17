@@ -19,8 +19,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	ex02 "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	ex02 "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 )
 
 var chaincodeName = "ex02"

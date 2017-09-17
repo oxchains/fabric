@@ -19,12 +19,12 @@ package validation
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/configtx"
-	genesisconfig "github.com/hyperledger/fabric/common/configtx/tool/localconfig"
-	"github.com/hyperledger/fabric/common/util"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/configtx"
+	genesisconfig "github.com/oxchains/fabric/common/configtx/tool/localconfig"
+	"github.com/oxchains/fabric/common/util"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/peer"
+	"github.com/oxchains/fabric/protos/utils"
 )
 
 func TestValidateConfigTx(t *testing.T) {

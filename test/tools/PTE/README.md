@@ -42,7 +42,7 @@ Below is the v1.0.0-alpha commit levels.
 - PTE needs to supports any number of organizations in a channel. PTE supports two organizations per channel now (FAB-3809).
 - PTE can only send transactions to the anchor peer of an organization. It will need to be able to send transactions to any peer.
 - Endorsement policy is not supported yet.
-- Replace `git clone https://github.com/hyperledger/fabric-sdk-node.git` with fabric-client and fabric-ca-client.
+- Replace `git clone https://github.com/oxchains/fabric-sdk-node.git` with fabric-client and fabric-ca-client.
 - Post-alpha2, remove v1performance info.
 
 ## Prerequisites
@@ -62,16 +62,16 @@ If planning to run your Fabric network locally, you'll need docker and a bit mor
 
 ## Setup
 1. Download fabric sources and checkout appropriate commit levels (v1.0.0-alpha2 shown here):
-    - `go get -d github.com/hyperledger/fabric`
-    - `cd $GOPATH/src/github.com/hyperledger/fabric/`
+    - `go get -d github.com/oxchains/fabric`
+    - `cd $GOPATH/src/github.com/oxchains/fabric/`
     - `git checkout v1.0.0-alpha2`
     - Optional: `make docker`
-    - `go get -d github.com/hyperledger/fabric-ca`
-    - `cd $GOPATH/src/github.com/hyperledger/fabric-ca/`
+    - `go get -d github.com/oxchains/fabric-ca`
+    - `cd $GOPATH/src/github.com/oxchains/fabric-ca/`
     - `git checkout v1.0.0-alpha2`
     - Optional: `make docker`
-    - `go get -d github.com/hyperledger/fabric-sdk-node`
-    - `cd $GOPATH/src/github.com/hyperledger/fabric-sdk-node`
+    - `go get -d github.com/oxchains/fabric-sdk-node`
+    - `cd $GOPATH/src/github.com/oxchains/fabric-sdk-node`
     - `git checkout v1.0.0-alpha2`
 
     If `make docker` is skipped, the assumption is that the user will either acquire docker images from another source, or PTE will run against a remote Fabric network. See [Creating a local Fabric network](#creating-a-local-fabric-network) for additional information on this.
@@ -89,7 +89,7 @@ If planning to run your Fabric network locally, you'll need docker and a bit mor
         - `cd v1performance`
         - If testing v1.0.0-alpha: `git reset --hard aa73747ccf5f511fbcd10a962dd1e588bde1a8b0`
     - If testing against latest Fabric commit, copy from Fabric repo:
-        - `cp -r $GOPATH/src/github.com/hyperledger/fabric/test/tools/PTE .`
+        - `cp -r $GOPATH/src/github.com/oxchains/fabric/test/tools/PTE .`
         - `cd PTE`
 
 4. Create Service Credentials file(s) for your Fabric network:
@@ -278,12 +278,12 @@ The following chaincodes are tested and supported:
 * **example02**: This is a simple chaincode with limited capability.  This chaincode is **NOT** suitable for performance benchmark.
 * **ccchecker**:  This chaincode supports variable payload sizes.
 See userInput-ccchecker.json for example of userInput file. Take the following steps to install this chaincode:
-  - `cd $GOPATH/src/github.com/hyperledger/fabric-sdk-node/test/fixtures/src/github.com`
+  - `cd $GOPATH/src/github.com/oxchains/fabric-sdk-node/test/fixtures/src/github.com`
   - `mkdir ccchecker`
   - download newkeyperinvoke.go into ccchecker directory
 * **sample_cc**: This chaincode supports variable (randomized) payload sizes and performs encryption and decryption on the payload. Specify ccType as ccchecker when using this chaincode.
 See userInput-samplecc.json for example of userInput file. Take the following steps to install this chaincode:
-  - `cd $GOPATH/src/github.com/hyperledger/fabric-sdk-node/test/fixtures/src/github.com`
+  - `cd $GOPATH/src/github.com/oxchains/fabric-sdk-node/test/fixtures/src/github.com`
   - `mkdir sample_cc`
   - download chaincode_sample.go into sample_cc directory
 
@@ -320,7 +320,7 @@ The output includes network id, thread id, transaction type, total transactions,
     "TLS": "enabled",
     "channelOpt": {
         "name": "testOrg1",
-        "channelTX": "/root/gopath/src/github.com/hyperledger/fabric/common/tools/cryptogen/crypto-config/ordererOrganizations/testOrgsChannel1.tx",
+        "channelTX": "/root/gopath/src/github.com/oxchains/fabric/common/tools/cryptogen/crypto-config/ordererOrganizations/testOrgsChannel1.tx",
         "action":  "create",
         "orgName": [
             "testOrg1"
@@ -497,10 +497,10 @@ The service credentials contain the information of the network and are stored in
 
 ## Creating a local Fabric network
 - If you do not yet have the Fabric docker images in your local docker registry, please either build them from Fabric source or download them from dockerhub.
-    - `cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli/`
+    - `cd $GOPATH/src/github.com/oxchains/fabric/examples/e2e_cli/`
     - `sh ./download-dockerimages.sh -c x86_64-1.0.0-alpha2 -f x86_64-1.0.0-alpha2`
 - If you do not have an existing network already, you can start a network using the Fabric e2e example:
-    - `cd $GOPATH/src/github.com/hyperledger/fabric/examples/e2e_cli/`
+    - `cd $GOPATH/src/github.com/oxchains/fabric/examples/e2e_cli/`
     - Edit `network_setup.sh` and change **COMPOSE_FILE**:
         ```
         #COMPOSE_FILE=docker-compose-cli.yaml
@@ -508,7 +508,7 @@ The service credentials contain the information of the network and are stored in
         ```
     - `./network_setup.sh up`
 - Alternatively, consider using the [NetworkLauncher](https://github.com/dongmingh/v1Launcher) tool:
-    - `cd $GOPATH/src/github.com/hyperledger/fabric-sdk-node/test`
+    - `cd $GOPATH/src/github.com/oxchains/fabric-sdk-node/test`
     - `git clone https://github.com/dongmingh/v1Launcher`
     - `cd v1Launcher`
     - `./NetworkLauncher.sh -?`

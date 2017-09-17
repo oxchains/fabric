@@ -20,7 +20,7 @@ generate/update the respective ``.pb.go`` files.
 
 ::
 
-    cd $GOPATH/src/github.com/hyperledger/fabric
+    cd $GOPATH/src/github.com/oxchains/fabric
     make protos
 
 Adding or updating Go packages
@@ -28,7 +28,7 @@ Adding or updating Go packages
 
 Hyperledger Fabric uses Govendor for package
 management. This means that all required packages reside in the
-``$GOPATH/src/github.com/hyperledger/fabric/vendor`` folder. Go will use
+``$GOPATH/src/github.com/oxchains/fabric/vendor`` folder. Go will use
 packages in this folder instead of the GOPATH when the ``go install`` or
 ``go build`` commands are executed. To manage the packages in the
 ``vendor`` folder, we use

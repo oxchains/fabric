@@ -18,8 +18,8 @@ package core
 
 import (
 	"github.com/golang/protobuf/ptypes/empty"
-	"github.com/hyperledger/fabric/common/flogging"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	pb "github.com/oxchains/fabric/protos/peer"
 	"golang.org/x/net/context"
 )
 

@@ -19,7 +19,7 @@ package policies
 import (
 	"testing"
 
-	cb "github.com/hyperledger/fabric/protos/common"
+	cb "github.com/oxchains/fabric/protos/common"
 
 	"github.com/golang/protobuf/proto"
 	logging "github.com/op/go-logging"

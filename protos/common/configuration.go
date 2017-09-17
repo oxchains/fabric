@@ -19,7 +19,7 @@ package common
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/protos/msp"
+	"github.com/oxchains/fabric/protos/msp"
 
 	"github.com/golang/protobuf/proto"
 )

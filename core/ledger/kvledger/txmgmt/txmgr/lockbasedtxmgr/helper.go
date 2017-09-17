@@ -17,13 +17,13 @@ limitations under the License.
 package lockbasedtxmgr
 
 import (
-	commonledger "github.com/hyperledger/fabric/common/ledger"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
-	"github.com/hyperledger/fabric/protos/ledger/queryresult"
-	"github.com/hyperledger/fabric/protos/ledger/rwset/kvrwset"
+	commonledger "github.com/oxchains/fabric/common/ledger"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
+	"github.com/oxchains/fabric/core/ledger/ledgerconfig"
+	"github.com/oxchains/fabric/protos/ledger/queryresult"
+	"github.com/oxchains/fabric/protos/ledger/rwset/kvrwset"
 )
 
 type queryHelper struct {

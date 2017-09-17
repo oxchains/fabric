@@ -2,8 +2,8 @@ package statemongodb
 
 import (
 	"testing"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/mongodbhelper"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb/mongodbhelper"
 	"mgo-2"
 
 )

@@ -21,12 +21,12 @@ import (
 	"strconv"
 	"testing"
 
-	configtxtest "github.com/hyperledger/fabric/common/configtx/test"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger/util"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/ledger/queryresult"
-	"github.com/hyperledger/fabric/protos/peer"
+	configtxtest "github.com/oxchains/fabric/common/configtx/test"
+	"github.com/oxchains/fabric/common/ledger/testutil"
+	"github.com/oxchains/fabric/core/ledger/util"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/ledger/queryresult"
+	"github.com/oxchains/fabric/protos/peer"
 	"github.com/spf13/viper"
 )
 

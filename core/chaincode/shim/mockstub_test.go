@@ -22,7 +22,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/flogging"
 	"github.com/spf13/viper"
 )
 

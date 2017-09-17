@@ -19,8 +19,8 @@ package ledgerconfig
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	ledgertestutil "github.com/hyperledger/fabric/core/ledger/testutil"
+	"github.com/oxchains/fabric/common/ledger/testutil"
+	ledgertestutil "github.com/oxchains/fabric/core/ledger/testutil"
 	"github.com/spf13/viper"
 )
 

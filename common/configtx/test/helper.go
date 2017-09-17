@@ -17,17 +17,17 @@ limitations under the License.
 package test
 
 import (
-	"github.com/hyperledger/fabric/common/config"
-	configtxmsp "github.com/hyperledger/fabric/common/config/msp"
-	"github.com/hyperledger/fabric/common/configtx"
-	genesisconfig "github.com/hyperledger/fabric/common/configtx/tool/localconfig"
-	"github.com/hyperledger/fabric/common/configtx/tool/provisional"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/genesis"
-	cf "github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/msp"
-	cb "github.com/hyperledger/fabric/protos/common"
-	mspproto "github.com/hyperledger/fabric/protos/msp"
+	"github.com/oxchains/fabric/common/config"
+	configtxmsp "github.com/oxchains/fabric/common/config/msp"
+	"github.com/oxchains/fabric/common/configtx"
+	genesisconfig "github.com/oxchains/fabric/common/configtx/tool/localconfig"
+	"github.com/oxchains/fabric/common/configtx/tool/provisional"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/genesis"
+	cf "github.com/oxchains/fabric/core/config"
+	"github.com/oxchains/fabric/msp"
+	cb "github.com/oxchains/fabric/protos/common"
+	mspproto "github.com/oxchains/fabric/protos/msp"
 )
 
 var logger = flogging.MustGetLogger("common/configtx/test")

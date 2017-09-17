@@ -21,8 +21,8 @@ import (
 	"io"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 var logger = flogging.MustGetLogger("eventhub_producer")

@@ -19,7 +19,7 @@ package ledger
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/ledger"
+	"github.com/oxchains/fabric/common/ledger"
 )
 
 type MockQueryExecutor struct {

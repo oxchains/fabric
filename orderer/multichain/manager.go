@@ -8,17 +8,17 @@ package multichain
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/config"
-	"github.com/hyperledger/fabric/common/configtx"
-	configtxapi "github.com/hyperledger/fabric/common/configtx/api"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/orderer/ledger"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/config"
+	"github.com/oxchains/fabric/common/configtx"
+	configtxapi "github.com/oxchains/fabric/common/configtx/api"
+	"github.com/oxchains/fabric/common/policies"
+	"github.com/oxchains/fabric/orderer/ledger"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/op/go-logging"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/crypto"
+	"github.com/oxchains/fabric/common/crypto"
 )
 
 var logger = logging.MustGetLogger("orderer/multichain")

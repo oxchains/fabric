@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hyperledger/fabric/common/configtx"
-	configtxapi "github.com/hyperledger/fabric/common/configtx/api"
-	mockconfigtx "github.com/hyperledger/fabric/common/mocks/configtx"
-	mockcrypto "github.com/hyperledger/fabric/common/mocks/crypto"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/configtx"
+	configtxapi "github.com/oxchains/fabric/common/configtx/api"
+	mockconfigtx "github.com/oxchains/fabric/common/mocks/configtx"
+	mockcrypto "github.com/oxchains/fabric/common/mocks/crypto"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 
 	"github.com/op/go-logging"
 	"github.com/stretchr/testify/assert"

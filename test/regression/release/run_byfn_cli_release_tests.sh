@@ -9,9 +9,9 @@
 #####################
 
 CH_NAME="$1"
-rm -rf ${GOPATH}/src/github.com/hyperledger/fabric-samples
+rm -rf ${GOPATH}/src/github.com/oxchains/fabric-samples
 
-WD="${GOPATH}/src/github.com/hyperledger/fabric-samples"
+WD="${GOPATH}/src/github.com/oxchains/fabric-samples"
 REPO_NAME=fabric-samples
 
 git clone ssh://hyperledger-jobbuilder@gerrit.hyperledger.org:29418/$REPO_NAME $WD

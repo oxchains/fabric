@@ -24,4 +24,4 @@ COPY payload/install-softhsm2.sh /tmp
 RUN bash /tmp/install-softhsm2.sh && rm -f install-softhsm2.sh
 
 # typically, this is mapped to a developer's dev environment
-WORKDIR /opt/gopath/src/github.com/hyperledger/fabric
+WORKDIR /opt/gopath/src/github.com/oxchains/fabric

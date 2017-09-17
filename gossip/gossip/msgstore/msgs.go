@@ -21,7 +21,7 @@ import (
 
 	"time"
 
-	"github.com/hyperledger/fabric/gossip/common"
+	"github.com/oxchains/fabric/gossip/common"
 )
 
 var noopLock = func() {}

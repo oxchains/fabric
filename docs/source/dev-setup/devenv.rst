@@ -133,7 +133,7 @@ are not supported by Docker for Mac or Windows.**
 
 ::
 
-    cd $GOPATH/src/github.com/hyperledger/fabric/devenv
+    cd $GOPATH/src/github.com/oxchains/fabric/devenv
     vagrant up
 
 Go get coffee... this will take a few minutes. Once complete, you should
@@ -144,7 +144,7 @@ be able to ``ssh`` into the Vagrant VM just created.
     vagrant ssh
 
 Once inside the VM, you can find the source under
-``$GOPATH/src/github.com/hyperledger/fabric``. It is also mounted as
+``$GOPATH/src/github.com/oxchains/fabric``. It is also mounted as
 ``/hyperledger``.
 
 Building Hyperledger Fabric
@@ -158,7 +158,7 @@ Notes
 ~~~~~
 
 **NOTE:** Any time you change any of the files in your local fabric
-directory (under ``$GOPATH/src/github.com/hyperledger/fabric``), the
+directory (under ``$GOPATH/src/github.com/oxchains/fabric``), the
 update will be instantly available within the VM fabric directory.
 
 **NOTE:** If you intend to run the development environment behind an

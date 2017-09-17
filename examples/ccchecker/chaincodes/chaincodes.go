@@ -21,10 +21,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hyperledger/fabric/msp"
-	"github.com/hyperledger/fabric/peer/chaincode"
-	"github.com/hyperledger/fabric/peer/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/msp"
+	"github.com/oxchains/fabric/peer/chaincode"
+	"github.com/oxchains/fabric/peer/common"
+	pb "github.com/oxchains/fabric/protos/peer"
 
 	"golang.org/x/net/context"
 )
