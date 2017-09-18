@@ -74,7 +74,13 @@ func processValue(value interface{}) interface{} {
         return resultValue
     
     case interface{}:
-        processAndWrapQuery(value.(map[string]interface{}))
+        //如果value不能转换为map[string]interface{}则直接返回value
+        tmp, ok := value.(map[string]interface{})
+        if ok {
+            processAndWrapQuery(tmp)
+        } else {
+            return value
+        }
         return value
         
     default:
