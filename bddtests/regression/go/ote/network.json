@@ -56,7 +56,7 @@
                 "CONFIGTX_ORDERER_BATCHSIZE_MAXMESSAGECOUNT": "10",
                 "CONFIGTX_ORDERER_KAFKA_BROKERS": "0.0.0.0:9092"
             },
-            "working_dir": "/opt/gopath/src/github.com/hyperledger/fabric/orderer",
+            "working_dir": "/opt/gopath/src/github.com/oxchains/fabric/orderer",
             "command": "orderer",
             "ports": [
                  "5005:5005"
@@ -103,7 +103,7 @@
                  "CORE_SECURITY_HASHALGORITHM": "SHA2",
                  "CORE_LOGGING_LEVEL": "ERROR"
             },
-            "working_dir": "/opt/gopath/src/github.com/hyperledger/fabric/peer",
+            "working_dir": "/opt/gopath/src/github.com/oxchains/fabric/peer",
             "volumes": [
                   "/var/run:/host/var/run/"
             ],
@@ -135,7 +135,7 @@
                   "CORE_PEER_ID":"cli",
                   "CORE_PEER_ADDRESS":"peer0:7051"
             },
-            "working_dir": "/opt/gopath/src/github.com/hyperledger/fabric/peer",
+            "working_dir": "/opt/gopath/src/github.com/oxchains/fabric/peer",
             "command": "/bin/sh",
             "links": [
                   "orderer0:orderer0",
@@ -143,7 +143,7 @@
             ],
             "volumes": [
                     "/var/run/:/host/var/run/",
-                    "/opt/gopath/src/github.com/hyperledger/fabric/examples/:/opt/gopath/src/github.com/hyperledger/fabric/examples/"
+                    "/opt/gopath/src/github.com/oxchains/fabric/examples/:/opt/gopath/src/github.com/oxchains/fabric/examples/"
             ],
             "depends_on": [
                   "orderer0",

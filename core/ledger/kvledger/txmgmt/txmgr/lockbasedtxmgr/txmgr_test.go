@@ -23,11 +23,11 @@ import (
 
 	"os"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/ledger/testutil"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-	ledgertestutil "github.com/hyperledger/fabric/core/ledger/testutil"
-	"github.com/hyperledger/fabric/protos/ledger/queryresult"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/ledger/testutil"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
+	ledgertestutil "github.com/oxchains/fabric/core/ledger/testutil"
+	"github.com/oxchains/fabric/protos/ledger/queryresult"
 )
 
 func TestMain(m *testing.M) {

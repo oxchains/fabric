@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+
+  buildenv:
+    image: oxchains/fabric-buildenv-test
+    build:
+      context: ./build/image/buildenv
+
+  ccenv:
+    image: oxchains/fabric-ccenv-test
+    build:
+      context: ./build/image/ccenv
+    depends_on:
+      - buildenv
+
+  couchdb:
+    image: oxchains/fabric-couchdb-test
+    build:
+      context: ./build/image/couchdb
+
+  kafka:
+    image: oxchains/fabric-kafka-test
+    build:
+      context: ./build/image/kafka
+    depends_on:
+      - buildenv
+
+  orderer:
+    image: oxchains/fabric-orderer-test
+    build:
+      context: ./build/image/orderer
+    depends_on:
+      - buildenv
+
+  peer:
+    image: oxchains/fabric-peer-test
+    build:
+      context: ./build/image/peer
+    depends_on:
+      - buildenv
+
+  testenv:
+    image: oxchains/fabric-testenv-test
+    build:
+      context: ./build/image/testenv
+    depends_on:
+      - buildenv
+
+  tools:
+    image: oxchains/fabric-tools-test
+    build:
+      context: ./build/image/tools
+    depends_on:
+      - buildenv

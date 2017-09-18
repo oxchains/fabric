@@ -4,8 +4,8 @@ import (
 	"fmt"
 	
 	"mgo-2"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
+	"github.com/oxchains/fabric/common/flogging"
 	"labix.org/v2/mgo/bson"
 )
 

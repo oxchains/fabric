@@ -19,9 +19,9 @@ package service
 import (
 	"reflect"
 
-	"github.com/hyperledger/fabric/common/config"
+	"github.com/oxchains/fabric/common/config"
 
-	"github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/protos/peer"
 )
 
 // Config enumerates the configuration methods required by gossip

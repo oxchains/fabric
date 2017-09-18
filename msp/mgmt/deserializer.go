@@ -20,8 +20,8 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/msp"
-	mspproto "github.com/hyperledger/fabric/protos/msp"
+	"github.com/oxchains/fabric/msp"
+	mspproto "github.com/oxchains/fabric/protos/msp"
 )
 
 // DeserializersManager is a support interface to

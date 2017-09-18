@@ -28,7 +28,7 @@ import (
 
 	"path/filepath"
 
-	"github.com/hyperledger/fabric/common/tools/cryptogen/csp"
+	"github.com/oxchains/fabric/common/tools/cryptogen/csp"
 )
 
 type CA struct {

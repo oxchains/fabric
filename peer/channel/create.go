@@ -23,14 +23,14 @@ import (
 	"errors"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/configtx"
-	genesisconfig "github.com/hyperledger/fabric/common/configtx/tool/localconfig"
-	localsigner "github.com/hyperledger/fabric/common/localmsp"
-	"github.com/hyperledger/fabric/common/util"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/peer/common"
-	cb "github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/configtx"
+	genesisconfig "github.com/oxchains/fabric/common/configtx/tool/localconfig"
+	localsigner "github.com/oxchains/fabric/common/localmsp"
+	"github.com/oxchains/fabric/common/util"
+	mspmgmt "github.com/oxchains/fabric/msp/mgmt"
+	"github.com/oxchains/fabric/peer/common"
+	cb "github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/spf13/cobra"
 )
 

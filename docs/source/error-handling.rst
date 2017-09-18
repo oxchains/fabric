@@ -46,7 +46,7 @@ appended to the error message.
 
 Using the framework is simple and will only require an easy tweak to your code.
 
-First, you'll need to import **github.com/hyperledger/fabric/common/errors** into
+First, you'll need to import **github.com/oxchains/fabric/common/errors** into
 any file that uses this framework.
 
 Let's take the following as an example from core/chaincode/chaincode_support.go:

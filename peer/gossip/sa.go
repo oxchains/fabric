@@ -17,9 +17,9 @@ limitations under the License.
 package gossip
 
 import (
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/msp/mgmt"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/gossip/api"
+	"github.com/oxchains/fabric/msp/mgmt"
 )
 
 var saLogger = flogging.MustGetLogger("peer/gossip/sa")

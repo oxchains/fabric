@@ -16,9 +16,9 @@ type MongoDBConf struct {
 }
 
 func GetMongoDBConf() *MongoDBConf {
-	url := viper.GetString("ledger.state.MongoDBConfig.url")
-	userName := viper.GetString("ledger.state.MongoDBConfig.username")
-	password := viper.GetString("ledger.state.MongoDBConfig.password")
+	url := viper.GetString("ledger.state.mongoDBConfig.url")
+	userName := viper.GetString("ledger.state.mongoDBConfig.username")
+	password := viper.GetString("ledger.state.mongoDBConfig.password")
 	collectionName := viper.GetString("ledger.state.mongoDBConfig.collectionName")
 	timeout := viper.GetDuration("ledger.state.mongoDBConfig.requestTimeout")
 	

@@ -19,9 +19,9 @@ package scc
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/core/common/sysccprovider"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/peer"
+	"github.com/oxchains/fabric/core/common/sysccprovider"
+	"github.com/oxchains/fabric/core/ledger"
+	"github.com/oxchains/fabric/core/peer"
 )
 
 // sccProviderFactory implements the sysccprovider.SystemChaincodeProviderFactory

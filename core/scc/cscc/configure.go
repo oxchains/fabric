@@ -26,17 +26,17 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/config"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/peer"
-	"github.com/hyperledger/fabric/core/policy"
-	"github.com/hyperledger/fabric/events/producer"
-	"github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/config"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/common/policies"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	"github.com/oxchains/fabric/core/peer"
+	"github.com/oxchains/fabric/core/policy"
+	"github.com/oxchains/fabric/events/producer"
+	"github.com/oxchains/fabric/msp/mgmt"
+	"github.com/oxchains/fabric/protos/common"
+	pb "github.com/oxchains/fabric/protos/peer"
+	"github.com/oxchains/fabric/protos/utils"
 )
 
 // PeerConfiger implements the configuration handler for the peer. For every

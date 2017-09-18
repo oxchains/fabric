@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/hyperledger/fabric/orderer/common/bootstrap"
-	cb "github.com/hyperledger/fabric/protos/common"
+	"github.com/oxchains/fabric/orderer/common/bootstrap"
+	cb "github.com/oxchains/fabric/protos/common"
 
 	"github.com/golang/protobuf/proto"
 )

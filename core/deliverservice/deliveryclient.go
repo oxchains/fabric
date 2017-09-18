@@ -13,11 +13,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/comm"
-	"github.com/hyperledger/fabric/core/deliverservice/blocksprovider"
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/protos/orderer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/comm"
+	"github.com/oxchains/fabric/core/deliverservice/blocksprovider"
+	"github.com/oxchains/fabric/gossip/api"
+	"github.com/oxchains/fabric/protos/orderer"
 	"github.com/op/go-logging"
 	"google.golang.org/grpc"
 )

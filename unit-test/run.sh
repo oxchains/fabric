@@ -12,13 +12,13 @@ ARCH=`uname -m`
 #check job type, do patch set specific unit test when job is verify
 if [ "$JOB_TYPE"  = "VERIFY" ]; then
 
-  cd $GOPATH/src/github.com/hyperledger/fabric/
+  cd $GOPATH/src/github.com/oxchains/fabric/
 
   #figure out what packages should be tested for uncommitted changes
   # first check for uncommitted changes
   TEST_PKGS=$(git diff --name-only HEAD * | grep .go$ | grep -v ^vendor/ \
     | grep -v ^build/ | sed 's%/[^/]*$%/%'| sort -u \
-    | awk '{print "github.com/hyperledger/fabric/"$1"..."}')
+    | awk '{print "github.com/oxchains/fabric/"$1"..."}')
 
   if [ -z "$TEST_PKGS" ]; then
     # next check for changes in the latest commit - typically this will
@@ -27,7 +27,7 @@ if [ "$JOB_TYPE"  = "VERIFY" ]; then
     TEST_PKGS=$(git diff-tree --no-commit-id --name-only -r $(git log -2 \
       --pretty=format:"%h") | grep .go$ | grep -v ^vendor/ | grep -v ^build/ \
       | sed 's%/[^/]*$%/%'| sort -u | \
-      awk '{print "github.com/hyperledger/fabric/"$1"..."}')
+      awk '{print "github.com/oxchains/fabric/"$1"..."}')
   fi
 
   #only run the test when test pkgs is not empty
@@ -43,7 +43,7 @@ if [ "$JOB_TYPE"  = "VERIFY" ]; then
 else
 
 #check to see if TEST_PKGS is set else use default (all packages)
-TEST_PKGS=${TEST_PKGS:-github.com/hyperledger/fabric/...}
+TEST_PKGS=${TEST_PKGS:-github.com/oxchains/fabric/...}
 echo -n "Obtaining list of tests to run for the following packages: ${TEST_PKGS}"
 
 # Some examples don't play nice with `go test`
@@ -68,8 +68,8 @@ PKGS=`go list ${TEST_PKGS} 2> /dev/null | \
 
 if [ x$ARCH == xppc64le -o x$ARCH == xs390x ]
 then
-PKGS=`echo $PKGS | sed  's@'github.com/hyperledger/fabric/core/chaincode/platforms/java/test'@@g'`
-PKGS=`echo $PKGS | sed  's@'github.com/hyperledger/fabric/core/chaincode/platforms/java'@@g'`
+PKGS=`echo $PKGS | sed  's@'github.com/oxchains/fabric/core/chaincode/platforms/java/test'@@g'`
+PKGS=`echo $PKGS | sed  's@'github.com/oxchains/fabric/core/chaincode/platforms/java'@@g'`
 fi
 
 echo " DONE!"

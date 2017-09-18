@@ -20,7 +20,7 @@ import (
 	"os"
 	"testing"
 
-	config "github.com/hyperledger/fabric/orderer/localconfig"
+	config "github.com/oxchains/fabric/orderer/localconfig"
 	"github.com/stretchr/testify/assert"
 )
 

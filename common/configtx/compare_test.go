@@ -21,7 +21,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	cb "github.com/hyperledger/fabric/protos/common"
+	cb "github.com/oxchains/fabric/protos/common"
 )
 
 func TestCompareConfigValue(t *testing.T) {

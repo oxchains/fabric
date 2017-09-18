@@ -23,7 +23,7 @@ import (
 	"crypto/rsa"
 	"fmt"
 
-	"github.com/hyperledger/fabric/bccsp"
+	"github.com/oxchains/fabric/bccsp"
 )
 
 type ecdsaKeyGenerator struct {

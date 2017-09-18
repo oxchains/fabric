@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/msp/mgmt/testtools"
+	"github.com/oxchains/fabric/msp/mgmt/testtools"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

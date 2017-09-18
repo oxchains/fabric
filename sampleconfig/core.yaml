@@ -401,7 +401,7 @@ ledger:
   blockchain:
 
   state:
-    # stateDatabase - options are "goleveldb", "CouchDB"
+    # stateDatabase - options are "goleveldb", "CouchDB", "MongoDB"
     # goleveldb - default state database stored in goleveldb.
     # CouchDB - store state database in CouchDB
     stateDatabase: goleveldb
@@ -426,6 +426,15 @@ ledger:
        requestTimeout: 35s
        # Limit on the number of records to return per query
        queryLimit: 10000
+
+    mongoDBConfig:
+       url:
+       username:
+       password:
+       databaseName: mongo
+       collectionName: test
+       requestTimeout: 35s
+       queryLimit: 1000
 
 
   history:

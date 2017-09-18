@@ -20,10 +20,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hyperledger/fabric/common/localmsp"
-	"github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/localmsp"
+	"github.com/oxchains/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/orderer"
+	"github.com/oxchains/fabric/protos/utils"
 	"google.golang.org/grpc"
 )
 

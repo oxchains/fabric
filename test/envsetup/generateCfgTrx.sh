@@ -13,7 +13,7 @@ CHANNEL_COUNT=$2
 : ${CHANNEL_NAME:="mychannel"}
 : ${CHANNEL_COUNT:="1"}
 
-export FABRIC_ROOT=$GOPATH/src/github.com/hyperledger/fabric
+export FABRIC_ROOT=$GOPATH/src/github.com/oxchains/fabric
 export E2E_CLI_PATH=$FABRIC_ROOT/examples/e2e_cli/
 cp $E2E_CLI_PATH/configtx.yaml $PWD
 cp $E2E_CLI_PATH/crypto-config.yaml ./crypto-config.yaml

@@ -17,8 +17,8 @@ limitations under the License.
 package ledger
 
 import (
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	cb "github.com/oxchains/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/orderer"
 )
 
 // Factory retrieves or creates new ledgers by chainID

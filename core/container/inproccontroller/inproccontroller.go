@@ -20,11 +20,11 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	container "github.com/hyperledger/fabric/core/container/api"
-	"github.com/hyperledger/fabric/core/container/ccintf"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	container "github.com/oxchains/fabric/core/container/api"
+	"github.com/oxchains/fabric/core/container/ccintf"
+	pb "github.com/oxchains/fabric/protos/peer"
 
 	"golang.org/x/net/context"
 )

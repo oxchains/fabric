@@ -24,8 +24,8 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
-	"github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/peer/common"
+	"github.com/oxchains/fabric/core/config"
+	"github.com/oxchains/fabric/peer/common"
 )
 
 //This is where all initializations take place. These closely follow CLI

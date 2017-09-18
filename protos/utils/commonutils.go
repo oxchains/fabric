@@ -23,9 +23,9 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/timestamp"
-	"github.com/hyperledger/fabric/common/crypto"
-	cb "github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/crypto"
+	cb "github.com/oxchains/fabric/protos/common"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 // MarshalOrPanic serializes a protobuf message and panics if this operation fails.

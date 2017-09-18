@@ -21,12 +21,12 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/hyperledger/fabric/common/ledger/blkstorage/fsblkstorage"
-	"github.com/hyperledger/fabric/orderer/ledger"
-	fileledger "github.com/hyperledger/fabric/orderer/ledger/file"
-	jsonledger "github.com/hyperledger/fabric/orderer/ledger/json"
-	ramledger "github.com/hyperledger/fabric/orderer/ledger/ram"
-	config "github.com/hyperledger/fabric/orderer/localconfig"
+	"github.com/oxchains/fabric/common/ledger/blkstorage/fsblkstorage"
+	"github.com/oxchains/fabric/orderer/ledger"
+	fileledger "github.com/oxchains/fabric/orderer/ledger/file"
+	jsonledger "github.com/oxchains/fabric/orderer/ledger/json"
+	ramledger "github.com/oxchains/fabric/orderer/ledger/ram"
+	config "github.com/oxchains/fabric/orderer/localconfig"
 )
 
 func createLedgerFactory(conf *config.TopLevel) (ledger.Factory, string) {

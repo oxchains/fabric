@@ -21,9 +21,9 @@ import (
 	"os"
 	"testing"
 
-	msp2 "github.com/hyperledger/fabric/common/config/msp"
-	"github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/msp"
+	msp2 "github.com/oxchains/fabric/common/config/msp"
+	"github.com/oxchains/fabric/core/config"
+	"github.com/oxchains/fabric/msp"
 	"github.com/stretchr/testify/assert"
 )
 

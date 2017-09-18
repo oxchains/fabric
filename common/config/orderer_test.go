@@ -19,7 +19,7 @@ package config
 import (
 	"testing"
 
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	ab "github.com/oxchains/fabric/protos/orderer"
 
 	logging "github.com/op/go-logging"
 	"github.com/stretchr/testify/assert"

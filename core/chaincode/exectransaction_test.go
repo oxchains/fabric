@@ -33,29 +33,29 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/bccsp/factory"
-	mockpolicies "github.com/hyperledger/fabric/common/mocks/policies"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/core/container"
-	"github.com/hyperledger/fabric/core/container/ccintf"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
-	"github.com/hyperledger/fabric/core/ledger/ledgermgmt"
-	"github.com/hyperledger/fabric/core/ledger/util/couchdb"
-	"github.com/hyperledger/fabric/core/peer"
-	"github.com/hyperledger/fabric/core/policy"
-	"github.com/hyperledger/fabric/core/policy/mocks"
-	"github.com/hyperledger/fabric/core/scc"
-	"github.com/hyperledger/fabric/core/testutil"
-	"github.com/hyperledger/fabric/msp"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/msp/mgmt/testtools"
-	"github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	putils "github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/bccsp/factory"
+	mockpolicies "github.com/oxchains/fabric/common/mocks/policies"
+	"github.com/oxchains/fabric/common/policies"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/core/common/ccprovider"
+	"github.com/oxchains/fabric/core/config"
+	"github.com/oxchains/fabric/core/container"
+	"github.com/oxchains/fabric/core/container/ccintf"
+	"github.com/oxchains/fabric/core/ledger"
+	"github.com/oxchains/fabric/core/ledger/ledgerconfig"
+	"github.com/oxchains/fabric/core/ledger/ledgermgmt"
+	"github.com/oxchains/fabric/core/ledger/util/couchdb"
+	"github.com/oxchains/fabric/core/peer"
+	"github.com/oxchains/fabric/core/policy"
+	"github.com/oxchains/fabric/core/policy/mocks"
+	"github.com/oxchains/fabric/core/scc"
+	"github.com/oxchains/fabric/core/testutil"
+	"github.com/oxchains/fabric/msp"
+	mspmgmt "github.com/oxchains/fabric/msp/mgmt"
+	"github.com/oxchains/fabric/msp/mgmt/testtools"
+	"github.com/oxchains/fabric/protos/common"
+	pb "github.com/oxchains/fabric/protos/peer"
+	putils "github.com/oxchains/fabric/protos/utils"
 	"github.com/spf13/viper"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -443,7 +443,7 @@ func _(chainID string, _ string) error {
 	var ctxt = context.Background()
 
 	// Deploy first chaincode
-	url1 := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	url1 := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 
 	cID1 := &pb.ChaincodeID{Name: "example02", Path: url1, Version: "0"}
 	f := "init"
@@ -467,7 +467,7 @@ func _(chainID string, _ string) error {
 	time.Sleep(time.Second)
 
 	// Deploy second chaincode
-	url2 := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example05"
+	url2 := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example05"
 
 	cID2 := &pb.ChaincodeID{Name: "example05", Path: url2, Version: "0"}
 	f = "init"
@@ -638,9 +638,9 @@ func invokeExample02Transaction(ctxt context.Context, cccid *ccprovider.CCContex
 }
 
 const (
-	chaincodeExample02GolangPath   = "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
-	chaincodeExample04GolangPath   = "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example04"
-	chaincodeEventSenderGolangPath = "github.com/hyperledger/fabric/examples/chaincode/go/eventsender"
+	chaincodeExample02GolangPath   = "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
+	chaincodeExample04GolangPath   = "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example04"
+	chaincodeEventSenderGolangPath = "github.com/oxchains/fabric/examples/chaincode/go/eventsender"
 	chaincodeExample02JavaPath     = "../../examples/chaincode/java/chaincode_example02"
 	chaincodeExample04JavaPath     = "../../examples/chaincode/java/chaincode_example04"
 	chaincodeExample06JavaPath     = "../../examples/chaincode/java/chaincode_example06"
@@ -777,7 +777,7 @@ func TestExecuteDeployTransaction(t *testing.T) {
 	t.Skip()
 	chainID := util.GetTestChainID()
 
-	executeDeployTransaction(t, chainID, "example01", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example01")
+	executeDeployTransaction(t, chainID, "example01", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example01")
 }
 
 // Test deploy of a transaction with a GOPATH with multiple elements
@@ -789,7 +789,7 @@ func TestGopathExecuteDeployTransaction(t *testing.T) {
 	// add a trailing slash to GOPATH
 	// and a couple of elements - it doesn't matter what they are
 	os.Setenv("GOPATH", os.Getenv("GOPATH")+string(os.PathSeparator)+string(os.PathListSeparator)+"/tmp/foo"+string(os.PathListSeparator)+"/tmp/bar")
-	executeDeployTransaction(t, chainID, "example01", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example01")
+	executeDeployTransaction(t, chainID, "example01", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example01")
 }
 
 func TestExecuteInvokeTransaction(t *testing.T) {
@@ -859,7 +859,7 @@ func TestExecuteInvokeInvalidTransaction(t *testing.T) {
 
 	var ctxt = context.Background()
 
-	url := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	url := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 	ccID := &pb.ChaincodeID{Name: "example02", Path: url, Version: "0"}
 
 	cccid := ccprovider.NewCCContext(chainID, "example02", "0", "", false, nil, nil)
@@ -980,7 +980,7 @@ func TestChaincodeInvokeChaincodeErrorCase(t *testing.T) {
 	var ctxt = context.Background()
 
 	// Deploy first chaincode
-	url1 := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	url1 := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 
 	cID1 := &pb.ChaincodeID{Name: "example02", Path: url1, Version: "0"}
 	f := "init"
@@ -1006,7 +1006,7 @@ func TestChaincodeInvokeChaincodeErrorCase(t *testing.T) {
 	time.Sleep(time.Second)
 
 	// Deploy second chaincode
-	url2 := "github.com/hyperledger/fabric/examples/chaincode/go/passthru"
+	url2 := "github.com/oxchains/fabric/examples/chaincode/go/passthru"
 
 	cID2 := &pb.ChaincodeID{Name: "pthru", Path: url2, Version: "0"}
 	f = "init"
@@ -1073,7 +1073,7 @@ func TestQueries(t *testing.T) {
 
 	var ctxt = context.Background()
 
-	url := "github.com/hyperledger/fabric/examples/chaincode/go/map"
+	url := "github.com/oxchains/fabric/examples/chaincode/go/map"
 	cID := &pb.ChaincodeID{Name: "tmap", Path: url, Version: "0"}
 
 	f := "init"
@@ -1501,7 +1501,7 @@ func TestChaincodeQueryChaincodeUsingInvoke(t *testing.T) {
 	var ctxt = context.Background()
 
 	// Deploy first chaincode
-	url1 := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	url1 := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 
 	cID1 := &pb.ChaincodeID{Name: "example02", Path: url1, Version: "0"}
 	f := "init"
@@ -1525,7 +1525,7 @@ func TestChaincodeQueryChaincodeUsingInvoke(t *testing.T) {
 	time.Sleep(time.Second)
 
 	// Deploy second chaincode
-	url2 := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example05"
+	url2 := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example05"
 
 	cID2 := &pb.ChaincodeID{Name: "example05", Path: url2, Version: "0"}
 	f = "init"
@@ -1623,7 +1623,7 @@ func TestChaincodeInvokesForbiddenSystemChaincode(t *testing.T) {
 	var nextBlockNumber uint64 = 1
 
 	// Deploy second chaincode
-	url := "github.com/hyperledger/fabric/examples/chaincode/go/passthru"
+	url := "github.com/oxchains/fabric/examples/chaincode/go/passthru"
 
 	cID := &pb.ChaincodeID{Name: "pthru", Path: url, Version: "0"}
 	f := "init"
@@ -1679,7 +1679,7 @@ func TestChaincodeInvokesSystemChaincode(t *testing.T) {
 	var nextBlockNumber uint64 = 1
 
 	// Deploy second chaincode
-	url := "github.com/hyperledger/fabric/examples/chaincode/go/passthru"
+	url := "github.com/oxchains/fabric/examples/chaincode/go/passthru"
 
 	cID := &pb.ChaincodeID{Name: "pthru", Path: url, Version: "0"}
 	f := "init"

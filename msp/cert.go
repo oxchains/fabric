@@ -18,7 +18,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/hyperledger/fabric/bccsp/sw"
+	"github.com/oxchains/fabric/bccsp/sw"
 )
 
 type dsaSignature struct {

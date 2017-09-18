@@ -19,10 +19,10 @@ package ccprovider
 import (
 	"context"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	"github.com/oxchains/fabric/core/common/ccprovider"
+	"github.com/oxchains/fabric/core/ledger"
+	"github.com/oxchains/fabric/protos/peer"
 )
 
 type ExecuteChaincodeResultProvider interface {

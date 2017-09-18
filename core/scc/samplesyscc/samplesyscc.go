@@ -17,8 +17,8 @@ limitations under the License.
 package samplesyscc
 
 import (
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 // SampleSysCC example simple Chaincode implementation

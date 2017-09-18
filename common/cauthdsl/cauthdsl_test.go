@@ -11,9 +11,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/hyperledger/fabric/msp"
-	cb "github.com/hyperledger/fabric/protos/common"
-	mb "github.com/hyperledger/fabric/protos/msp"
+	"github.com/oxchains/fabric/msp"
+	cb "github.com/oxchains/fabric/protos/common"
+	mb "github.com/oxchains/fabric/protos/msp"
 
 	"github.com/golang/protobuf/proto"
 	logging "github.com/op/go-logging"

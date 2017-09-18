@@ -26,8 +26,8 @@ import (
 	"testing"
 	"time"
 
-	testpb "github.com/hyperledger/fabric/core/comm/testdata/grpc"
-	"github.com/hyperledger/fabric/core/testutil"
+	testpb "github.com/oxchains/fabric/core/comm/testdata/grpc"
+	"github.com/oxchains/fabric/core/testutil"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/net/context"

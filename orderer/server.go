@@ -17,12 +17,12 @@ limitations under the License.
 package main
 
 import (
-	"github.com/hyperledger/fabric/common/crypto"
-	"github.com/hyperledger/fabric/orderer/common/broadcast"
-	"github.com/hyperledger/fabric/orderer/common/deliver"
-	"github.com/hyperledger/fabric/orderer/configupdate"
-	"github.com/hyperledger/fabric/orderer/multichain"
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	"github.com/oxchains/fabric/common/crypto"
+	"github.com/oxchains/fabric/orderer/common/broadcast"
+	"github.com/oxchains/fabric/orderer/common/deliver"
+	"github.com/oxchains/fabric/orderer/configupdate"
+	"github.com/oxchains/fabric/orderer/multichain"
+	ab "github.com/oxchains/fabric/protos/orderer"
 
 	"runtime/debug"
 )

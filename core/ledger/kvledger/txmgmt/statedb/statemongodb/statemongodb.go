@@ -6,10 +6,10 @@ import (
 	"unicode/utf8"
 	"encoding/json"
 	
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/mongodbhelper"
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb/mongodbhelper"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
 	"sync"
 )
 
@@ -39,9 +39,9 @@ func NewVersionedDBProvider() (*VersionedDBProvider, error) {
 	    return nil, err
 	}
 	dialInfo.Timeout = mongodbConf.RequestTimeout
-	
 	mgoSession, err := mgo.DialWithInfo(dialInfo)
 	if err != nil {
+		logger.Errorf(err.Error())
 		return nil, err
 	}
 	

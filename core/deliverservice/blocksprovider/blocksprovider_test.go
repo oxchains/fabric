@@ -22,11 +22,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hyperledger/fabric/core/deliverservice/mocks"
-	"github.com/hyperledger/fabric/gossip/api"
-	common2 "github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/orderer"
+	"github.com/oxchains/fabric/core/deliverservice/mocks"
+	"github.com/oxchains/fabric/gossip/api"
+	common2 "github.com/oxchains/fabric/gossip/common"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/orderer"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

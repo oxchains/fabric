@@ -2,7 +2,7 @@ package statemongodb
 
 import (
 	"testing"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
 )
 
 type TestDBEnv struct {

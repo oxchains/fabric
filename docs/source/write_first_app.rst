@@ -46,7 +46,7 @@ the clone command and change into the ``fabcar`` subdirectory
 
 .. code:: bash
 
-  git clone https://github.com/hyperledger/fabric-samples.git
+  git clone https://github.com/oxchains/fabric-samples.git
   cd fabric-samples/fabcar
 
 This subdirectory -- ``fabcar`` -- contains the scripts
@@ -76,7 +76,7 @@ this command.  Here's a quick synopsis:
 
 .. note:: These operations will typically be done by an organizational or peer admin.  The script uses the
 	  CLI to execute these commands, however there is support in the SDK as well.
-	  Refer to the `Hyperledger Fabric Node SDK repo <https://github.com/hyperledger/fabric-sdk-node>`__
+	  Refer to the `Hyperledger Fabric Node SDK repo <https://github.com/oxchains/fabric-sdk-node>`__
 	  for example scripts.
 
 Issue a ``docker ps`` command to reveal the processes started by the ``startFabric.sh`` script.
@@ -359,7 +359,7 @@ We are still querying against ``CAR10``, so we should see:
 Additional Resources
 --------------------
 
-The `Hyperledger Fabric Node SDK repo <https://github.com/hyperledger/fabric-sdk-node>`__
+The `Hyperledger Fabric Node SDK repo <https://github.com/oxchains/fabric-sdk-node>`__
 is an excellent resource for deeper documentation and sample code.  You can also consult
 the Hyperledger Fabric community and component experts on `Hyperledger Rocket Chat <https://chat.hyperledger.org/home>`__.
 

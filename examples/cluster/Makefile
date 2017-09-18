@@ -41,7 +41,7 @@ export TLS_ENABLED=$(TLS)
 CRYPTOGEN=build/bin/cryptogen
 CONFIGTXGEN=build/bin/configtxgen
 
-FABRICPKG=github.com/hyperledger/fabric
+FABRICPKG=github.com/oxchains/fabric
 pkgmap.cryptogen      := $(FABRICPKG)/common/tools/cryptogen
 pkgmap.configtxgen    := $(FABRICPKG)/common/configtx/tool/configtxgen
 

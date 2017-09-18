@@ -30,9 +30,9 @@ import (
 
 	"sort"
 
-	"github.com/hyperledger/fabric/core/chaincode/platforms/util"
-	cutil "github.com/hyperledger/fabric/core/container/util"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/core/chaincode/platforms/util"
+	cutil "github.com/oxchains/fabric/core/container/util"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 // Platform for chaincodes written in Go
@@ -286,8 +286,8 @@ func (goPlatform *Platform) GetDeploymentPayload(spec *pb.ChaincodeSpec) ([]byte
 	// Remove any imports that are provided by the ccenv or system
 	// --------------------------------------------------------------------------------------
 	var provided = map[string]bool{
-		"github.com/hyperledger/fabric/core/chaincode/shim": true,
-		"github.com/hyperledger/fabric/protos/peer":         true,
+		"github.com/oxchains/fabric/core/chaincode/shim": true,
+		"github.com/oxchains/fabric/protos/peer":         true,
 	}
 
 	imports = filter(imports, func(pkg string) bool {

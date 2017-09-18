@@ -68,8 +68,8 @@ while getopts "\?hc:f:" opt; do
   esac
 done
 
-: ${CA_TAG:="$ARCH-1.0.0-beta"}
-: ${FABRIC_TAG:="$ARCH-1.0.0-beta"}
+: ${CA_TAG:="$ARCH-1.0.2"}
+: ${FABRIC_TAG:="$ARCH-1.0.2"}
 
 echo "===> Pulling fabric Images"
 dockerFabricPull ${FABRIC_TAG}

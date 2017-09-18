@@ -19,7 +19,7 @@ package policyprovider
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/core/policy"
+	"github.com/oxchains/fabric/core/policy"
 	"github.com/stretchr/testify/assert"
 )
 

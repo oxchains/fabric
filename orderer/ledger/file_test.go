@@ -20,9 +20,9 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/hyperledger/fabric/common/configtx/tool/provisional"
-	. "github.com/hyperledger/fabric/orderer/ledger"
-	fileledger "github.com/hyperledger/fabric/orderer/ledger/file"
+	"github.com/oxchains/fabric/common/configtx/tool/provisional"
+	. "github.com/oxchains/fabric/orderer/ledger"
+	fileledger "github.com/oxchains/fabric/orderer/ledger/file"
 )
 
 func init() {

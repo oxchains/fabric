@@ -23,8 +23,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 // cryptoChaincode is allows the following transactions

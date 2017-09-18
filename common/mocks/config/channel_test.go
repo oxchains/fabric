@@ -19,7 +19,7 @@ package config
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/config"
+	"github.com/oxchains/fabric/common/config"
 )
 
 func TestChannelConfigInterface(t *testing.T) {

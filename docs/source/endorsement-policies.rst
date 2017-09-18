@@ -80,7 +80,7 @@ For example:
 
 ::
 
-    peer chaincode deploy -C testchainid -n mycc -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","100","b","200"]}' -P "AND('Org1.member', 'Org2.member')"
+    peer chaincode deploy -C testchainid -n mycc -p github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","100","b","200"]}' -P "AND('Org1.member', 'Org2.member')"
 
 This command deploys chaincode ``mycc`` on chain ``testchainid`` with
 the policy ``AND('Org1.member', 'Org2.member')``.

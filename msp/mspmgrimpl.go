@@ -19,8 +19,8 @@ package msp
 import (
 	"fmt"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/protos/msp"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/protos/msp"
 
 	"github.com/golang/protobuf/proto"
 )

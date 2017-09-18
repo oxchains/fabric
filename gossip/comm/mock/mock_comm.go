@@ -17,11 +17,11 @@ limitations under the License.
 package mock
 
 import (
-	"github.com/hyperledger/fabric/gossip/api"
-	"github.com/hyperledger/fabric/gossip/comm"
-	"github.com/hyperledger/fabric/gossip/common"
-	"github.com/hyperledger/fabric/gossip/util"
-	proto "github.com/hyperledger/fabric/protos/gossip"
+	"github.com/oxchains/fabric/gossip/api"
+	"github.com/oxchains/fabric/gossip/comm"
+	"github.com/oxchains/fabric/gossip/common"
+	"github.com/oxchains/fabric/gossip/util"
+	proto "github.com/oxchains/fabric/protos/gossip"
 )
 
 // Mock which aims to simulate socket

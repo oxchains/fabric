@@ -65,12 +65,12 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	genesisconfig "github.com/hyperledger/fabric/common/configtx/tool/localconfig" // config for genesis.yaml
-	genesisconfigProvisional "github.com/hyperledger/fabric/common/configtx/tool/provisional"
-	"github.com/hyperledger/fabric/orderer/localconfig" // config, for the orderer.yaml
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
-	"github.com/hyperledger/fabric/protos/utils"
+	genesisconfig "github.com/oxchains/fabric/common/configtx/tool/localconfig" // config for genesis.yaml
+	genesisconfigProvisional "github.com/oxchains/fabric/common/configtx/tool/provisional"
+	"github.com/oxchains/fabric/orderer/localconfig" // config, for the orderer.yaml
+	cb "github.com/oxchains/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/orderer"
+	"github.com/oxchains/fabric/protos/utils"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
@@ -1007,7 +1007,7 @@ func ote(testname string, txs int64, chans int, orderers int, ordType string, kb
 		logger(fmt.Sprintf("Using %d new channelIDs, e.g. test-chan.00023", numChannels))
 		for c := 0; c < numChannels; c++ {
 			channelIDs[c] = fmt.Sprintf("test-chan.%05d", c)
-			cmd := fmt.Sprintf("cd $GOPATH/src/github.com/hyperledger/fabric && peer channel create -c %s", channelIDs[c])
+			cmd := fmt.Sprintf("cd $GOPATH/src/github.com/oxchains/fabric && peer channel create -c %s", channelIDs[c])
 			_ = executeCmd(cmd)
 			//executeCmdAndDisplay(cmd)
 		}

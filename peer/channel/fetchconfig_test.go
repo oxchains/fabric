@@ -20,7 +20,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hyperledger/fabric/peer/common"
+	"github.com/oxchains/fabric/peer/common"
 	"github.com/stretchr/testify/assert"
 )
 

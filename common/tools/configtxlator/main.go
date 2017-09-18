@@ -21,8 +21,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/hyperledger/fabric/common/tools/configtxlator/metadata"
-	"github.com/hyperledger/fabric/common/tools/configtxlator/rest"
+	"github.com/oxchains/fabric/common/tools/configtxlator/metadata"
+	"github.com/oxchains/fabric/common/tools/configtxlator/rest"
 	"github.com/op/go-logging"
 	"gopkg.in/alecthomas/kingpin.v2"
 )

@@ -16,7 +16,7 @@ limitations under the License.
 
 package committer
 
-import "github.com/hyperledger/fabric/protos/common"
+import "github.com/oxchains/fabric/protos/common"
 
 // Committer is the interface supported by committers
 // The only committer is noopssinglechain committer.

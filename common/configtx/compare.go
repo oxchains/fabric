@@ -19,7 +19,7 @@ package configtx
 import (
 	"bytes"
 
-	cb "github.com/hyperledger/fabric/protos/common"
+	cb "github.com/oxchains/fabric/protos/common"
 )
 
 type comparable struct {

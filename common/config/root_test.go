@@ -19,7 +19,7 @@ package config
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric/common/config/msp"
+	"github.com/oxchains/fabric/common/config/msp"
 
 	logging "github.com/op/go-logging"
 	"github.com/stretchr/testify/assert"

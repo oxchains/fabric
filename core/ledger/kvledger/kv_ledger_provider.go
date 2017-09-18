@@ -22,20 +22,20 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/ledger/blkstorage"
-	"github.com/hyperledger/fabric/common/ledger/blkstorage/fsblkstorage"
-	"github.com/hyperledger/fabric/common/ledger/util/leveldbhelper"
-	"github.com/hyperledger/fabric/core/ledger"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/history/historydb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/history/historydb/historyleveldb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/statecouchdb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/stateleveldb"
-	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
-	"github.com/hyperledger/fabric/protos/common"
-	"github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/ledger/blkstorage"
+	"github.com/oxchains/fabric/common/ledger/blkstorage/fsblkstorage"
+	"github.com/oxchains/fabric/common/ledger/util/leveldbhelper"
+	"github.com/oxchains/fabric/core/ledger"
+	"github.com/oxchains/fabric/core/ledger/kvledger/history/historydb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/history/historydb/historyleveldb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb/statecouchdb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb/stateleveldb"
+	"github.com/oxchains/fabric/core/ledger/ledgerconfig"
+	"github.com/oxchains/fabric/protos/common"
+	"github.com/oxchains/fabric/protos/utils"
 	"github.com/syndtr/goleveldb/leveldb"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/statedb/statemongodb"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb/statemongodb"
 )
 
 var (
@@ -84,6 +84,8 @@ func NewProvider() (ledger.PeerLedgerProvider, error) {
 	// Initialize the versioned database (state database)
 	var vdbProvider statedb.VersionedDBProvider
 	
+	//未设置ledger.state.stateDatabase时,系统默认为mongodb??
+	
 	if ledgerconfig.IsCouchDBEnabled() {
 		logger.Debug("Constructing CouchDB VersionedDBProvider")
 		var err error
@@ -92,7 +94,7 @@ func NewProvider() (ledger.PeerLedgerProvider, error) {
 			return nil, err
 		}
 	} else if ledgerconfig.IsMongoDBEnaled() {
-	    logger.Debugf("constructing mongodb versionedDBProvider")
+	    logger.Debug("constructing mongodb versionedDBProvider")
 	    var err error
 		vdbProvider, err = statemongodb.NewVersionedDBProvider()
 	    if err != nil {

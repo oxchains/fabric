@@ -19,8 +19,8 @@ package lockbasedtxmgr
 import (
 	"errors"
 
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/rwsetutil"
 )
 
 // LockBasedTxSimulator is a transaction simulator used in `LockBasedTxMgr`

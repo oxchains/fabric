@@ -26,25 +26,25 @@ import (
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric/common/cauthdsl"
-	"github.com/hyperledger/fabric/common/mocks/scc"
-	"github.com/hyperledger/fabric/common/policies"
-	"github.com/hyperledger/fabric/common/util"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/common/ccpackage"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/common/sysccprovider"
-	cutil "github.com/hyperledger/fabric/core/container/util"
-	"github.com/hyperledger/fabric/core/peer"
-	"github.com/hyperledger/fabric/core/policy"
-	policymocks "github.com/hyperledger/fabric/core/policy/mocks"
-	"github.com/hyperledger/fabric/msp"
-	mspmgmt "github.com/hyperledger/fabric/msp/mgmt"
-	"github.com/hyperledger/fabric/msp/mgmt/testtools"
-	"github.com/hyperledger/fabric/protos/common"
-	pb "github.com/hyperledger/fabric/protos/peer"
-	"github.com/hyperledger/fabric/protos/utils"
-	putils "github.com/hyperledger/fabric/protos/utils"
+	"github.com/oxchains/fabric/common/cauthdsl"
+	"github.com/oxchains/fabric/common/mocks/scc"
+	"github.com/oxchains/fabric/common/policies"
+	"github.com/oxchains/fabric/common/util"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	"github.com/oxchains/fabric/core/common/ccpackage"
+	"github.com/oxchains/fabric/core/common/ccprovider"
+	"github.com/oxchains/fabric/core/common/sysccprovider"
+	cutil "github.com/oxchains/fabric/core/container/util"
+	"github.com/oxchains/fabric/core/peer"
+	"github.com/oxchains/fabric/core/policy"
+	policymocks "github.com/oxchains/fabric/core/policy/mocks"
+	"github.com/oxchains/fabric/msp"
+	mspmgmt "github.com/oxchains/fabric/msp/mgmt"
+	"github.com/oxchains/fabric/msp/mgmt/testtools"
+	"github.com/oxchains/fabric/protos/common"
+	pb "github.com/oxchains/fabric/protos/peer"
+	"github.com/oxchains/fabric/protos/utils"
+	putils "github.com/oxchains/fabric/protos/utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -79,7 +79,7 @@ func constructDeploymentSpec(name string, path string, version string, initArgs 
 
 //TestInstall tests the install function with various inputs
 func TestInstall(t *testing.T) {
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	path := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 
 	testInstall(t, "example02", "0", path, "", "Alice")
 	testInstall(t, "example02-2", "1.0", path, "", "Alice")
@@ -185,7 +185,7 @@ func TestReinstall(t *testing.T) {
 	}
 
 	//note that this puts the code on the filesyste....
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
 		t.FailNow()
 	}
@@ -232,7 +232,7 @@ func TestInvalidCodeDeploy(t *testing.T) {
 // A default instantiation policy is used automatically because the cc package
 // comes without a policy.
 func TestDeploy(t *testing.T) {
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	path := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 
 	testDeploy(t, "example02", "0", path, false, false, "")
 	testDeploy(t, "example02", "1.0", path, false, false, "")
@@ -346,7 +346,7 @@ func TestRedeploy(t *testing.T) {
 		t.FailNow()
 	}
 
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
 		t.FailNow()
 	}
@@ -398,7 +398,7 @@ func TestMultipleDeploy(t *testing.T) {
 	sProp.Signature = sProp.ProposalBytes
 
 	//deploy 02
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
 		t.FailNow()
 	}
@@ -420,7 +420,7 @@ func TestMultipleDeploy(t *testing.T) {
 	}
 
 	//deploy 01
-	cds, err = constructDeploymentSpec("example01", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example01", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err = constructDeploymentSpec("example01", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example01", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
 		t.FailNow()
 	}
@@ -484,7 +484,7 @@ func TestRetryFailedDeploy(t *testing.T) {
 	sProp.Signature = sProp.ProposalBytes
 
 	//deploy 02
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
 		t.FailNow()
 	}
@@ -548,7 +548,7 @@ func TestTamperChaincode(t *testing.T) {
 	sProp.Signature = sProp.ProposalBytes
 
 	//deploy 01
-	cds, err := constructDeploymentSpec("example01", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example01", "0", [][]byte{[]byte("init"), []byte("a"), []byte("1"), []byte("b"), []byte("2")}, true)
+	cds, err := constructDeploymentSpec("example01", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example01", "0", [][]byte{[]byte("init"), []byte("a"), []byte("1"), []byte("b"), []byte("2")}, true)
 	if err != nil {
 		t.Logf("Could not construct example01.0 [%s]", err)
 		t.FailNow()
@@ -571,7 +571,7 @@ func TestTamperChaincode(t *testing.T) {
 	}
 
 	//deploy 02
-	cds, err = constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err = constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	if err != nil {
 		t.FailNow()
 	}
@@ -644,7 +644,7 @@ func TestIPolDeployDefaultFail(t *testing.T) {
 	identityDeserializer.Msg = sProp.ProposalBytes
 	sProp.Signature = sProp.ProposalBytes
 
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 	assert.NoError(t, err)
 	defer os.Remove(lscctestpath + "/example02.0")
 
@@ -691,7 +691,7 @@ func testIPolDeploy(t *testing.T, iPol string, successExpected bool) {
 	sProp.Signature = sProp.ProposalBytes
 
 	// create deployment spec, don't write to disk, just marshal it to be used in a signed dep spec
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
 	assert.NoError(t, err)
 	// create an instantiation policy
 	var ip *common.SignaturePolicyEnvelope
@@ -734,7 +734,7 @@ func testIPolDeploy(t *testing.T, iPol string, successExpected bool) {
 
 // TestUpgrade tests the upgrade function with various inputs for basic use cases
 func TestUpgrade(t *testing.T) {
-	path := "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02"
+	path := "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02"
 
 	testUpgrade(t, "example02", "0", "example02", "1", path, "")
 	testUpgrade(t, "example02", "0", "example02", "", path, EmptyVersionErr("example02").Error())
@@ -844,7 +844,7 @@ func testIPolUpgrade(t *testing.T, iPol string, successExpected bool) {
 	identityDeserializer.Msg = sProp.ProposalBytes
 	sProp.Signature = sProp.ProposalBytes
 	// create deployment spec, don't write to disk, just marshal it to be used in a signed dep spec
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
 	assert.NoError(t, err)
 	// create an instantiation policy
 	ip := cauthdsl.SignedByMspAdmin(mspid)
@@ -874,7 +874,7 @@ func testIPolUpgrade(t *testing.T, iPol string, successExpected bool) {
 
 	// here starts the interesting part for upgrade
 	// create deployment spec
-	cds, err = constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "1", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
+	cds, err = constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "1", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, false)
 	assert.NoError(t, err)
 	cdsbytes, err = proto.Marshal(cds)
 	assert.NoError(t, err)
@@ -934,7 +934,7 @@ func TestGetAPIsWithoutInstall(t *testing.T) {
 	identityDeserializer.Msg = sProp.ProposalBytes
 	sProp.Signature = sProp.ProposalBytes
 
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 
 	var b []byte
 	if b, err = proto.Marshal(cds); err != nil || b == nil {
@@ -1120,7 +1120,7 @@ func TestGetCCAccessRights(t *testing.T) {
 		&policymocks.MockMSPPrincipalGetter{Principal: []byte("Alice")},
 	)
 
-	cds, err := constructDeploymentSpec("example02", "github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
+	cds, err := constructDeploymentSpec("example02", "github.com/oxchains/fabric/examples/chaincode/go/chaincode_example02", "0", [][]byte{[]byte("init"), []byte("a"), []byte("100"), []byte("b"), []byte("200")}, true)
 
 	var b []byte
 	if b, err = proto.Marshal(cds); err != nil || b == nil {

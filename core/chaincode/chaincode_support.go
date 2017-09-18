@@ -31,16 +31,16 @@ import (
 
 	"strings"
 
-	"github.com/hyperledger/fabric/common/flogging"
-	"github.com/hyperledger/fabric/core/chaincode/platforms"
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/hyperledger/fabric/core/common/ccprovider"
-	"github.com/hyperledger/fabric/core/config"
-	"github.com/hyperledger/fabric/core/container"
-	"github.com/hyperledger/fabric/core/container/api"
-	"github.com/hyperledger/fabric/core/container/ccintf"
-	"github.com/hyperledger/fabric/core/ledger"
-	pb "github.com/hyperledger/fabric/protos/peer"
+	"github.com/oxchains/fabric/common/flogging"
+	"github.com/oxchains/fabric/core/chaincode/platforms"
+	"github.com/oxchains/fabric/core/chaincode/shim"
+	"github.com/oxchains/fabric/core/common/ccprovider"
+	"github.com/oxchains/fabric/core/config"
+	"github.com/oxchains/fabric/core/container"
+	"github.com/oxchains/fabric/core/container/api"
+	"github.com/oxchains/fabric/core/container/ccintf"
+	"github.com/oxchains/fabric/core/ledger"
+	pb "github.com/oxchains/fabric/protos/peer"
 )
 
 type key string

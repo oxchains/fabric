@@ -22,9 +22,9 @@ import (
 	"hash"
 	"reflect"
 
-	"github.com/hyperledger/fabric/bccsp"
-	"github.com/hyperledger/fabric/common/errors"
-	"github.com/hyperledger/fabric/common/flogging"
+	"github.com/oxchains/fabric/bccsp"
+	"github.com/oxchains/fabric/common/errors"
+	"github.com/oxchains/fabric/common/flogging"
 	"golang.org/x/crypto/sha3"
 )
 

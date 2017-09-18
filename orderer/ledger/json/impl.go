@@ -23,9 +23,9 @@ import (
 	"path/filepath"
 	"sync"
 
-	ledger "github.com/hyperledger/fabric/orderer/ledger"
-	cb "github.com/hyperledger/fabric/protos/common"
-	ab "github.com/hyperledger/fabric/protos/orderer"
+	ledger "github.com/oxchains/fabric/orderer/ledger"
+	cb "github.com/oxchains/fabric/protos/common"
+	ab "github.com/oxchains/fabric/protos/orderer"
 	"github.com/op/go-logging"
 
 	"github.com/golang/protobuf/jsonpb"
