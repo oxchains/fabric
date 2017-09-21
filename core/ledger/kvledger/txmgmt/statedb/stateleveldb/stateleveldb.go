@@ -26,6 +26,7 @@ import (
 	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
 	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
+	"fmt"
 )
 
 var logger = flogging.MustGetLogger("stateleveldb")
@@ -110,6 +111,10 @@ func (vdb *versionedDB) GetStateMultipleKeys(namespace string, keys []string) ([
 		vals[i] = val
 	}
 	return vals, nil
+}
+
+func (vdb *versionedDB) QueryByView(namespace string, opt []byte) (statedb.ResultsIterator, error){
+	return nil, fmt.Errorf("not support")
 }
 
 // GetStateRangeScanIterator implements method in VersionedDB interface

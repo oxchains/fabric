@@ -94,6 +94,9 @@ type QueryExecutor interface {
 	// The returned ResultsIterator contains results of type *KV which is defined in protos/ledger/queryresult.
 	ExecuteQuery(namespace, query string) (commonledger.ResultsIterator, error)
 	// Done releases resources occupied by the QueryExecutor
+	
+	QueryByView(ns string, opt []byte) (commonledger.ResultsIterator, error)
+	
 	Done()
 }
 

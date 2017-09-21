@@ -142,6 +142,33 @@ func (vdb *VersionedDB) GetState(namespace string, key string) (*statedb.Version
 	return &statedb.VersionedValue{Value: returnValue, Version: &returnVersion}, nil
 }
 
+func (vdb *VersionedDB) QueryByView(namespace string, opt []byte) (statedb.ResultsIterator, error) {
+	
+	if !couchdb.IsJSON(string(opt)) {
+		return nil, fmt.Errorf("the option is not a json")
+	}
+	
+	var queryOpt couchdb.ViewQueryOpt
+	err := json.Unmarshal(opt, &queryOpt)
+	if err != nil {
+		return nil, fmt.Errorf("the opt json is not a couchdb opt json")
+	}
+	
+	key := queryOpt.Key
+	designDocName := queryOpt.DesignDocName
+	viewName := queryOpt.ViewName
+	
+	queryResult, err := vdb.db.QueryDocumentsViewKey(key, designDocName, viewName)
+	if err != nil {
+		if err != nil {
+			logger.Debugf("Error calling GetStateViewKey(): %s\n", err.Error())
+			return nil, err
+		}
+	}
+	
+	return newKVScanner(namespace, *queryResult), nil
+}
+
 func removeDataWrapper(wrappedValue []byte, attachments []*couchdb.Attachment) ([]byte, version.Height) {
 
 	//initialize the return value

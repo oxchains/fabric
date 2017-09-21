@@ -423,6 +423,7 @@ func newChaincodeSupportHandler(chaincodeSupport *ChaincodeSupport, peerChatStre
 			{Name: pb.ChaincodeMessage_GET_HISTORY_FOR_KEY.String(), Src: []string{readystate}, Dst: readystate},
 			{Name: pb.ChaincodeMessage_QUERY_STATE_NEXT.String(), Src: []string{readystate}, Dst: readystate},
 			{Name: pb.ChaincodeMessage_QUERY_STATE_CLOSE.String(), Src: []string{readystate}, Dst: readystate},
+			{Name: pb.ChaincodeMessage_QUERY_BY_VIEW.String(), Src: []string{readystate}, Dst: readystate},
 			{Name: pb.ChaincodeMessage_ERROR.String(), Src: []string{readystate}, Dst: readystate},
 			{Name: pb.ChaincodeMessage_RESPONSE.String(), Src: []string{readystate}, Dst: readystate},
 			{Name: pb.ChaincodeMessage_INIT.String(), Src: []string{readystate}, Dst: readystate},
@@ -437,6 +438,7 @@ func newChaincodeSupportHandler(chaincodeSupport *ChaincodeSupport, peerChatStre
 			"after_" + pb.ChaincodeMessage_GET_HISTORY_FOR_KEY.String(): func(e *fsm.Event) { v.afterGetHistoryForKey(e, v.FSM.Current()) },
 			"after_" + pb.ChaincodeMessage_QUERY_STATE_NEXT.String():    func(e *fsm.Event) { v.afterQueryStateNext(e, v.FSM.Current()) },
 			"after_" + pb.ChaincodeMessage_QUERY_STATE_CLOSE.String():   func(e *fsm.Event) { v.afterQueryStateClose(e, v.FSM.Current()) },
+			"after_" + pb.ChaincodeMessage_QUERY_BY_VIEW.String():       func(e *fsm.Event) {v.afterQueryByView(e, v.FSM.Current())},
 			"after_" + pb.ChaincodeMessage_PUT_STATE.String():           func(e *fsm.Event) { v.enterBusyState(e, v.FSM.Current()) },
 			"after_" + pb.ChaincodeMessage_DEL_STATE.String():           func(e *fsm.Event) { v.enterBusyState(e, v.FSM.Current()) },
 			"after_" + pb.ChaincodeMessage_INVOKE_CHAINCODE.String():    func(e *fsm.Event) { v.enterBusyState(e, v.FSM.Current()) },
@@ -748,6 +750,92 @@ func (handler *Handler) handleGetStateByRange(msg *pb.ChaincodeMessage) {
 		chaincodeLogger.Debugf("Got keys and values. Sending %s", pb.ChaincodeMessage_RESPONSE)
 		serialSendMsg = &pb.ChaincodeMessage{Type: pb.ChaincodeMessage_RESPONSE, Payload: payloadBytes, Txid: msg.Txid}
 
+	}()
+}
+
+func (handler *Handler) afterQueryByView(e *fsm.Event, state string) {
+	msg, ok := e.Args[0].(*pb.ChaincodeMessage)
+	if !ok {
+		e.Cancel(fmt.Errorf("Received unexpected message type"))
+		return
+	}
+	chaincodeLogger.Debugf("Received %s, query by view from ledger", pb.ChaincodeMessage_QUERY_BY_VIEW)
+	
+	// get ledger for state by view
+	handler.handleQueryByView(msg)
+	chaincodeLogger.Debug("Exiting ChaincodeMessage_QUERY_BY_VIEW")
+}
+
+func (handler *Handler) handleQueryByView(msg *pb.ChaincodeMessage) {
+	
+	go func() {
+		uniqueReq := handler.createTXIDEntry(msg.Txid)
+		if !uniqueReq {
+			// Drop this request
+			chaincodeLogger.Error("Another state request pending for this Txid. Cannot process.")
+			return
+		}
+		
+		var serialSendMsg *pb.ChaincodeMessage
+		
+		defer func() {
+			handler.deleteTXIDEntry(msg.Txid)
+			chaincodeLogger.Debugf("[%s]handleQueryByView serial send %s", shorttxid(serialSendMsg.Txid), serialSendMsg.Type)
+			handler.serialSendAsync(serialSendMsg, nil)
+		}()
+		
+		ViewOpt := &pb.ViewOpt{}
+		unmarshalErr := proto.Unmarshal(msg.Payload, ViewOpt)
+		if unmarshalErr != nil {
+			payload := []byte(unmarshalErr.Error())
+			chaincodeLogger.Errorf("Failed to unmarshall query view by request. Sending %s", pb.ChaincodeMessage_ERROR)
+			serialSendMsg = &pb.ChaincodeMessage{Type: pb.ChaincodeMessage_ERROR, Payload: payload, Txid: msg.Txid}
+			return
+		}
+		
+		iterID := util.GenerateUUID()
+		
+		var txContext *transactionContext
+		
+		txContext, serialSendMsg = handler.isValidTxSim(msg.Txid, "[%s]No ledger context for GetStateView. Sending %s", shorttxid(msg.Txid), pb.ChaincodeMessage_ERROR)
+		if txContext == nil {
+			return
+		}
+		chaincodeID := handler.getCCRootName()
+		
+		errHandler := func(err error, iter commonledger.ResultsIterator, errFmt string, errArgs ...interface{}) {
+			if iter != nil {
+				iter.Close()
+				handler.deleteQueryIterator(txContext, iterID)
+			}
+			payload := []byte(err.Error())
+			chaincodeLogger.Errorf(errFmt, errArgs)
+			serialSendMsg = &pb.ChaincodeMessage{Type: pb.ChaincodeMessage_ERROR, Payload: payload, Txid: msg.Txid}
+		}
+		
+		rangeIter, err := txContext.txsimulator.QueryByView(chaincodeID, ViewOpt.Opt)
+		if err != nil {
+			errHandler(err, nil, "Failed to get ledger scan iterator by query view. Sending %s", pb.ChaincodeMessage_ERROR)
+			return
+		}
+		
+		handler.putQueryIterator(txContext, iterID, rangeIter)
+		var payload *pb.QueryResponse
+		payload, err = getQueryResponse(handler, txContext, rangeIter, iterID)
+		if err != nil {
+			errHandler(err, rangeIter, "Failed to get query view result. Sending %s", pb.ChaincodeMessage_ERROR)
+			return
+		}
+		
+		var payloadBytes []byte
+		payloadBytes, err = proto.Marshal(payload)
+		if err != nil {
+			errHandler(err, rangeIter, "Failed to marshal response. Sending %s", pb.ChaincodeMessage_ERROR)
+			return
+		}
+		chaincodeLogger.Debugf("Got keys sand values. Sending %s", pb.ChaincodeMessage_RESPONSE)
+		serialSendMsg = &pb.ChaincodeMessage{Type: pb.ChaincodeMessage_RESPONSE, Payload: payloadBytes, Txid: msg.Txid}
+		
 	}()
 }
 

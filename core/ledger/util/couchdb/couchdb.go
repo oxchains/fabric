@@ -207,6 +207,33 @@ type Base64Attachment struct {
 	AttachmentData string `json:"data"`
 }
 
+type ViewQueryResponse struct {
+	TotalRows int `json:"total_rows"`
+	Offset    int `json:"offset"`
+	Rows []struct {
+		ID string `json:"id"`
+		Key string `json:"key"`
+		Value struct {
+			Rev string `json:"_rev"`
+			Data interface{} `json:"data"`
+			Version string `json:"version"`
+		} `json:"value"`
+	} `json:"rows"`
+}
+
+//查询视图使用opt
+type ViewQueryOpt struct {
+	DesignDocName string  `json:"designDocName"`
+	ViewName string       `json:"viewName"`
+	Key string            `json:"key"`
+}
+
+//创建视图使用opt
+type ViewCreateOpt struct {
+	DesignDocName string   `json:"designDocName"`
+	Agreement interface{}       `json:"agreement"`
+}
+
 // closeResponseBody discards the body and then closes it to enable returning it to
 // connection pool
 func closeResponseBody(resp *http.Response) {
@@ -781,6 +808,76 @@ func (dbclient *CouchDatabase) ReadDoc(id string) (*CouchDoc, string, error) {
 
 	logger.Debugf("Exiting ReadDoc()")
 	return &couchDoc, revision, nil
+}
+
+//通过视图查询文档
+func (dbclient *CouchDatabase) QueryDocumentsViewKey(key, designDocName, viewName string) (*[]QueryResult, error) {
+	logger.Debugf("Entering QueryDocumentsViewKey() key=%s", key)
+	
+	var results []QueryResult
+	
+	queryURL, err := url.Parse(dbclient.CouchInstance.conf.URL)
+	if err != nil {
+		logger.Errorf("URL parse error: %s", err.Error())
+		return nil, err
+	}
+	
+	rawQuery := queryURL.Query()
+	if key != "" {
+		var err error
+		if key, err = encodeForJSON(key); err != nil {
+			return nil, err
+		}
+		rawQuery.Add("key", "\""+key+"\"")
+	}
+	
+	queryURL.RawQuery = rawQuery.Encode()
+	
+	queryURL.Path = dbclient.DBName + "/_design/" + designDocName + "/_view/" + viewName
+	
+	//get the number of retries
+	maxRetries := dbclient.CouchInstance.conf.MaxRetries
+	//
+	resp, _, err := dbclient.CouchInstance.handleRequest(http.MethodGet, queryURL.String(), nil, "", "", maxRetries, true)
+	
+	if err != nil {
+		return nil, err
+	}
+	defer closeResponseBody(resp)
+	if logger.IsEnabledFor(logging.DEBUG) {
+		dump, err2 := httputil.DumpResponse(resp, true)
+		if err2 != nil {
+			log.Fatal(err2)
+		}
+		logger.Debugf("%s", dump)
+	}
+	
+	//handle as JSON document
+	jsonResponseRaw, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	
+	var jsonResponse = &ViewQueryResponse{}
+	
+	err2 := json.Unmarshal(jsonResponseRaw, &jsonResponse)
+	if err2 != nil {
+		return nil, err2
+	}
+	
+	for _, row := range jsonResponse.Rows {
+		
+		valueByte, err := json.Marshal(row.Value)
+		if err != nil {
+			continue
+		}
+		var addDocument = &QueryResult{row.ID, valueByte, nil}
+		results = append(results, *addDocument)
+	}
+	
+	logger.Debugf("Exiting ReadDocRange()")
+	
+	return &results, nil
 }
 
 //ReadDocRange method provides function to a range of documents based on the start and end keys

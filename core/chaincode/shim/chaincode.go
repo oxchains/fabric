@@ -387,6 +387,14 @@ func (stub *ChaincodeStub) GetState(key string) ([]byte, error) {
 	return stub.handler.handleGetState(key, stub.TxID)
 }
 
+func (stub *ChaincodeStub) QueryByView(opt string) (StateQueryIteratorInterface, error) {
+	response, err := stub.handler.handleQueryByView(opt, stub.TxID)
+	if err != nil {
+		return nil, err
+	}
+	return &StateQueryIterator{CommonIterator: &CommonIterator{stub.handler, stub.TxID, response, 0}}, nil
+}
+
 // PutState documentation can be found in interfaces.go
 func (stub *ChaincodeStub) PutState(key string, value []byte) error {
 	if key == "" {

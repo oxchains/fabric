@@ -84,6 +84,8 @@ type ChaincodeStubInterface interface {
 	// has not been committed to the ledger. In other words, GetState doesn't
 	// consider data modified by PutState that has not been committed.
 	GetState(key string) ([]byte, error)
+	
+	QueryByView(opt string) (StateQueryIteratorInterface, error)
 
 	// PutState puts the specified `key` and `value` into the transaction's
 	// writeset as a data-write proposal. PutState doesn't effect the ledger

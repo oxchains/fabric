@@ -44,6 +44,10 @@ type VersionedDB interface {
 	GetStateRangeScanIterator(namespace string, startKey string, endKey string) (ResultsIterator, error)
 	// ExecuteQuery executes the given query and returns an iterator that contains results of type *VersionedKV.
 	ExecuteQuery(namespace, query string) (ResultsIterator, error)
+	
+	//通过视图查询
+	QueryByView(namespace string, opt []byte) (ResultsIterator, error)
+	
 	// ApplyUpdates applies the batch to the underlying db.
 	// height is the height of the highest transaction in the Batch that
 	// a state db implementation is expected to ues as a save point

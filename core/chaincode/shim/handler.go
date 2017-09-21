@@ -492,6 +492,45 @@ func (handler *Handler) handleDelState(key string, txid string) error {
 	return errors.New(fmt.Sprintf("[%s]Incorrect chaincode message %s received. Expecting %s or %s", shorttxid(responseMsg.Txid), responseMsg.Type, pb.ChaincodeMessage_RESPONSE, pb.ChaincodeMessage_ERROR))
 }
 
+//新增的通过视图获取相应的结果
+func (handler *Handler) handleQueryByView(opt, txid string) (*pb.QueryResponse, error) {
+	var respChan chan pb.ChaincodeMessage
+	var err error
+	if respChan, err = handler.createChannel(txid); err != nil {
+		return nil, err
+	}
+	
+	defer handler.deleteChannel(txid)
+	
+	payloadBytes, _ := proto.Marshal(&pb.ViewOpt{Opt: []byte(opt)})
+	msg := &pb.ChaincodeMessage{Type: pb.ChaincodeMessage_QUERY_BY_VIEW, Payload: payloadBytes, Txid: txid}
+	
+	var responseMsg pb.ChaincodeMessage
+	if responseMsg, err = handler.sendReceive(msg, respChan); err != nil {
+		return nil, errors.New(fmt.Sprintf("[%s]error sending %s", shorttxid(msg.Txid), pb.ChaincodeMessage_QUERY_BY_VIEW))
+	}
+	
+	if responseMsg.Type.String() == pb.ChaincodeMessage_RESPONSE.String() {
+		// Success response
+		chaincodeLogger.Debugf("[%s]Received %s. Successfully query view", shorttxid(responseMsg.Txid), pb.ChaincodeMessage_RESPONSE)
+		
+		queryResponse := &pb.QueryResponse{}
+		if err = proto.Unmarshal(responseMsg.Payload, queryResponse); err != nil {
+			return nil, errors.New(fmt.Sprintf("[%s]unmarshall error", shorttxid(responseMsg.Txid)))
+		}
+		
+		return queryResponse, nil
+	}
+	if responseMsg.Type.String() == pb.ChaincodeMessage_ERROR.String() {
+		// Error response
+		chaincodeLogger.Errorf("[%s]Received %s", shorttxid(responseMsg.Txid), pb.ChaincodeMessage_ERROR)
+		return nil, errors.New(string(responseMsg.Payload[:]))
+	}
+	
+	// Incorrect chaincode message received
+	return nil, errors.New(fmt.Sprintf("Incorrect chaincode message %s received. Expecting %s or %s", responseMsg.Type, pb.ChaincodeMessage_RESPONSE, pb.ChaincodeMessage_ERROR))
+}
+
 func (handler *Handler) handleGetStateByRange(startKey, endKey string, txid string) (*pb.QueryResponse, error) {
 	// Create the channel on which to communicate the response from validating peer
 	var respChan chan pb.ChaincodeMessage

@@ -151,6 +151,10 @@ func (stub *MockStub) GetState(key string) ([]byte, error) {
 	return value, nil
 }
 
+func (stub *MockStub) QueryByView(opt string) (StateQueryIteratorInterface, error) {
+	return nil, fmt.Errorf("not support")
+}
+
 // PutState writes the specified `value` and `key` into the ledger.
 func (stub *MockStub) PutState(key string, value []byte) error {
 	if stub.TxID == "" {
