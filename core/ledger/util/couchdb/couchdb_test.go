@@ -73,7 +73,7 @@ func TestMain(m *testing.M) {
 	viper.Set("ledger.state.stateDatabase", "CouchDB")
 
 	// both vagrant and CI have couchdb configured at host "couchdb"
-	viper.Set("ledger.state.couchDBConfig.couchDBAddress", "couchdb:5984")
+	viper.Set("ledger.state.couchDBConfig.couchDBAddress", "localhost:5994")
 	// Replace with correct username/password such as
 	// admin/admin if user security is enabled on couchdb.
 	viper.Set("ledger.state.couchDBConfig.username", "")
@@ -1349,4 +1349,20 @@ func addRevisionAndDeleteStatus(revision string, value []byte, deleted bool) []b
 
 	return returnJSON
 
+}
+
+func TestCreateView(t *testing.T) {
+	//create a new instance and database object   --------------------------------------------------------
+	couchInstance, err := CreateCouchInstance(couchDBDef.URL, couchDBDef.Username, couchDBDef.Password,
+		couchDBDef.MaxRetries, couchDBDef.MaxRetriesOnStartup, couchDBDef.RequestTimeout)
+	testutil.AssertNoError(t, err, fmt.Sprintf("Error when trying to create couch instance"))
+	database := "mychannel"
+	db := CouchDatabase{CouchInstance: *couchInstance, DBName: database}
+	
+	//create a new database
+	_, errdb := db.CreateDatabaseIfNotExist()
+	testutil.AssertNoError(t, errdb, fmt.Sprintf("Error when trying to create database"))
+	designDocName := "testdoc_1"
+	agreement := "{\"language\":\"javascript\",\"views\":{\"testview_1\":{\"map\":\"function(doc) {emit(doc._id,1);}\"}}}"
+	db.CreateView(designDocName, agreement)
 }

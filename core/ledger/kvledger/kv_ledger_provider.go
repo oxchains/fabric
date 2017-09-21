@@ -84,8 +84,6 @@ func NewProvider() (ledger.PeerLedgerProvider, error) {
 	// Initialize the versioned database (state database)
 	var vdbProvider statedb.VersionedDBProvider
 	
-	//未设置ledger.state.stateDatabase时,系统默认为mongodb??
-	
 	if ledgerconfig.IsCouchDBEnabled() {
 		logger.Debug("Constructing CouchDB VersionedDBProvider")
 		var err error

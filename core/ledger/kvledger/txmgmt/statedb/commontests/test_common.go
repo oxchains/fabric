@@ -23,6 +23,9 @@ import (
 	"github.com/oxchains/fabric/common/ledger/testutil"
 	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/statedb"
 	"github.com/oxchains/fabric/core/ledger/kvledger/txmgmt/version"
+	"github.com/op/go-logging"
+	"encoding/json"
+	"github.com/oxchains/fabric/core/ledger/util/couchdb"
 )
 
 // TestGetStateMultipleKeys tests read for given multiple keys
@@ -487,4 +490,66 @@ func TestQuery(t *testing.T, dbProvider statedb.VersionedDBProvider) {
 	testutil.AssertNoError(t, err, "")
 	testutil.AssertNil(t, queryResult2)
 
+}
+
+func TestQueryDocumentsViewKey(t *testing.T, dbProvider statedb.VersionedDBProvider) {
+	db, err := dbProvider.GetDBHandle("viewtest")
+	testutil.AssertNoError(t, err, "")
+	db.Open()
+	defer db.Close()
+	
+	insertJsonData(db)
+	
+	createOpt := []byte("{\"designDocName\":\"testDoc\",\"agreement\":{\"language\":\"javascript\",\"views\":{\"testView\":" +
+		"{\"map\":\"function(doc) {if (doc.data.name) for (var i in doc.data.name) emit(doc.data.name[i],doc)}\"}}}}")
+	err = db.CreateView("ns1", createOpt)
+	testutil.AssertNoError(t, err, "")
+	
+	
+	queryOpt := []byte("{\"designDocName\":\"testDoc\",\"viewName\":\"testView\",\"key\":\"marble3\"}")
+	var a couchdb.ViewQueryOpt
+	err = json.Unmarshal(queryOpt, &a)
+	testutil.AssertNoError(t, err, "")
+	logger := logging.MustGetLogger("a")
+	logger.Noticef(string(queryOpt))
+	itr, err := db.QueryByView("ns1", queryOpt)
+	testutil.AssertNoError(t, err, "")
+
+	queryResult1, err := itr.Next()
+	testutil.AssertNoError(t, err, "")
+	testutil.AssertNotNil(t, queryResult1)
+	versionedQueryRecord := queryResult1.(*statedb.VersionedKV)
+	stringRecord := string(versionedQueryRecord.Value)
+	origin := "{\"name\":[\"marble3\",\"color2\",\"blue\",\"size\",1,\"owner\",\"tom\"]}"
+	testutil.AssertEquals(t,origin , stringRecord)
+
+	queryOpt2 := []byte("{\"designDocName\":\"testDoc\",\"viewName\":\"testView\",\"key\":\"color2\"}")
+	itr1, err := db.QueryByView("ns1", queryOpt2)
+	testutil.AssertNoError(t, err, "")
+	queryResult1, err = itr1.Next()
+	testutil.AssertNoError(t, err, "")
+	testutil.AssertNotNil(t, queryResult1)
+	versionedQueryRecord = queryResult1.(*statedb.VersionedKV)
+	stringRecord = string(versionedQueryRecord.Value)
+
+	origin = "{\"name\":[\"marble3\",\"color2\",\"blue\",\"size\",1,\"owner\",\"tom\"]}"
+	testutil.AssertEquals(t,origin , stringRecord)
+}
+
+func insertJsonData(db statedb.VersionedDB) {
+	batch := statedb.NewUpdateBatch()
+	jsonValue1 := "{\"name\":[\"marble1\",\"color\",\"blue\",\"size\",1,\"owner\",\"tom\"]}"
+	batch.Put("ns1", "key1", []byte(jsonValue1), version.NewHeight(1, 1))
+	
+	jsonValue2 := "{\"name\":[\"marble2\",\"color\",\"blue\",\"size\",1,\"owner\",\"tom\"]}"
+	batch.Put("ns1", "key2", []byte(jsonValue2), version.NewHeight(1, 2))
+	
+	jsonValue3 := "{\"name\":[\"marble3\",\"color2\",\"blue\",\"size\",1,\"owner\",\"tom\"]}"
+	batch.Put("ns1", "key3", []byte(jsonValue3), version.NewHeight(1, 3))
+	
+	jsonValue4 := "{\"name\":[\"marble4\",\"color2\",\"blue\",\"size\",1,\"owner\",\"tom\"]}"
+	batch.Put("ns2", "key3", []byte(jsonValue4), version.NewHeight(1, 4))
+	
+	savePoint := version.NewHeight(2, 5)
+	db.ApplyUpdates(batch, savePoint)
 }

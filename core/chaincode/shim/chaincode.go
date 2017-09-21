@@ -384,7 +384,26 @@ func (stub *ChaincodeStub) InvokeChaincode(chaincodeName string, args [][]byte, 
 
 // GetState documentation can be found in interfaces.go
 func (stub *ChaincodeStub) GetState(key string) ([]byte, error) {
+	//测试state流转途径
+	logger := logging.MustGetLogger("fabric/core/chaincode/shim/chaincode.go")
+	logger.Noticef("execsute getstate")
 	return stub.handler.handleGetState(key, stub.TxID)
+}
+
+func (stub *ChaincodeStub) QueryByView(opt string) (StateQueryIteratorInterface, error) {
+	response, err := stub.handler.handleQueryByView(opt, stub.TxID)
+	if err != nil {
+		return nil, err
+	}
+	return &StateQueryIterator{CommonIterator: &CommonIterator{stub.handler, stub.TxID, response, 0}}, nil
+}
+
+func (stub *ChaincodeStub) CreateView(opt string) error {
+	_, err := stub.handler.handleCreateView(opt, stub.TxID)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // PutState documentation can be found in interfaces.go

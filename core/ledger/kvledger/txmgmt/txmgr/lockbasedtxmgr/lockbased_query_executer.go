@@ -39,6 +39,14 @@ func (q *lockBasedQueryExecutor) GetState(ns string, key string) ([]byte, error)
 	return q.helper.getState(ns, key)
 }
 
+func (q *lockBasedQueryExecutor) QueryByView(ns string, opt []byte) (ledger.ResultsIterator, error) {
+	return q.helper.queryByView(ns, opt)
+}
+
+func (q *lockBasedQueryExecutor) CreateView(ns string, opt []byte) error {
+	return q.helper.createView(ns, opt)
+}
+
 // GetStateMultipleKeys implements method in interface `ledger.QueryExecutor`
 func (q *lockBasedQueryExecutor) GetStateMultipleKeys(namespace string, keys []string) ([][]byte, error) {
 	return q.helper.getStateMultipleKeys(namespace, keys)

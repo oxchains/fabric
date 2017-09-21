@@ -113,6 +113,14 @@ func (vdb *VersionedDB) GetStateMultipleKeys(namespace string, keys []string) ([
 	return vals, nil
 }
 
+func (vdb *VersionedDB) QueryByView(namespace string, opt []byte) (statedb.ResultsIterator, error) {
+	return nil, fmt.Errorf("not support")
+}
+
+func (vdb *VersionedDB) CreateView(namespace string, opt []byte) error {
+	return fmt.Errorf("not support")
+}
+
 func (vdb *VersionedDB) ValidateKey(key string) error {
 	if !utf8.ValidString(key) {
 		return fmt.Errorf("Key should be a valid utf8 string: [%x]", key)

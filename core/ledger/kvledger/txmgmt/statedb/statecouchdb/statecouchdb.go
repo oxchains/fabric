@@ -142,6 +142,60 @@ func (vdb *VersionedDB) GetState(namespace string, key string) (*statedb.Version
 	return &statedb.VersionedValue{Value: returnValue, Version: &returnVersion}, nil
 }
 
+//在查询视图时也使用了composeKey,所以在建立视图时,使用的map函数应也使用composeKey:即chaincode+[]byte{0x00}+key
+//opt为查询视图所使用的参数,不同的db实现该方法时可能代表的参数可能不一致.
+func (vdb *VersionedDB) QueryByView(namespace string, opt []byte) (statedb.ResultsIterator, error) {
+	
+	if !couchdb.IsJSON(string(opt)) {
+		return nil, fmt.Errorf("the option is not a json")
+	}
+	
+	var queryOpt couchdb.ViewQueryOpt
+	err := json.Unmarshal(opt, &queryOpt)
+	if err != nil {
+		return nil, fmt.Errorf("the opt json is not a couchdb opt json")
+	}
+	
+	key := queryOpt.Key
+	designDocName := queryOpt.DesignDocName
+	viewName := queryOpt.ViewName
+	
+	queryResult, err := vdb.db.QueryDocumentsViewKey(key, designDocName, viewName)
+	if err != nil {
+		if err != nil {
+			logger.Debugf("Error calling GetStateViewKey(): %s\n", err.Error())
+			return nil, err
+		}
+	}
+	
+	return newKVScanner(namespace, *queryResult), nil
+}
+
+func (vdb *VersionedDB) CreateView(namespace string, opt []byte) error {
+	
+	if !couchdb.IsJSON(string(opt)) {
+		logger.Debugf("the wrong json string is %s", string(opt))
+		return fmt.Errorf("the createview opt is not a json")
+	}
+	
+	var createOpt couchdb.ViewCreateOpt
+	err := json.Unmarshal(opt, &createOpt)
+	if err != nil {
+		logger.Debugf("the wrong json  is not a create view json:%s", string(opt))
+		return fmt.Errorf("the create view opt json is not valid")
+	}
+	
+	designDocName := createOpt.DesignDocName
+	agreement := createOpt.Agreement
+	agreementBytes, _ := json.Marshal(agreement)
+	err = vdb.db.CreateView(designDocName, agreementBytes)
+	if err != nil {
+		logger.Debugf("create designDoc failed:" + err.Error())
+		return err
+	}
+	return nil
+}
+
 func removeDataWrapper(wrappedValue []byte, attachments []*couchdb.Attachment) ([]byte, version.Height) {
 
 	//initialize the return value
@@ -307,6 +361,9 @@ func (vdb *VersionedDB) ApplyUpdates(batch *statedb.UpdateBatch, height *version
 
 	return nil
 }
+
+//创建视图
+//func (vdb *VersionDB)
 
 //addVersionAndChainCodeID adds keys for version and chaincodeID to the JSON value
 func addVersionAndChainCodeID(value []byte, chaincodeID string, version *version.Height) []byte {

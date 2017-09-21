@@ -146,9 +146,19 @@ func (stub *MockStub) MockInvokeWithSignedProposal(uuid string, args [][]byte, s
 
 // GetState retrieves the value for a given key from the ledger
 func (stub *MockStub) GetState(key string) ([]byte, error) {
+	testLogger := logging.MustGetLogger("fabric/core/chaincode/shim/mockstub.go")
+	testLogger.Noticef("execute getstate")
 	value := stub.State[key]
 	mockLogger.Debug("MockStub", stub.Name, "Getting", key, value)
 	return value, nil
+}
+
+func (stub *MockStub) QueryByView(opt string) (StateQueryIteratorInterface, error) {
+	return nil, fmt.Errorf("not support")
+}
+
+func (stub *MockStub) CreateView(opt string) error {
+	return fmt.Errorf("not support")
 }
 
 // PutState writes the specified `value` and `key` into the ledger.

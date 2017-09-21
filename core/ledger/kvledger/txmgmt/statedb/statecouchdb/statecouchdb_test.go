@@ -40,7 +40,7 @@ func TestMain(m *testing.M) {
 	viper.Set("ledger.state.stateDatabase", "CouchDB")
 
 	// both vagrant and CI have couchdb configured at host "couchdb"
-	viper.Set("ledger.state.couchDBConfig.couchDBAddress", "couchdb:5984")
+	viper.Set("ledger.state.couchDBConfig.couchDBAddress", "localhost:5994")
 	// Replace with correct username/password such as
 	// admin/admin if user security is enabled on couchdb.
 	viper.Set("ledger.state.couchDBConfig.username", "")
@@ -48,6 +48,7 @@ func TestMain(m *testing.M) {
 	viper.Set("ledger.state.couchDBConfig.maxRetries", 3)
 	viper.Set("ledger.state.couchDBConfig.maxRetriesOnStartup", 10)
 	viper.Set("ledger.state.couchDBConfig.requestTimeout", time.Second*35)
+	viper.Set("logging.level", "debug")
 
 	//run the actual test
 	result := m.Run()
@@ -151,3 +152,10 @@ func TestGetStateMultipleKeys(t *testing.T) {
 		commontests.TestGetStateMultipleKeys(t, env.DBProvider)
 	}
 }
+
+func TestQueryDocumentsViewKey(t *testing.T) {
+	env := NewTestVDBEnv(t)
+	//defer env.Cleanup("testview")
+	commontests.TestQueryDocumentsViewKey(t, env.DBProvider)
+}
+

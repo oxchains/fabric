@@ -85,7 +85,15 @@ type ChaincodeStubInterface interface {
 	// consider data modified by PutState that has not been committed.
 	// If the key does not exist in the state database, (nil, nil) is returned.
 	GetState(key string) ([]byte, error)
-
+	
+	//使用视图查询
+	//不同的db实现该方法时,参数内容可能不一致,需根据启动的db来传入相应json字符串.
+	//具体参数列表可查看底层db实现方法
+	QueryByView(opt string) (StateQueryIteratorInterface, error)
+	
+	//创建视图,与QueryByView()配套使用
+	CreateView(opt string) error
+	
 	// PutState puts the specified `key` and `value` into the transaction's
 	// writeset as a data-write proposal. PutState doesn't effect the ledger
 	// until the transaction is validated and successfully committed.

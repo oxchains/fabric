@@ -98,6 +98,20 @@ type RangeQueryResponse struct {
 	} `json:"rows"`
 }
 
+type ViewQueryResponse struct {
+	TotalRows int `json:"total_rows"`
+	Offset    int `json:"offset"`
+	Rows []struct {
+		ID string `json:"id"`
+		Key string `json:"key"`
+		Value struct {
+			Rev string `json:"_rev"`
+			Data interface{} `json:"data"`
+			Version string `json:"version"`
+		} `json:"value"`
+	} `json:"rows"`
+}
+
 //QueryResponse is used for processing REST query responses from CouchDB
 type QueryResponse struct {
 	Warning string            `json:"warning"`
@@ -205,6 +219,19 @@ type BatchUpdateResponse struct {
 type Base64Attachment struct {
 	ContentType    string `json:"content_type"`
 	AttachmentData string `json:"data"`
+}
+
+//查询视图使用opt
+type ViewQueryOpt struct {
+	DesignDocName string  `json:"designDocName"`
+	ViewName string       `json:"viewName"`
+	Key string            `json:"key"`
+}
+
+//创建视图使用opt
+type ViewCreateOpt struct {
+	DesignDocName string   `json:"designDocName"`
+	Agreement interface{}       `json:"agreement"`
 }
 
 // closeResponseBody discards the body and then closes it to enable returning it to
@@ -783,6 +810,101 @@ func (dbclient *CouchDatabase) ReadDoc(id string) (*CouchDoc, string, error) {
 	return &couchDoc, revision, nil
 }
 
+//通过视图查询文档
+func (dbclient *CouchDatabase) QueryDocumentsViewKey(key, designDocName, viewName string) (*[]QueryResult, error) {
+    logger.Debugf("Entering QueryDocumentsViewKey() key=%s", key)
+    
+    var results []QueryResult
+	
+    queryURL, err := url.Parse(dbclient.CouchInstance.conf.URL)
+	if err != nil {
+		logger.Errorf("URL parse error: %s", err.Error())
+		return nil, err
+	}
+	
+	rawQuery := queryURL.Query()
+	if key != "" {
+		var err error
+		if key, err = encodeForJSON(key); err != nil {
+			return nil, err
+		}
+		rawQuery.Add("key", "\""+key+"\"")
+	}
+	
+	queryURL.RawQuery = rawQuery.Encode()
+	
+	queryURL.Path = dbclient.DBName + "/_design/" + designDocName + "/_view/" + viewName
+	
+	//get the number of retries
+	maxRetries := dbclient.CouchInstance.conf.MaxRetries
+	//
+	resp, _, err := dbclient.CouchInstance.handleRequest(http.MethodGet, queryURL.String(), nil, "", "", maxRetries, true)
+	
+	if err != nil {
+		return nil, err
+	}
+	defer closeResponseBody(resp)
+	if logger.IsEnabledFor(logging.DEBUG) {
+		dump, err2 := httputil.DumpResponse(resp, true)
+		if err2 != nil {
+			log.Fatal(err2)
+		}
+		logger.Debugf("%s", dump)
+	}
+	
+	//handle as JSON document
+	jsonResponseRaw, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var jsonResponse = &ViewQueryResponse{}
+	
+	err2 := json.Unmarshal(jsonResponseRaw, &jsonResponse)
+	if err2 != nil {
+		return nil, err2
+	}
+
+	for _, row := range jsonResponse.Rows {
+		
+		valueByte, err := json.Marshal(row.Value)
+		if err != nil {
+			continue
+		}
+		var addDocument = &QueryResult{row.ID, valueByte, nil}
+		results = append(results, *addDocument)
+	}
+	
+	logger.Debugf("Exiting ReadDocRange()")
+	
+	return &results, nil
+	
+}
+
+//创建视图
+func (dbclient *CouchDatabase) CreateView(designDocName string, agreement []byte) error {
+	
+	logger.Debugf("Entering CreateView")
+	
+	rangeURL, err := url.Parse(dbclient.CouchInstance.conf.URL)
+	if err != nil {
+		logger.Errorf("URL parse error: %s", err.Error())
+		return err
+	}
+	rangeURL.Path = dbclient.DBName + "/_design/" + designDocName
+	
+	maxRetries := dbclient.CouchInstance.conf.MaxRetries
+	
+	logger.Debugf("the agreement is %s", agreement)
+	
+	resp, _, err := dbclient.CouchInstance.handleRequest(http.MethodPut, rangeURL.String(), agreement, "", "", maxRetries, true)
+	if err != nil {
+		return err
+	}
+	defer closeResponseBody(resp)
+	return nil
+}
+
 //ReadDocRange method provides function to a range of documents based on the start and end keys
 //startKey and endKey can also be empty strings.  If startKey and endKey are empty, all documents are returned
 //This function provides a limit option to specify the max number of entries and is supplied by config.
@@ -850,6 +972,8 @@ func (dbclient *CouchDatabase) ReadDocRange(startKey, endKey string, limit, skip
 		return nil, err
 	}
 
+	logger.Infof(string(jsonResponseRaw))
+	
 	var jsonResponse = &RangeQueryResponse{}
 	err2 := json.Unmarshal(jsonResponseRaw, &jsonResponse)
 	if err2 != nil {
@@ -1214,7 +1338,7 @@ func (couchInstance *CouchInstance) handleRequest(method, connectURL string, dat
 	multipartBoundary string, maxRetries int, keepConnectionOpen bool) (*http.Response, *DBReturn, error) {
 
 	logger.Debugf("Entering handleRequest()  method=%s  url=%v", method, connectURL)
-
+	
 	//create the return objects for couchDB
 	var resp *http.Response
 	var errResp error

@@ -40,6 +40,8 @@ const (
 	ChaincodeMessage_QUERY_STATE_CLOSE   ChaincodeMessage_Type = 17
 	ChaincodeMessage_KEEPALIVE           ChaincodeMessage_Type = 18
 	ChaincodeMessage_GET_HISTORY_FOR_KEY ChaincodeMessage_Type = 19
+	ChaincodeMessage_QUERY_BY_VIEW       ChaincodeMessage_Type = 20
+	ChaincodeMessage_CREATE_VIEW         ChaincodeMessage_Type = 21
 )
 
 var ChaincodeMessage_Type_name = map[int32]string{
@@ -62,6 +64,8 @@ var ChaincodeMessage_Type_name = map[int32]string{
 	17: "QUERY_STATE_CLOSE",
 	18: "KEEPALIVE",
 	19: "GET_HISTORY_FOR_KEY",
+	20: "QUERY_BY_VIEW",
+	21: "CREATE_VIEW",
 }
 var ChaincodeMessage_Type_value = map[string]int32{
 	"UNDEFINED":           0,
@@ -83,6 +87,8 @@ var ChaincodeMessage_Type_value = map[string]int32{
 	"QUERY_STATE_CLOSE":   17,
 	"KEEPALIVE":           18,
 	"GET_HISTORY_FOR_KEY": 19,
+	"QUERY_BY_VIEW":       20,
+	"CREATE_VIEW":         21,
 }
 
 func (x ChaincodeMessage_Type) String() string {
@@ -309,6 +315,22 @@ func (m *QueryResponse) GetId() string {
 	return ""
 }
 
+type ViewOpt struct {
+	Opt []byte `protobuf:"bytes,1,opt,name=opt,proto3" json:"opt,omitempty"`
+}
+
+func (m *ViewOpt) Reset()                    { *m = ViewOpt{} }
+func (m *ViewOpt) String() string            { return proto.CompactTextString(m) }
+func (*ViewOpt) ProtoMessage()               {}
+func (*ViewOpt) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{9} }
+
+func (m *ViewOpt) GetOpt() []byte {
+	if m != nil {
+		return m.Opt
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*ChaincodeMessage)(nil), "protos.ChaincodeMessage")
 	proto.RegisterType((*PutStateInfo)(nil), "protos.PutStateInfo")
@@ -319,6 +341,7 @@ func init() {
 	proto.RegisterType((*QueryStateClose)(nil), "protos.QueryStateClose")
 	proto.RegisterType((*QueryResultBytes)(nil), "protos.QueryResultBytes")
 	proto.RegisterType((*QueryResponse)(nil), "protos.QueryResponse")
+	proto.RegisterType((*ViewOpt)(nil), "protos.ViewOpt")
 	proto.RegisterEnum("protos.ChaincodeMessage_Type", ChaincodeMessage_Type_name, ChaincodeMessage_Type_value)
 }
 
