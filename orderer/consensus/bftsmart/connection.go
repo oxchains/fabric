@@ -141,7 +141,6 @@ func (ch *connection) sendEnvToBFTProxy(env *ab.BftSmartMessage, index uint) (in
     i, err := ch.sendPool[index].Write(bytes)
     
     ch.mutex[index].Unlock()
-    logger.Debugf("send message %d to bftProxy success", len(bytes))
     return i, err
 }
 
@@ -208,8 +207,6 @@ func (ch *connection) connLoop() {
             //TODO recvProxy maybe down, try to reconnect to bftproxy
             continue
         }
-        
-        logger.Debugf("get message %d from bftProxy", len(bytes))
         
         var bftMessage ab.BftSmartProxy
         err = proto.Unmarshal(bytes, &bftMessage)

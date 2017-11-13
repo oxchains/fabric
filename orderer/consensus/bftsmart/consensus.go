@@ -190,6 +190,8 @@ func (ch *chain) sendBFTMessage() {
 }
 
 func (ch *chain) sendConnectMessage() {
+	logger.Debugf("[Channel %s]Send connect message to bftproxy")
+	
 	connectMsg := ch.newConnectMessage(nil, ch.lastMsgOffset)
 	ch.sendChan <- connectMsg
 }
@@ -344,6 +346,8 @@ func (ch *chain) processConnectMessage(message *ab.BftSmartMessage, needSync boo
 		ch.inSyncLock.Lock()
 		ch.inSync = true
 		ch.inSyncLock.Unlock()
+		
+		logger.Debugf("[Channel %s]Send sync request (msgoffset %d, blockindex %d) to the other orderers", ch.support.ChainID(), ch.lastMsgOffset, ch.lastCutBlockNumber)
 		
 		syncRequest := ch.newSyncronizeRequestMessage(ch.lastMsgOffset, ch.lastCutBlockNumber)
 		startFrom := ch.lastMsgOffset + 1
@@ -519,6 +523,7 @@ func (ch *chain) processSynchronize(synchronizeMessage *ab.BftSmartMessageSynchr
 	
 	case ab.BftSmartMessageSynchronize_RESPONSE:
 		
+		//TODO send a message to bftproxy when it don't need to sync to other orderers
 		if ch.sender == syncSender {
 			logger.Debugf("[Channel %s]This is sync response send by itself", ch.support.ChainID())
 		    return nil
@@ -641,7 +646,7 @@ func (ch *chain) processSynchronizeResponseMessage(synchronizeMessage *ab.BftSma
 	if ch.msgSyncer.syncOver {
 		ch.lastMsgOffset = ch.msgSyncer.offset - 1
 		ch.lastCutBlockNumber = ch.msgSyncer.lastBlockNum
-		//TODO to promise this will after
+		//TODO to promise this will after create new channel
 		defer ch.sendConnectMessage()
 	}
 	
@@ -668,7 +673,7 @@ func getLastCutBlockNumber(blockchainHeight uint64) uint64 {
 
 //used in bftmessage to recognize orderer
 func getOrdererIdentity() string {
-	timeUTC := time.Now().UTC().String()
+	timeUTC := string(time.Now().Nanosecond())
 	host, err := os.Hostname()
 	
 	if err != nil {

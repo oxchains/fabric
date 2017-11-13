@@ -171,8 +171,6 @@ func (r *receiver) tryToWriteBlock() {
                 tmpBatch = append(tmpBatch, env.message)
             }
             
-            logger.Noticef("the index is %d", in)
-            
             r.pendBlock.pendingMsgs = r.pendBlock.pendingMsgs[in:]
             
             block := r.support.CreateNextBlock(tmpBatch)
@@ -183,12 +181,9 @@ func (r *receiver) tryToWriteBlock() {
             encodedLastOffsetPersisted := utils.MarshalOrPanic(&ab.BftSmartMessageMetadata{MsgOffset: tmpMsgOffset, BlockIndex: block.GetHeader().GetNumber()})
             
             if len(tmpBatch) == 1 {
-                daLen := len(block.Data.Data)
-                logger.Debugf("the length of created block is %d", daLen)
                 chdr, _ := utils.ChannelHeader(tmpBatch[0])
                 class := r.support.ClassifyMsg(chdr)
-                logger.Debugf("to write block")
-                logger.Noticef("[Channel %s], the chdr.type is %d",r.support.ChainID(), chdr.Type)
+                
                 if class == msgprocessor.ConfigMsg || class == msgprocessor.ConfigUpdateMsg {
                     logger.Debugf("config")
                     r.support.WriteConfigBlock(block, encodedLastOffsetPersisted)
@@ -205,7 +200,7 @@ func (r *receiver) tryToWriteBlock() {
         
     }
     
-    //when last message is a sync over message
+    //sync is over
     lastPendingMsg := r.pendBlock.pendingMsgs[len(r.pendBlock.pendingMsgs) - 1]
     if len(r.receivedMsg) == 0 && lastPendingMsg.isOver {
         tmpBatch := make([]*cb.Envelope, 0)
