@@ -24,6 +24,7 @@ import (
 	"github.com/hyperledger/fabric/orderer/consensus"
 	cb "github.com/hyperledger/fabric/protos/common"
 	"github.com/op/go-logging"
+	"github.com/golang/protobuf/proto"
 )
 
 const pkgLogID = "orderer/consensus/solo"
@@ -96,6 +97,11 @@ func (ch *chain) Order(env *cb.Envelope, configSeq uint64) error {
 
 // Configure accepts configuration update messages for ordering
 func (ch *chain) Configure(config *cb.Envelope, configSeq uint64) error {
+	logger.Debugf("config for %s", ch.support.ChainID())
+	
+	msg, _ := proto.Marshal(config)
+	logger.Debugf("the len of config messages is %d", len(msg))
+	
 	select {
 	case ch.sendChan <- &message{
 		configSeq: configSeq,

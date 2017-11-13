@@ -225,7 +225,8 @@ func initializeMultichannelRegistrar(conf *config.TopLevel, signer crypto.LocalS
 	consenters := make(map[string]consensus.Consenter)
 	consenters["solo"] = solo.New()
 	consenters["kafka"] = kafka.New(conf.Kafka)
-	consenters["bftsmart"] = bftsmart.New(conf.BFTsmart.ConnectionPoolSize, conf.BFTsmart.SendPort, conf.BFTsmart.RecvPort) //JCS: create my own consenter
+	consenters["bftsmart"] = bftsmart.New(conf.BFTsmart.ConnectionPoolSize, conf.BFTsmart.SendPort, conf.BFTsmart.RecvPort) //JCS: create my own
+	// consenter
 
 	return multichannel.NewRegistrar(lf, consenters, signer)
 }

@@ -193,6 +193,29 @@ func ExtractEnvelope(block *cb.Block, index int) (*cb.Envelope, error) {
 	return envelope, nil
 }
 
+func ExtractAllEnvelopes(block *cb.Block) ([]*cb.Envelope, error) {
+	
+	var msg []*cb.Envelope
+	
+	if block.Data == nil {
+		return nil, fmt.Errorf("No data in block")
+	}
+	
+	envelopeCount := len(block.Data.Data)
+	
+	for index := 0; index <= envelopeCount - 1; index++ {
+		marshaledEnvelope := block.Data.Data[index]
+		envelope, err := GetEnvelopeFromBlock(marshaledEnvelope)
+		if err != nil {
+			return nil, fmt.Errorf("Block data does not carry an envelope at index %d: %s", index, err)
+		}
+		
+		msg = append(msg, envelope)
+	}
+	
+	return msg, nil
+}
+
 // ExtractPayloadOrPanic retrieves the payload of a given envelope and unmarshals it -- it panics if either of these operations fail.
 func ExtractPayloadOrPanic(envelope *cb.Envelope) *cb.Payload {
 	payload, err := ExtractPayload(envelope)

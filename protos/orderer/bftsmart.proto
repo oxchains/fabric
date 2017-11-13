@@ -1,0 +1,94 @@
+/*
+Copyright IBM Corp. 2016 All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+                 http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+option go_package = "github.com/hyperledger/fabric/protos/orderer";
+option java_package = "org.hyperledger.fabric.protos.orderer";
+
+package orderer;
+
+// bftsmartMessage is a wrapper type for the messages
+// that the bftsmart-based orderer deals with.
+message BftSmartMessage {
+    oneof Type {
+        BftSmartMessageRegular regular = 1;
+        BftSmartMessageTimeToCut time_to_cut = 2;
+        BftSmartMessageConnect connect = 3;
+        BftSmartMessageSynchronize synchronize = 4;
+        BftProxyMessageConnect bftProxyConnect = 5;
+    }
+    string channelId = 6;
+    string sender = 7;
+}
+
+// BftSmartMessageRegular wraps a marshalled envelope.
+message BftSmartMessageRegular {
+    enum Class {
+        UNKNOWN = 0;
+        NORMAL = 1;
+        CONFIG = 2;
+    }
+    bytes payload = 1;
+    uint64 config_seq = 2;
+    Class class = 3;
+}
+
+// BftSmartMessageTimeToCut is used to signal to the orderers
+// that it is time to cut block <block_number>.
+message BftSmartMessageTimeToCut {
+    uint64 block_number = 1;
+}
+
+// BftSmartMessageConnect is posted by an orderer upon booting up.
+message BftSmartMessageConnect {
+    bytes payload = 1;
+    uint64 start_from = 2;
+}
+
+// BftSmartMessageSynchronize is posted
+message BftSmartMessageSynchronize {
+    enum Class {
+        UNKNOWN = 0;
+        REQUEST = 1;
+        RESPONSE = 2;
+    }
+    bytes payload = 1;
+    uint64 syncStartFrom = 2;
+    uint64 msgOffset = 3;
+    uint64 blockIndex = 4;
+    Class class = 5;
+    bool isOver = 6;
+}
+
+//used when the bftproxy connect to replica
+message BftProxyMessageConnect {
+    string orderer = 1;
+}
+
+// LastOffsetPersisted is the encoded value for the Metadata message
+// which is encoded in the ORDERER block metadata index for the case
+// of the BftSmart-based orderer.
+message BftSmartMessageMetadata {
+	uint64 blockIndex  = 1;
+    uint64 msgOffset = 2;
+}
+
+message BftSmartProxy {
+    uint64 offset = 1;
+    BftSmartMessage bfgMsg = 2;
+    bool needSync = 3;
+}

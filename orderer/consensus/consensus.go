@@ -81,6 +81,9 @@ type ConsenterSupport interface {
 	SharedConfig() channelconfig.Orderer
 
 	GetLastBlock() *cb.Block           //JCS: my own method
+	
+	GetBlock(blockIndex uint64) *cb.Block         //lihq:my own method
+	
 	AppendBlock(block *cb.Block) error //JCS: my own method
 
 	// CreateNextBlock takes a list of messages and creates the next block based on the block with highest block number committed to the ledger

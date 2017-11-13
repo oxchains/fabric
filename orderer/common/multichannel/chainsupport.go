@@ -23,6 +23,7 @@ type ChainSupport struct {
 	*ledgerResources
 	msgprocessor.Processor
 	*BlockWriter
+	*BlockReader
 	consensus.Chain
 	cutter blockcutter.Receiver
 	crypto.LocalSigner
@@ -56,6 +57,9 @@ func newChainSupport(
 
 	// Set up the block writer
 	cs.BlockWriter = newBlockWriter(lastBlock, registrar, cs)
+	
+	//set up the block reader
+	cs.BlockReader = newBlockReader(ledgerResources)
 
 	// Set up the consenter
 	consenterType := ledgerResources.SharedConfig().ConsensusType()

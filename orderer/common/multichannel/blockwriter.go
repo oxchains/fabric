@@ -66,12 +66,14 @@ func newBlockWriter(lastBlock *cb.Block, r *Registrar, support blockWriterSuppor
 
 //JCS: my own method
 func (bw *BlockWriter) GetLastBlock() *cb.Block {
+	bw.committingBlock.Lock()
+	defer bw.committingBlock.Unlock()
 	return bw.lastBlock
 }
 
 //JCS: my own method
 func (bw *BlockWriter) AppendBlock(block *cb.Block) error {
-
+    logger.Noticef("attemp to appendblock to blockwriter")
 	bw.committingBlock.Lock()
 	bw.lastBlock = block
 
