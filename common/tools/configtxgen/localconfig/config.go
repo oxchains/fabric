@@ -66,6 +66,16 @@ const (
 	// SampleSingleMSPKafkaV11Profile references the sample profile which includes only the sample MSP with v1.1 capabilities defined and uses Kafka for ordering.
 	SampleSingleMSPKafkaV11Profile = "SampleSingleMSPKafkaV1_1"
 
+	//JCS: my options
+	// SampleInsecureBFTsmartProfile references the sample profile which does not include any MSPs and uses BFT-SMaRt for ordering.
+	SampleInsecureBFTsmartProfile = "SampleInsecureBFTsmart"
+	// SampleDevModeBFTsmartProfile references the sample profile which requires only basic membership for admin privileges and uses BFT-SMaRt for ordering.
+	SampleDevModeBFTsmartProfile = "SampleDevModeBFTsmart"
+	// SampleSingleMSPBFTsmartProfile references the sample profile which includes only the sample MSP and uses BFT-SMaRt for ordering.
+	SampleSingleMSPBFTsmartProfile = "SampleSingleMSPBFTsmart"
+	// SampleSingleMSPBFTsmartV11Profile references the sample profile which includes only the sample MSPwith v1.1 capabilities defined  and uses BFT-SMaRt for ordering.
+	SampleSingleMSPBFTsmartV11Profile = "SampleSingleMSPBFTsmartV1.1"
+
 	// SampleSingleMSPChannelProfile references the sample profile which includes only the sample MSP and is used to create a channel
 	SampleSingleMSPChannelProfile = "SampleSingleMSPChannel"
 	// SampleSingleMSPChannelV11Profile references the sample profile which includes only the sample MSP with v1.1 capabilities and is used to create a channel
@@ -139,6 +149,7 @@ type Orderer struct {
 	BatchTimeout  time.Duration   `yaml:"BatchTimeout"`
 	BatchSize     BatchSize       `yaml:"BatchSize"`
 	Kafka         Kafka           `yaml:"Kafka"`
+	BFTsmart      BFTsmart        `yaml:"BFTsmart"` //JCS: my own options
 	Organizations []*Organization `yaml:"Organizations"`
 	MaxChannels   uint64          `yaml:"MaxChannels"`
 	Capabilities  map[string]bool `yaml:"Capabilities"`
@@ -149,6 +160,13 @@ type BatchSize struct {
 	MaxMessageCount   uint32 `yaml:"MaxMessageSize"`
 	AbsoluteMaxBytes  uint32 `yaml:"AbsoluteMaxBytes"`
 	PreferredMaxBytes uint32 `yaml:"PreferredMaxBytes"`
+}
+
+//JCS: BFTsmart contains config for the BFT-SMaRt orderer
+type BFTsmart struct {
+	ConnectionPoolSize uint
+	SendPort           uint
+	RecvPort           uint
 }
 
 // Kafka contains configuration for the Kafka-based orderer.
@@ -168,6 +186,11 @@ var genesisDefaults = TopLevel{
 		},
 		Kafka: Kafka{
 			Brokers: []string{"127.0.0.1:9092"},
+		},
+		BFTsmart: BFTsmart{ //JCS: my own options
+			ConnectionPoolSize: 20,
+			SendPort: 9998,
+			RecvPort: 9999,
 		},
 	},
 }
@@ -316,6 +339,17 @@ func (oc *Orderer) completeInitialization() {
 		case oc.Kafka.Brokers == nil:
 			logger.Infof("Orderer.Kafka.Brokers unset, setting to %v", genesisDefaults.Orderer.Kafka.Brokers)
 			oc.Kafka.Brokers = genesisDefaults.Orderer.Kafka.Brokers
+
+		case oc.BFTsmart.ConnectionPoolSize == 0: //JCS: my own options
+			logger.Infof("BFTsmart.ConnectionPoolSize unset, setting to %v", genesisDefaults.Orderer.BFTsmart.ConnectionPoolSize)
+			oc.BFTsmart.ConnectionPoolSize = genesisDefaults.Orderer.BFTsmart.ConnectionPoolSize
+		case oc.BFTsmart.SendPort == 0: //JCS: my own options
+			logger.Infof("BFTsmart.SendPort unset, setting to %v", genesisDefaults.Orderer.BFTsmart.SendPort)
+			oc.BFTsmart.SendPort = genesisDefaults.Orderer.BFTsmart.SendPort
+		case oc.BFTsmart.RecvPort == 0: //JCS: my own options
+			logger.Infof("BFTsmart.RecvPort unset, setting to %v", genesisDefaults.Orderer.BFTsmart.RecvPort)
+			oc.BFTsmart.RecvPort = genesisDefaults.Orderer.BFTsmart.RecvPort
+
 		default:
 			return
 		}

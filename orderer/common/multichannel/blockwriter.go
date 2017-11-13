@@ -64,6 +64,23 @@ func newBlockWriter(lastBlock *cb.Block, r *Registrar, support blockWriterSuppor
 	return bw
 }
 
+//JCS: my own method
+func (bw *BlockWriter) GetLastBlock() *cb.Block {
+	bw.committingBlock.Lock()
+	defer bw.committingBlock.Unlock()
+	return bw.lastBlock
+}
+
+//JCS: my own method
+func (bw *BlockWriter) AppendBlock(block *cb.Block) error {
+    logger.Noticef("attemp to appendblock to blockwriter")
+	bw.committingBlock.Lock()
+	bw.lastBlock = block
+
+	defer bw.committingBlock.Unlock()
+	return bw.support.Append(block)
+}
+
 // CreateNextBlock creates a new block with the next block number, and the given contents.
 func (bw *BlockWriter) CreateNextBlock(messages []*cb.Envelope) *cb.Block {
 	previousBlockHash := bw.lastBlock.Header.Hash()

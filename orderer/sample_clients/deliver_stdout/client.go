@@ -12,6 +12,8 @@ import (
 	"math"
 	"os"
 
+	util "github.com/hyperledger/fabric/common/util" //JCS import utils
+
 	"github.com/hyperledger/fabric/common/crypto"
 	"github.com/hyperledger/fabric/common/localmsp"
 	genesisconfig "github.com/hyperledger/fabric/common/tools/configtxgen/localconfig"
@@ -27,6 +29,12 @@ import (
 )
 
 var (
+
+	blocksReceived uint64             = 0                               //JCS: block counter and checker
+	N              uint32             = 4                               //JCS: number of ordering nodes
+	F              uint32             = 1                               //JCS: number of faults
+	Q              float32            = ((float32(N) + float32(F)) / 2) //JCS: quorum size
+
 	oldest  = &ab.SeekPosition{Type: &ab.SeekPosition_Oldest{Oldest: &ab.SeekOldest{}}}
 	newest  = &ab.SeekPosition{Type: &ab.SeekPosition_Newest{Newest: &ab.SeekNewest{}}}
 	maxStop = &ab.SeekPosition{Type: &ab.SeekPosition_Specified{Specified: &ab.SeekSpecified{Number: math.MaxUint64}}}
@@ -90,6 +98,31 @@ func (r *deliverClient) readUntilClose() {
 			} else {
 				fmt.Println("Received block: ", t.Block.Header.Number)
 			}
+
+			blocksReceived++
+			fmt.Printf("\n\n\nReceived block #%d: \n", t.Block.GetHeader().Number) //JCS changed to print only the number of the header
+			fmt.Printf("BlockHeader bytes #%d: ", t.Block.Header.Number)           // JCS: see what the bytes are and compare to proxy
+			printBytes(t.Block.Header.Bytes())
+			fmt.Printf("BlockData hash #%d: ", t.Block.Header.Number) // JCS: see what the bytes are and compare to proxy
+			printBytes(t.Block.Data.Hash())
+
+			if t.Block.Header.Number > 0 {
+
+				meta, _ := utils.UnmarshalMetadata(t.Block.Metadata.Metadata[cb.BlockMetadataIndex_SIGNATURES])
+
+				fmt.Printf("Block #%d contains %d block signatures\n", t.Block.Header.Number, len(meta.Signatures)) // JCS: see what the bytes are and compare to proxy
+
+				validateSignatures(meta, t.Block)
+
+				meta, _ = utils.UnmarshalMetadata(t.Block.Metadata.Metadata[cb.BlockMetadataIndex_LAST_CONFIG])
+
+				fmt.Printf("Block #%d contains %d lastconfig signatures\n", t.Block.Header.Number, len(meta.Signatures)) // JCS: see what the bytes are and compare to proxy
+
+				validateSignatures(meta, t.Block)
+
+				fmt.Printf("Blocks received: %d\n", blocksReceived)
+			}
+
 		}
 	}
 }
@@ -151,4 +184,79 @@ func main() {
 	}
 
 	s.readUntilClose()
+}
+
+func validateSignatures(meta *cb.Metadata, block *cb.Block) { //JCS: my function
+
+	if block.Header.Number == 0 {
+		fmt.Printf("Block #0 requires no signature validation!\n")
+		return
+	}
+
+	des := mspmgmt.GetIdentityDeserializer("")
+	validSigs := uint32(0)
+
+	for i, sig := range meta.Signatures {
+
+		bytes := util.ConcatenateBytes(meta.Value, sig.SignatureHeader, block.Header.Bytes())
+
+		sigHeader, err := utils.UnmarshalSignatureHeader(sig.SignatureHeader)
+		if err != nil {
+			fmt.Println("Signature header Problem: ", err)
+			continue
+		}
+		ident, err := des.DeserializeIdentity(sigHeader.Creator)
+		if err != nil {
+			fmt.Println("Identity Problem: ", err)
+			continue
+		}
+
+		err = mspmgmt.GetLocalMSP().Validate(ident)
+		if err != nil {
+			fmt.Println("Identity Problem: ", err)
+			continue
+		}
+
+		fmt.Printf("Signature #%d\n: ", i)
+		fmt.Println("MSPID: ", ident.GetMSPIdentifier())
+		printBytes(sig.Signature)
+		fmt.Println("")
+
+		err = ident.Verify(bytes, sig.Signature)
+		if err != nil {
+			fmt.Println("Sig verification problem: ", err)
+			continue
+		}
+
+		validSigs++
+
+		if validSigs > F {
+			fmt.Printf("Block #%d contains enough valid signatures!\n", block.Header.Number)
+			return
+		}
+
+	}
+
+	switch {
+	case float32(validSigs) > Q:
+		{
+			fmt.Printf("Block #%d contains a quorum of valid signatures!\n", block.Header.Number)
+		}
+	case validSigs > F:
+		{
+			fmt.Printf("Block #%d contains enough valid signatures...\n", block.Header.Number)
+		}
+	default:
+		{
+			panic(fmt.Errorf("Block #%d does NOT contain enough valid signatures!\n", block.Header.Number))
+		}
+	}
+}
+
+func printBytes(bytes []byte) { //JCS: my function
+	fmt.Print("[")
+	for _, b := range bytes {
+		fmt.Printf("%d, ", int8(b))
+	}
+	fmt.Println("]")
 }

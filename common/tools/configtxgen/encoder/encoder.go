@@ -42,6 +42,8 @@ const (
 	ConsensusTypeSolo = "solo"
 	// ConsensusTypeKafka identifies the Kafka-based consensus implementation.
 	ConsensusTypeKafka = "kafka"
+	//JCS: ConsensusTypeBFTsmart identifies the BFT-SMaRt consensus implementation.
+	ConsensusTypeBFTsmart = "bftsmart"
 
 	// BlockValidationPolicyKey TODO
 	BlockValidationPolicyKey = "BlockValidation"
@@ -156,7 +158,7 @@ func NewOrdererGroup(conf *genesisconfig.Orderer) (*cb.ConfigGroup, error) {
 	}
 
 	switch conf.OrdererType {
-	case ConsensusTypeSolo:
+	case ConsensusTypeSolo, ConsensusTypeBFTsmart: //JCS: added bftsmart type
 	case ConsensusTypeKafka:
 		addValue(ordererGroup, channelconfig.KafkaBrokersValue(conf.Kafka.Brokers), channelconfig.AdminsPolicyKey)
 	default:
@@ -415,6 +417,7 @@ func (bs *Bootstrapper) GenesisBlock() *cb.Block {
 	if err != nil {
 		logger.Panicf("Error creating genesis block from channel group: %s", err)
 	}
+
 	return block
 }
 

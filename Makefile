@@ -295,6 +295,10 @@ build/goshim.tar.bz2: $(GOSHIM_DEPS)
 build/sampleconfig.tar.bz2: $(shell find sampleconfig -type f)
 	(cd sampleconfig && tar -jc *) > $@
 
+<<<<<<< HEAD
+=======
+#build/javashim.tar.bz2: $(JAVASHIM_DEPS)
+>>>>>>> master
 build/protos.tar.bz2: $(PROTOS)
 
 build/%.tar.bz2:

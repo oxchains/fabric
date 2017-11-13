@@ -99,6 +99,26 @@ func UnmarshalEnvelope(encoded []byte) (*cb.Envelope, error) {
 	return envelope, err
 }
 
+//JCS: my method; UnmarshalMetadata unmarshals bytes to a Metadata structure
+func UnmarshalMetadata(encoded []byte) (*cb.Metadata, error) {
+	metadata := &cb.Metadata{}
+	err := proto.Unmarshal(encoded, metadata)
+	if err != nil {
+		return nil, err
+	}
+	return metadata, err
+}
+
+//JCS: my method; UnmarshalSignatureHeader unmarshals bytes to a Metadata structure
+func UnmarshalSignatureHeader(encoded []byte) (*cb.SignatureHeader, error) {
+	header := &cb.SignatureHeader{}
+	err := proto.Unmarshal(encoded, header)
+	if err != nil {
+		return nil, err
+	}
+	return header, err
+}
+
 // UnmarshalBlockOrPanic unmarshals bytes to an Block structure or panics on error
 func UnmarshalBlockOrPanic(encoded []byte) *cb.Block {
 	block, err := UnmarshalBlock(encoded)
@@ -171,6 +191,29 @@ func ExtractEnvelope(block *cb.Block, index int) (*cb.Envelope, error) {
 		return nil, fmt.Errorf("Block data does not carry an envelope at index %d: %s", index, err)
 	}
 	return envelope, nil
+}
+
+func ExtractAllEnvelopes(block *cb.Block) ([]*cb.Envelope, error) {
+	
+	var msg []*cb.Envelope
+	
+	if block.Data == nil {
+		return nil, fmt.Errorf("No data in block")
+	}
+	
+	envelopeCount := len(block.Data.Data)
+	
+	for index := 0; index <= envelopeCount - 1; index++ {
+		marshaledEnvelope := block.Data.Data[index]
+		envelope, err := GetEnvelopeFromBlock(marshaledEnvelope)
+		if err != nil {
+			return nil, fmt.Errorf("Block data does not carry an envelope at index %d: %s", index, err)
+		}
+		
+		msg = append(msg, envelope)
+	}
+	
+	return msg, nil
 }
 
 // ExtractPayloadOrPanic retrieves the payload of a given envelope and unmarshals it -- it panics if either of these operations fail.

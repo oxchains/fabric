@@ -21,6 +21,7 @@ import (
 	genesisconfig "github.com/hyperledger/fabric/common/tools/configtxgen/localconfig"
 	"github.com/hyperledger/fabric/core/comm"
 	"github.com/hyperledger/fabric/msp"
+	"github.com/hyperledger/fabric/orderer/consensus/bftsmart"
 	"github.com/hyperledger/fabric/orderer/common/bootstrap/file"
 	"github.com/hyperledger/fabric/orderer/common/ledger"
 	"github.com/hyperledger/fabric/orderer/common/localconfig"
@@ -59,6 +60,7 @@ var (
 
 // Main is the entry point of orderer process
 func Main() {
+
 	fullCmd := kingpin.MustParse(app.Parse(os.Args[1:]))
 
 	// "version" command
@@ -239,6 +241,7 @@ func initializeMultichannelRegistrar(conf *config.TopLevel, signer crypto.LocalS
 	consenters := make(map[string]consensus.Consenter)
 	consenters["solo"] = solo.New()
 	consenters["kafka"] = kafka.New(conf.Kafka)
+	consenters["bftsmart"] = bftsmart.New(conf.BFTsmart.ConnectionPoolSize, conf.BFTsmart.SendPort, conf.BFTsmart.RecvPort)
 
 	return multichannel.NewRegistrar(lf, consenters, signer, callbacks...)
 }

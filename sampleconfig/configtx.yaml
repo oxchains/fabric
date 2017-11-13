@@ -37,6 +37,17 @@ Profiles:
             SampleConsortium:
                 Organizations:
 
+    # JCS: I added this so that bftsmart can be initialized
+    # SampleInsecureBFTsmart defines a configuration that differs from the
+    # SampleInsecureSolo one only in that is uses the bftmart-based orderer.
+    SampleInsecureBFTsmart:
+        Orderer:
+            <<: *OrdererDefaults
+            OrdererType: bftsmart
+        Consortiums:
+            SampleConsortium:
+                Organizations:
+
     # SampleDevModeSolo defines a configuration which uses the Solo orderer,
     # contains the sample MSP as both orderer and consortium member, and
     # requires only basic membership for admin privileges. It also defines
@@ -86,6 +97,17 @@ Profiles:
                   AdminPrincipal: Role.MEMBER
             Capabilities:
                 <<: *OrdererCapabilities
+
+    # JCS: I added this so that bftsmart can be initialized
+    # SampleDevModeBFTsmart defines a configuration that differs from the
+    # SampleDevModeSolo one only in that it uses the Kafka-based orderer.
+    SampleDevModeBFTsmart:
+        Orderer:
+            <<: *OrdererDefaults
+            OrdererType: bftsmart
+            Organizations:
+                - <<: *SampleOrg
+                  AdminPrincipal: Role.MEMBER
         Consortiums:
             SampleConsortium:
                 Organizations:
@@ -119,6 +141,21 @@ Profiles:
                     - *SampleOrg
 
     # SampleSingleMSPSoloV1_1 mimics the SampleSingleMSPSolo definition but
+    # JCS: I added this so that bftsmart can be initialized
+    # SampleSingleMSPBFTsmart defines a configuration which uses the BFT-SMaRt orderer,
+    # and contains a single MSP definition (the MSP sampleconfig).
+    SampleSingleMSPBFTsmart:
+        Orderer:
+            <<: *OrdererDefaults
+            OrdererType: bftsmart
+            Organizations:
+                - *SampleOrg
+        Consortiums:
+            SampleConsortium:
+                Organizations:
+                    - *SampleOrg
+
+    # SampleSingleMSPSoloV1.1 mimics the SampleSingleMSPSolo definition but
     # additionally defines the v1.1 only capabilities which do not allow a
     # mixed v1.0.x v1.1.x network.
     SampleSingleMSPSoloV1_1:
@@ -152,6 +189,24 @@ Profiles:
                 Organizations:
                     - *SampleOrg
 
+
+    # JCS: I added this so that bftsmart can be initialized
+    # SampleSingleMSPBFTsmartV1.1 defines a configuration that differs from the
+    # SampleSingleMSPSoloV1.1 one only in that it uses the Kafka-based orderer.
+    SampleSingleMSPBFTsmartV1.1:
+        Capabilities:
+            <<: *GlobalCapabilities
+        Orderer:
+            <<: *OrdererDefaults
+            OrdererType: bftsmart
+            Organizations:
+                - *SampleOrg
+            Capabilities:
+                <<: *OrdererCapabilities
+        Consortiums:
+            SampleConsortium:
+                Organizations:
+                    - *SampleOrg
 
     # SampleNoConsortium is very similar to SampleInsecureSolo, except it does
     # not define Consortiums.
@@ -273,6 +328,18 @@ Orderer: &OrdererDefaults
             - kafka0:9092
             - kafka1:9092
             - kafka2:9092
+
+    #JCS: BFT-SMaRt options
+    BFTsmart:
+
+        # ConnectionPoolSize: The size of the connection pool that links the golang component to the java component.
+        ConnectionPoolSize: 20
+
+        # SendPort: The localhost TCP port from which the golang component requests pool connections to the java component.
+        SendPort: 9998
+
+        # RecvPort: The localhost TCP port from which the java component sends blocks to the golang component.
+        RecvPort: 9999
 
     # Organizations is the list of orgs which are defined as participants on
     # the orderer side of the network.
