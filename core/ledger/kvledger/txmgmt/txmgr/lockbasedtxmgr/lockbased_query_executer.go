@@ -55,6 +55,10 @@ func (q *lockBasedQueryExecutor) ExecuteQuery(namespace, query string) (ledger.R
 	return q.helper.executeQuery(namespace, query)
 }
 
+func (q *lockBasedQueryExecutor) QueryByView(ns string, opt []byte) (ledger.ResultsIterator, error) {
+	return q.helper.queryByView(ns, opt)
+}
+
 // GetPrivateData implements method in interface `ledger.QueryExecutor`
 func (q *lockBasedQueryExecutor) GetPrivateData(namespace, collection, key string) ([]byte, error) {
 	return q.helper.getPrivateData(namespace, collection, key)

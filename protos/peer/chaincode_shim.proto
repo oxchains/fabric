@@ -36,6 +36,7 @@ message ChaincodeMessage {
         QUERY_STATE_CLOSE = 17;
         KEEPALIVE = 18;
         GET_HISTORY_FOR_KEY = 19;
+        QUERY_BY_VIEW = 20;
     }
 
     Type type = 1;
@@ -53,6 +54,10 @@ message ChaincodeMessage {
 
 // TODO: We need to finalize the design on chaincode container
 // compatibility upon upgrade, see FAB-5777.
+
+message ViewOpt {
+    bytes opt = 1;
+}
 
 message GetState {
     string key = 1;

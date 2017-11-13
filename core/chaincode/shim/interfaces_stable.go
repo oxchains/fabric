@@ -102,7 +102,11 @@ type ChaincodeStubInterface interface {
 	// The query is re-executed during validation phase to ensure result set
 	// has not changed since transaction endorsement (phantom reads detected).
 	GetStateByRange(startKey, endKey string) (StateQueryIteratorInterface, error)
-
+	
+	// QueryByView returns a range iterator over the result by the view query
+	// in the ledger. This is only support couchdb up to now.
+	QueryByView(opt string) (StateQueryIteratorInterface, error)
+	
 	// GetStateByPartialCompositeKey queries the state in the ledger based on
 	// a given partial composite key. This function returns an iterator
 	// which can be used to iterate over all composite keys whose prefix matches

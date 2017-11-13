@@ -15,6 +15,7 @@ import (
 	"github.com/hyperledger/fabric/core/ledger/kvledger/txmgmt/version"
 	"github.com/hyperledger/fabric/core/ledger/ledgerconfig"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
+	"fmt"
 )
 
 var logger = flogging.MustGetLogger("stateleveldb")
@@ -91,6 +92,10 @@ func (vdb *versionedDB) GetState(namespace string, key string) (*statedb.Version
 	}
 	val, ver := statedb.DecodeValue(dbVal)
 	return &statedb.VersionedValue{Value: val, Version: ver}, nil
+}
+
+func (vdb *versionedDB) QueryByView(namespace string, opt []byte) (statedb.ResultsIterator, error){
+	return nil, fmt.Errorf("Not support")
 }
 
 // GetVersion implements method in VersionedDB interface

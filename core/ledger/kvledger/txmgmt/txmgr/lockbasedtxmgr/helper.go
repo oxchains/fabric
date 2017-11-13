@@ -98,6 +98,14 @@ func (h *queryHelper) executeQuery(namespace, query string) (commonledger.Result
 	return &queryResultsItr{DBItr: dbItr, RWSetBuilder: h.rwsetBuilder}, nil
 }
 
+func (h *queryHelper) queryByView(ns string, opt []byte) (commonledger.ResultsIterator, error) {
+	dbItr, err := h.txmgr.db.QueryByView(ns, opt)
+	if err != nil {
+		return nil, err
+	}
+	return &queryResultsItr{DBItr: dbItr, RWSetBuilder: h.rwsetBuilder}, nil
+}
+
 func (h *queryHelper) getPrivateData(ns, coll, key string) ([]byte, error) {
 	if err := h.checkDone(); err != nil {
 		return nil, err

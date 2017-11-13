@@ -154,6 +154,10 @@ func (stub *MockStub) GetPrivateDataByRange(collection, startKey, endKey string)
 	return nil, errors.New("Not Implemented")
 }
 
+func (stub *MockStub) QueryByView(opt string) (StateQueryIteratorInterface, error) {
+	return nil, fmt.Errorf("not support")
+}
+
 func (stub *MockStub) GetPrivateDataByPartialCompositeKey(collection, objectType string, attributes []string) (StateQueryIteratorInterface, error) {
 	return nil, errors.New("Not Implemented")
 }
