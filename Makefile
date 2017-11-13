@@ -80,7 +80,7 @@ K := $(foreach exec,$(EXECUTABLES),\
 	$(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH: Check dependencies")))
 
 GOSHIM_DEPS = $(shell ./scripts/goListFiles.sh $(PKGNAME)/core/chaincode/shim)
-JAVASHIM_DEPS =  $(shell git ls-files core/chaincode/shim/java)
+#JAVASHIM_DEPS =  $(shell git ls-files core/chaincode/shim/java)
 PROTOS = $(shell git ls-files *.proto | grep -v vendor)
 # No sense rebuilding when non production code is changed
 PROJECT_FILES = $(shell git ls-files  | grep -v ^test | grep -v ^unit-test | \
@@ -88,7 +88,7 @@ PROJECT_FILES = $(shell git ls-files  | grep -v ^test | grep -v ^unit-test | \
 	grep -v ^.git | grep -v ^examples | grep -v ^devenv | grep -v .png$ | \
 	grep -v ^LICENSE )
 RELEASE_TEMPLATES = $(shell git ls-files | grep "release/templates")
-IMAGES = peer orderer ccenv javaenv buildenv testenv zookeeper kafka couchdb tools
+IMAGES = peer orderer ccenv buildenv testenv zookeeper kafka couchdb tools
 RELEASE_PLATFORMS = windows-amd64 darwin-amd64 linux-amd64 linux-ppc64le linux-s390x
 RELEASE_PKGS = configtxgen cryptogen configtxlator peer orderer
 
@@ -150,7 +150,7 @@ cryptogen: build/bin/cryptogen
 
 tools-docker: build/image/tools/$(DUMMY)
 
-javaenv: build/image/javaenv/$(DUMMY)
+#javaenv: build/image/javaenv/$(DUMMY)
 
 buildenv: build/image/buildenv/$(DUMMY)
 
@@ -226,8 +226,8 @@ build/docker/gotools: gotools/Makefile
 		make install BINDIR=/opt/gotools/bin OBJDIR=/opt/gotools/obj
 
 # Both peer and peer-docker depend on ccenv and javaenv (all docker env images it supports).
-build/bin/peer: build/image/ccenv/$(DUMMY) build/image/javaenv/$(DUMMY)
-build/image/peer/$(DUMMY): build/image/ccenv/$(DUMMY) build/image/javaenv/$(DUMMY)
+build/bin/peer: build/image/ccenv/$(DUMMY)
+build/image/peer/$(DUMMY): build/image/ccenv/$(DUMMY)
 
 build/bin/%: $(PROJECT_FILES)
 	@mkdir -p $(@D)
@@ -240,9 +240,6 @@ build/bin/%: $(PROJECT_FILES)
 build/image/ccenv/payload:      build/docker/gotools/bin/protoc-gen-go \
 				build/bin/chaintool \
 				build/goshim.tar.bz2
-build/image/javaenv/payload:    build/javashim.tar.bz2 \
-				build/protos.tar.bz2 \
-				settings.gradle
 build/image/peer/payload:       build/docker/bin/peer \
 				build/sampleconfig.tar.bz2
 build/image/orderer/payload:    build/docker/bin/orderer \
@@ -298,7 +295,7 @@ build/goshim.tar.bz2: $(GOSHIM_DEPS)
 build/sampleconfig.tar.bz2: $(shell find sampleconfig -type f)
 	(cd sampleconfig && tar -jc *) > $@
 
-build/javashim.tar.bz2: $(JAVASHIM_DEPS)
+#build/javashim.tar.bz2: $(JAVASHIM_DEPS)
 build/protos.tar.bz2: $(PROTOS)
 
 build/%.tar.bz2:
