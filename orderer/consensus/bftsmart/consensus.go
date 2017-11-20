@@ -30,12 +30,17 @@ import (
 	"github.com/hyperledger/fabric/protos/utils"
 	"github.com/hyperledger/fabric/orderer/common/msgprocessor"
 	
+	"strconv"
 )
 
 var logger = logging.MustGetLogger("orderer/bftsmart")
 var poolsize uint = 0
 var poolindex uint = 0
 var recvport uint = 0
+
+var countMessage = int64(0)
+var interval = int64(1000)
+var startTime = int64(-1)
 
 type consenter struct{
 }
@@ -162,6 +167,20 @@ func (ch *chain) Order(env *cb.Envelope, configSeq uint64) error {
 		return fmt.Errorf("cannot enqueue, unable to marshal config because = %s", err)
 	}
 	
+	//test for tps
+	countMessage++
+	if startTime == -1 {
+		startTime = time.Now().UnixNano()
+	}
+	
+	logger.Debugf("Ordered %v message", countMessage)
+	
+	if (countMessage%interval) == 0 {
+		tmp := float64(interval* 1000 * 1000 * 1000) / float64(time.Now().UnixNano()-startTime)
+		logger.Noticef("Throughtput(tps) = %v message/sec", tmp)
+		startTime = time.Now().UnixNano()
+	}
+	
 	msg := ch.newNormalMessage(payload, configSeq)
 	
     select {
@@ -178,7 +197,7 @@ func (ch *chain) sendBFTMessage() {
 		case mes := <- ch.sendChan:
 			
 			poolindex := poolindex % poolsize
-			_, err := ch.connection.sendEnvToBFTProxy(mes, poolindex)
+			_, err := ch.connection.sendMessage(mes, poolindex)
 			poolindex++
 			
 			if err != nil {
@@ -530,7 +549,7 @@ func (ch *chain) processSynchronize(synchronizeMessage *ab.BftSmartMessageSynchr
 		}
 		
 		if !ch.inSync {
-			logger.Debugf("[Channel %s]Not in sync state, just ignore it")
+			logger.Debugf("[Channel %s]Not in sync state, just ignore it", ch.support.ChainID())
 			return nil
 		}
 		
@@ -622,8 +641,6 @@ func (ch *chain) sendSyncMessage(msgStartFrom uint64, blockStartFrom uint64) {
     }
 }
 
-
-
 func (ch *chain) processSynchronizeResponseMessage(synchronizeMessage *ab.BftSmartMessageSynchronize, receivedOffset uint64) error {
 	
 	logger.Debugf("[Channel %s]process Syncronize Response message", ch.support.ChainID())
@@ -673,7 +690,7 @@ func getLastCutBlockNumber(blockchainHeight uint64) uint64 {
 
 //used in bftmessage to recognize orderer
 func getOrdererIdentity() string {
-	timeUTC := string(time.Now().Nanosecond())
+	timeUTC := strconv.FormatInt(time.Now().UnixNano(), 10)
 	host, err := os.Hostname()
 	
 	if err != nil {

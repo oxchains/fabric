@@ -24,6 +24,8 @@ type connection struct {
     sendPool     []net.Conn
     mutex        []*sync.Mutex
     channels     map[string]channel
+    //TODO add persistence for orderer
+    msgDisPath   *BFTMsgDisPatch
 }
 
 
@@ -123,6 +125,13 @@ func (ch *connection) sendUint32(length uint32) (int, error) {
     return ch.sendProxy.Write(buf[:])
 }
 
+func (ch *connection) sendMessage(env *ab.BftSmartMessage, index uint) (int, error) {
+    
+    i, err := ch.sendEnvToBFTProxy(env, poolindex)
+    
+    return i, err
+}
+
 func (ch *connection) sendEnvToBFTProxy(env *ab.BftSmartMessage, index uint) (int, error) {
     
     ch.mutex[index].Lock()
@@ -142,6 +151,14 @@ func (ch *connection) sendEnvToBFTProxy(env *ab.BftSmartMessage, index uint) (in
     
     ch.mutex[index].Unlock()
     return i, err
+}
+
+func (ch *connection) SendBFTMessage(env *ab.BftSmartMessage) error {
+    poolindex := poolindex % poolsize
+    _, err := ch.sendEnvToBFTProxy(env, poolindex)
+    poolindex++
+    
+    return err
 }
 
 func (ch *connection) recvLength() (int64, error) {
@@ -195,7 +212,6 @@ func (ch *connection) recvEnvFromBFTProxy() (*cb.Envelope, error) {
     return env, nil
 }
 
-
 func (ch *connection) connLoop() {
     
     for {
@@ -213,6 +229,7 @@ func (ch *connection) connLoop() {
         if err != nil {
             logger.Debugf("[recv] Unmarshaled BftMessage failed:", err.Error())
         }
+        
         
         channel, ok := ch.channels[bftMessage.BfgMsg.ChannelId]
         if !ok {

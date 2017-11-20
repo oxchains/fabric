@@ -33,6 +33,7 @@ message BftSmartMessage {
     }
     string channelId = 6;
     string sender = 7;
+    uint64 sendIndex = 8;
 }
 
 // BftSmartMessageRegular wraps a marshalled envelope.
@@ -92,3 +93,24 @@ message BftSmartProxy {
     BftSmartMessage bfgMsg = 2;
     bool needSync = 3;
 }
+
+message SendResponse {
+    string status = 1;
+}
+
+message RecvResponse {
+    string status = 1;
+}
+
+service Sender {
+
+    //orderer send the request
+    rpc SendOrdererRequest(stream BftSmartMessage) returns (SendResponse) {}
+}
+
+service Recver {
+
+    //orderer recv response
+    rpc RecvOrdererResponse(stream BftSmartProxy) returns (RecvResponse) {}
+}
+
